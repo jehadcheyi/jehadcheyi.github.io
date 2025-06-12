@@ -5,167 +5,213 @@
   <title>Jehad Cheyi | Deep Learning & Biomedical Imaging</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="M.Sc. in Computer Engineering • Deep Learning • CNN • Computer Vision • Biomedical Imaging — Jehad Cheyi's Academic Portfolio">
-  <!-- Modern Google Fonts with math and geometric style -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Crimson+Pro:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+  <!-- Modern fonts: Inter for main, JetBrains Mono for mono, IBM Plex Sans/Serif for accent -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=IBM+Plex+Sans:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --accent: #1565c0;
-      --bg: #f2f5fa;
+      --primary: #0a2540;
+      --secondary: #00c6ae;
+      --background: #f7f9fb;
       --card-bg: #fff;
-      --shadow: 0 8px 40px 0 rgba(21,101,192,0.07), 0 1.5px 8px 0 rgba(21,101,192,0.09);
-      --border-radius: 28px;
-      --mono: 'JetBrains Mono', 'Fira Mono', 'Menlo', monospace;
+      --shadow: 0 4px 40px 0 rgba(10,37,64,0.07), 0 1.5px 8px 0 rgba(0,198,174,0.09);
+      --border-radius: 32px;
+      --mono: 'JetBrains Mono', monospace;
+      --accent-grad: linear-gradient(90deg, #00c6ae 0%, #0081eb 100%);
     }
-    body {
-      background: var(--bg);
-      font-family: 'Inter', 'Crimson Pro', 'Latin Modern Math', serif;
-      color: #1a1a1a;
+    html, body {
+      background: var(--background);
+      color: var(--primary);
+      font-family: 'Inter', 'IBM Plex Sans', Arial, sans-serif;
+      font-size: 17px;
       margin: 0;
       padding: 0;
       min-height: 100vh;
+      scroll-behavior: smooth;
       letter-spacing: 0.01em;
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
     }
-    .main-wrap {
-      max-width: 980px;
-      margin: 48px auto 48px auto;
+    .layout {
       display: flex;
       flex-wrap: wrap;
-      gap: 42px;
+      gap: 0;
+      max-width: 1100px;
+      margin: 50px auto 50px auto;
       background: var(--card-bg);
-      box-shadow: var(--shadow);
       border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
       overflow: hidden;
-      min-height: 500px;
       align-items: stretch;
     }
     .sidebar {
-      flex: 0 0 320px;
-      background: linear-gradient(135deg, #e3eafc 0%, #bad0f7 100%);
-      padding: 54px 28px 42px 28px;
+      flex: 0 0 340px;
+      background: var(--background);
+      padding: 56px 30px 38px 30px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      border-right: 1px solid #e8eafc;
+      border-right: 1.5px solid #e4eaf0;
+      position: relative;
+      z-index: 1;
+      min-height: 100%;
     }
     .profile-img {
       width: 100%;
-      max-width: 280px;
+      max-width: 270px;
       height: auto;
       display: block;
-      margin: 0 0 22px 0;
-      border-radius: 18px;
-      box-shadow: 0 8px 32px #b7c5e6;
-      border: 3px solid #1565c0;
+      margin-bottom: 30px;
+      border-radius: 22px;
+      box-shadow: 0 8px 32px #b7e6db55;
+      border: 2.5px solid var(--secondary);
       object-fit: contain;
       background: #fff;
+      transition: box-shadow 0.18s;
+    }
+    .profile-img:hover {
+      box-shadow: 0 16px 44px #81f3e3aa;
     }
     .sidebar h2 {
-      font-size: 2.1rem;
-      font-family: 'Crimson Pro', serif;
-      font-weight: 700;
-      color: var(--accent);
+      font-size: 2.3rem;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-weight: 800;
+      background: var(--accent-grad);
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
       margin: 0 0 9px 0;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.03em;
+      line-height: 1.05;
     }
     .sidebar .subtitle {
-      color: #16213e;
-      font-size: 1.16rem;
-      margin-bottom: 8px;
-      font-family: 'Inter', sans-serif;
+      color: #222;
+      font-size: 1.22rem;
+      margin-bottom: 9px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.01em;
     }
     .sidebar .tags {
-      color: #1565c0;
+      color: var(--primary);
       font-family: var(--mono);
-      font-size: 1rem;
-      margin-bottom: 24px;
+      font-size: 1.02rem;
+      margin-bottom: 32px;
       font-weight: 500;
+      background: #eafcfa;
+      border-radius: 10px;
+      padding: 6px 15px;
+      letter-spacing: 0.03em;
+      box-shadow: 0 2px 8px #a7ede255;
+      display: inline-block;
     }
     .sidebar .icon-links {
-      margin: 0 0 22px 0;
-      font-size: 1.5rem;
+      margin: 0 0 25px 0;
+      font-size: 1.7rem;
       display: flex;
-      gap: 22px;
+      gap: 28px;
       justify-content: center;
     }
     .sidebar .icon-links a {
-      color: var(--accent);
+      color: var(--primary);
       background: #fff;
       border-radius: 50%;
-      box-shadow: 0 2px 8px rgba(21,101,192,0.09);
-      padding: 7px;
+      box-shadow: 0 2px 8px rgba(0,198,174,0.09);
+      padding: 10px;
       display: inline-flex;
       align-items: center;
-      transition: box-shadow 0.16s, background 0.16s, color 0.14s;
+      transition: box-shadow 0.14s, background 0.14s, color 0.18s;
+      border: 2px solid #e2f7f4;
     }
     .sidebar .icon-links a:hover {
-      background: var(--accent);
+      background: var(--accent-grad);
       color: #fff;
-      box-shadow: 0 6px 24px rgba(21,101,192,0.22);
+      box-shadow: 0 6px 24px rgba(0,198,174,0.12);
+      border: 2px solid #00c6ae;
     }
     .sidebar .contact-info {
-      color: #29436c;
-      font-size: 1.08rem;
-      margin: 30px 0 0 0;
+      color: #155b4a;
+      font-size: 1.09rem;
+      margin: 36px 0 0 0;
       word-break: break-all;
       font-family: var(--mono);
-      letter-spacing: 0.01em;
+      letter-spacing: 0.02em;
+      background: #eafcfa;
+      border-radius: 10px;
+      padding: 8px 16px;
+      box-shadow: 0 1px 4px #a7ede255;
     }
     .main {
       flex: 1 1 0;
-      padding: 52px 48px 42px 48px;
+      padding: 62px 58px 38px 58px;
       min-width: 320px;
       background: var(--card-bg);
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
+      position: relative;
+      z-index: 2;
     }
     h1 {
-      color: var(--accent);
-      font-size: 2.6rem;
-      font-family: 'Crimson Pro', serif;
-      font-weight: 700;
-      margin: 0 0 14px 0;
+      color: var(--primary);
+      font-size: 2.55rem;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-weight: 800;
+      margin: 0 0 17px 0;
       letter-spacing: 0.01em;
+      background: var(--accent-grad);
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
     }
     .main-title-desc {
-      color: #333a;
-      font-size: 1.13rem;
-      margin-bottom: 34px;
+      color: #19414b;
+      font-size: 1.15rem;
+      margin-bottom: 38px;
       font-family: var(--mono);
+      font-weight: 500;
     }
     .card {
       background: #fafdff;
-      border-radius: 18px;
+      border-radius: 22px;
       box-shadow: 0 3px 18px #e1eafc;
-      padding: 28px 30px 22px 30px;
-      margin-bottom: 28px;
-      border-left: 6px solid var(--accent);
-      transition: box-shadow 0.18s, border-left 0.18s;
+      padding: 32px 36px 26px 36px;
+      margin-bottom: 32px;
+      border-left: 7px solid var(--secondary);
+      transition: box-shadow 0.16s, border-left 0.16s;
+      position: relative;
+    }
+    .card::before {
+      content: "";
+      width: 40px;
+      height: 4px;
+      background: var(--accent-grad);
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      border-radius: 2px;
+      opacity: 0.10;
     }
     .card:hover {
-      box-shadow: 0 12px 40px #a6c1e6;
-      border-left: 10px solid #093769;
+      box-shadow: 0 14px 46px #00c6ae33;
+      border-left: 12px solid #0081eb;
     }
     h2 {
-      color: #222;
-      font-size: 1.29rem;
+      color: #0081eb;
+      font-size: 1.28rem;
       font-weight: 700;
-      margin: 0 0 13px 0;
-      font-family: 'Inter', sans-serif;
+      margin: 0 0 14px 0;
+      font-family: 'IBM Plex Sans', sans-serif;
       letter-spacing: 0.02em;
       text-shadow: 0 1px 0 #f7fafc;
     }
     .card ul, .card ol {
-      margin: 8px 0 12px 22px;
+      margin: 10px 0 12px 22px;
       padding: 0;
-      font-size: 1.06rem;
+      font-size: 1.09rem;
     }
     .card li {
-      margin-bottom: 7px;
-      font-size: 1.07rem;
-      line-height: 1.62;
+      margin-bottom: 8px;
+      font-size: 1.09rem;
+      line-height: 1.65;
     }
     .card em {
       color: #444;
@@ -178,7 +224,7 @@
       padding: 0;
       list-style: none;
       font-family: var(--mono);
-      font-size: 1.04rem;
+      font-size: 1.06rem;
     }
     .skills-list li {
       margin: 7px 0;
@@ -187,27 +233,25 @@
     }
     .contact-block {
       margin-top: 18px;
-      font-size: 1.06rem;
+      font-size: 1.08rem;
     }
     .section-header {
-      font-family: 'Crimson Pro', serif;
-      letter-spacing: 0.015em;
+      font-family: 'IBM Plex Sans', sans-serif;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
-      font-size: 1.02rem;
-      font-weight: 700;
-      color: #a0a7b6 !important;
-      margin: 0 0 4px 0;
-      letter-spacing: 0.14em;
+      font-size: 1.07rem;
+      font-weight: 600;
+      color: #b7c8e6 !important;
+      margin: 0 0 6px 0;
     }
-    @media (max-width: 990px) {
-      .main-wrap {
+    @media (max-width: 1100px) {
+      .layout {
         flex-direction: column;
         max-width: 99vw;
-        gap: 0;
       }
       .sidebar {
         border-right: none;
-        border-bottom: 1px solid #e8eafc;
+        border-bottom: 1.5px solid #e4eaf0;
         min-width: 100%;
         border-radius: var(--border-radius) var(--border-radius) 0 0;
       }
@@ -215,7 +259,7 @@
         padding: 38px 7vw 28px 7vw;
       }
     }
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
       .main {
         padding: 20px 3vw 12px 3vw;
       }
@@ -223,25 +267,28 @@
         padding: 22px 0 14px 0;
       }
       .card {
-        padding: 14px 6px 8px 10px;
+        padding: 13px 5px 7px 10px;
       }
-      h1 { font-size: 1.32rem; }
-      .sidebar h2 { font-size: 1.2rem; }
+      h1 { font-size: 1.22rem; }
+      .sidebar h2 { font-size: 1.04rem; }
+      .main-title-desc { font-size: 0.95rem; }
     }
-    /* Interactive accent underline for contact links */
+    /* Modern interactive underline for contact links */
     .contact-block a {
-      color: var(--accent);
+      color: var(--secondary);
       text-decoration: none;
-      border-bottom: 2px solid #a6c1e6;
-      transition: border-bottom 0.16s;
+      border-bottom: 2px solid #b7e6db66;
+      transition: border-bottom 0.13s;
+      font-weight: 600;
     }
     .contact-block a:hover {
-      border-bottom: 2px solid var(--accent);
+      border-bottom: 2px solid var(--secondary);
+      color: #0081eb;
     }
   </style>
 </head>
 <body>
-  <div class="main-wrap">
+  <div class="layout">
     <!-- Sidebar -->
     <aside class="sidebar">
       <img src="assets/img/headshot_circle.jpeg" class="profile-img" alt="Jehad Cheyi headshot">
@@ -366,7 +413,6 @@
           <li><b>LinkedIn:</b> <a href="https://linkedin.com/in/your-profile">linkedin.com/in/your-profile</a></li>
         </ul>
       </div>
-
     </main>
   </div>
 </body>
