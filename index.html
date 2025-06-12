@@ -5,168 +5,243 @@
   <title>Jehad Cheyi | Deep Learning & Biomedical Imaging</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="M.Sc. in Computer Engineering • Deep Learning • CNN • Computer Vision • Biomedical Imaging — Jehad Cheyi's Academic Portfolio">
-  <!-- Use Latin Modern Math font for math style -->
-  <link href="https://fonts.cdnfonts.com/css/latin-modern-math" rel="stylesheet">
+  <!-- Modern Google Fonts with math and geometric style -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Crimson+Pro:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Latin Modern Math', 'Cambria Math', 'STIX Math', 'Times New Roman', Times, serif;
-      margin: 0;
-      background: #f5f6fa;
-      color: #222;
+    :root {
+      --accent: #1565c0;
+      --bg: #f2f5fa;
+      --card-bg: #fff;
+      --shadow: 0 8px 40px 0 rgba(21,101,192,0.07), 0 1.5px 8px 0 rgba(21,101,192,0.09);
+      --border-radius: 28px;
+      --mono: 'JetBrains Mono', 'Fira Mono', 'Menlo', monospace;
     }
-    .container {
-      max-width: 940px;
-      margin: 36px auto;
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 4px 24px #e0e0e0;
+    body {
+      background: var(--bg);
+      font-family: 'Inter', 'Crimson Pro', 'Latin Modern Math', serif;
+      color: #1a1a1a;
+      margin: 0;
       padding: 0;
-      overflow: hidden;
+      min-height: 100vh;
+      letter-spacing: 0.01em;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    .main-wrap {
+      max-width: 980px;
+      margin: 48px auto 48px auto;
       display: flex;
       flex-wrap: wrap;
+      gap: 42px;
+      background: var(--card-bg);
+      box-shadow: var(--shadow);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      min-height: 500px;
+      align-items: stretch;
     }
     .sidebar {
-      flex: 0 0 260px;
-      background: #faf8fc;
-      padding: 40px 30px 40px 30px;
-      text-align: center;
-      border-right: 1px solid #ece6fa;
-      min-height: 100%;
+      flex: 0 0 320px;
+      background: linear-gradient(135deg, #e3eafc 0%, #bad0f7 100%);
+      padding: 54px 28px 42px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-right: 1px solid #e8eafc;
     }
     .profile-img {
       width: 100%;
-      max-width: 260px;
+      max-width: 280px;
       height: auto;
       display: block;
-      margin: 0 auto 18px auto;
-      border: 3px solid #e0e0e0;
-      box-shadow: 0 2px 10px #e0e0e0;
+      margin: 0 0 22px 0;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px #b7c5e6;
+      border: 3px solid #1565c0;
+      object-fit: contain;
+      background: #fff;
     }
     .sidebar h2 {
-      font-size: 1.45rem;
-      margin: 10px 0 6px;
+      font-size: 2.1rem;
+      font-family: 'Crimson Pro', serif;
       font-weight: 700;
-      color: #111;
+      color: var(--accent);
+      margin: 0 0 9px 0;
+      letter-spacing: 0.02em;
     }
     .sidebar .subtitle {
-      color: #333;
-      font-size: 1.05rem;
-      margin-bottom: 7px;
+      color: #16213e;
+      font-size: 1.16rem;
+      margin-bottom: 8px;
+      font-family: 'Inter', sans-serif;
     }
     .sidebar .tags {
-      color: #111;
-      font-size: 0.96rem;
-      margin-bottom: 22px;
+      color: #1565c0;
+      font-family: var(--mono);
+      font-size: 1rem;
+      margin-bottom: 24px;
       font-weight: 500;
     }
     .sidebar .icon-links {
-      margin: 0 0 20px 0;
-      font-size: 1.3rem;
+      margin: 0 0 22px 0;
+      font-size: 1.5rem;
+      display: flex;
+      gap: 22px;
+      justify-content: center;
     }
     .sidebar .icon-links a {
-      margin: 0 14px;
-      color: #111;
-      transition: color 0.2s;
+      color: var(--accent);
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(21,101,192,0.09);
+      padding: 7px;
+      display: inline-flex;
+      align-items: center;
+      transition: box-shadow 0.16s, background 0.16s, color 0.14s;
     }
     .sidebar .icon-links a:hover {
-      color: #444;
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(21,101,192,0.22);
     }
     .sidebar .contact-info {
-      color: #344;
-      font-size: 0.96rem;
-      margin: 18px 0 0 0;
+      color: #29436c;
+      font-size: 1.08rem;
+      margin: 30px 0 0 0;
       word-break: break-all;
+      font-family: var(--mono);
+      letter-spacing: 0.01em;
     }
     .main {
       flex: 1 1 0;
-      padding: 44px 48px;
+      padding: 52px 48px 42px 48px;
       min-width: 320px;
-    }
-    .card {
-      background: #f7f7fa;
-      border-radius: 12px;
-      box-shadow: 0 1px 6px #eaeaea;
-      padding: 22px 28px 18px 28px;
-      margin-bottom: 28px;
+      background: var(--card-bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
     h1 {
-      color: #111;
-      font-size: 2rem;
-      margin: 0 0 8px 0;
+      color: var(--accent);
+      font-size: 2.6rem;
+      font-family: 'Crimson Pro', serif;
       font-weight: 700;
+      margin: 0 0 14px 0;
+      letter-spacing: 0.01em;
+    }
+    .main-title-desc {
+      color: #333a;
+      font-size: 1.13rem;
+      margin-bottom: 34px;
+      font-family: var(--mono);
+    }
+    .card {
+      background: #fafdff;
+      border-radius: 18px;
+      box-shadow: 0 3px 18px #e1eafc;
+      padding: 28px 30px 22px 30px;
+      margin-bottom: 28px;
+      border-left: 6px solid var(--accent);
+      transition: box-shadow 0.18s, border-left 0.18s;
+    }
+    .card:hover {
+      box-shadow: 0 12px 40px #a6c1e6;
+      border-left: 10px solid #093769;
     }
     h2 {
-      color: #111;
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin: 0 0 10px 0;
-      letter-spacing: 0.2px;
-    }
-    h3 {
       color: #222;
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin: 0 0 0.7em 0;
+      font-size: 1.29rem;
+      font-weight: 700;
+      margin: 0 0 13px 0;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.02em;
+      text-shadow: 0 1px 0 #f7fafc;
     }
     .card ul, .card ol {
-      margin: 8px 0 10px 20px;
+      margin: 8px 0 12px 22px;
       padding: 0;
+      font-size: 1.06rem;
     }
     .card li {
-      margin-bottom: 4px;
-      font-size: 1rem;
+      margin-bottom: 7px;
+      font-size: 1.07rem;
+      line-height: 1.62;
     }
     .card em {
       color: #444;
       font-style: italic;
     }
     .skills-list {
-      columns: 2 220px;
-      column-gap: 28px;
+      columns: 2 240px;
+      column-gap: 34px;
       margin: 0;
       padding: 0;
       list-style: none;
+      font-family: var(--mono);
+      font-size: 1.04rem;
     }
     .skills-list li {
-      font-size: 1rem;
-      margin: 4px 0;
+      margin: 7px 0;
       padding-left: 1.1em;
       text-indent: -1.1em;
     }
     .contact-block {
-      margin-top: 16px;
-      font-size: 1rem;
+      margin-top: 18px;
+      font-size: 1.06rem;
     }
-    @media (max-width: 820px) {
-      .container {
+    .section-header {
+      font-family: 'Crimson Pro', serif;
+      letter-spacing: 0.015em;
+      text-transform: uppercase;
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: #a0a7b6 !important;
+      margin: 0 0 4px 0;
+      letter-spacing: 0.14em;
+    }
+    @media (max-width: 990px) {
+      .main-wrap {
         flex-direction: column;
-        max-width: 98vw;
+        max-width: 99vw;
+        gap: 0;
       }
       .sidebar {
         border-right: none;
-        border-bottom: 1px solid #ece6fa;
+        border-bottom: 1px solid #e8eafc;
         min-width: 100%;
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
       }
       .main {
-        padding: 32px 12vw 24px 12vw;
+        padding: 38px 7vw 28px 7vw;
       }
     }
     @media (max-width: 600px) {
       .main {
-        padding: 22px 5vw 16px 5vw;
+        padding: 20px 3vw 12px 3vw;
       }
       .sidebar {
-        padding: 28px 0 18px 0;
+        padding: 22px 0 14px 0;
       }
       .card {
-        padding: 16px 8px 10px 12px;
+        padding: 14px 6px 8px 10px;
       }
-      h1 { font-size: 1.35rem; }
+      h1 { font-size: 1.32rem; }
+      .sidebar h2 { font-size: 1.2rem; }
+    }
+    /* Interactive accent underline for contact links */
+    .contact-block a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 2px solid #a6c1e6;
+      transition: border-bottom 0.16s;
+    }
+    .contact-block a:hover {
+      border-bottom: 2px solid var(--accent);
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="main-wrap">
     <!-- Sidebar -->
     <aside class="sidebar">
       <img src="assets/img/headshot_circle.jpeg" class="profile-img" alt="Jehad Cheyi headshot">
@@ -175,13 +250,13 @@
       <div class="tags">Deep Learning · CNN · Computer Vision · Biomedical Imaging</div>
       <div class="icon-links">
         <a href="mailto:your.email@example.com" title="Email">
-          <img src="https://img.icons8.com/material-outlined/22/111111/new-post.png" alt="Email" style="vertical-align:middle;"/>
+          <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24"><path d="M3 6.75A2.75 2.75 0 0 1 5.75 4h12.5A2.75 2.75 0 0 1 21 6.75v10.5A2.75 2.75 0 0 1 18.25 20H5.75A2.75 2.75 0 0 1 3 17.25V6.75Zm2.49-.25l6.487 5.412a.75.75 0 0 0 .946.005L19.5 6.5H5.49Zm-.49 1.57v9.18l5.85-4.89L5 8.07Zm14 9.18v-9.18l-5.85 4.89 5.85 4.29ZM7.06 13.53l-5.06 4.23v-9.18l5.06 4.95Zm9.88 0 5.06-4.95v9.18l-5.06-4.23ZM12 13.33l6.487-5.412a.75.75 0 0 0-.946-.005L12 12.08l-5.541-4.17a.75.75 0 0 0-.946.005L12 13.33Z"/></svg>
         </a>
         <a href="https://github.com/your-username" title="GitHub">
-          <img src="https://img.icons8.com/ios-filled/22/111111/github.png" alt="GitHub" style="vertical-align:middle;"/>
+          <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.648.5.104 6.043.104 12.393c0 5.246 3.438 9.694 8.207 11.27.599.11.819-.26.819-.577 0-.286-.01-1.043-.016-2.048-3.34.73-4.042-1.61-4.042-1.61-.545-1.382-1.332-1.75-1.332-1.75-1.09-.744.082-.729.082-.729 1.206.085 1.841 1.238 1.841 1.238 1.07 1.834 2.807 1.304 3.492.997.108-.776.419-1.305.762-1.606-2.665-.305-5.467-1.332-5.467-5.934 0-1.311.47-2.382 1.238-3.222-.124-.304-.537-1.524.116-3.176 0 0 1.009-.323 3.309 1.23.958-.267 1.987-.4 3.008-.405 1.02.005 2.05.138 3.01.405 2.299-1.553 3.307-1.23 3.307-1.23.654 1.652.241 2.872.118 3.176.77.84 1.237 1.911 1.237 3.222 0 4.612-2.805 5.625-5.476 5.924.431.372.814 1.103.814 2.224 0 1.606-.015 2.902-.015 3.293 0 .32.217.693.825.576C20.458 22.086 24 17.638 24 12.393 24 6.043 18.453.5 12 .5Z"/></svg>
         </a>
         <a href="https://linkedin.com/in/your-profile" title="LinkedIn">
-          <img src="https://img.icons8.com/ios-filled/22/111111/linkedin.png" alt="LinkedIn" style="vertical-align:middle;"/>
+          <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452H17.2V14.745c0-1.366-.027-3.124-1.907-3.124-1.908 0-2.2 1.493-2.2 3.025v5.806H9.053V9h3.123v1.561h.044c.435-.824 1.497-1.693 3.081-1.693 3.297 0 3.904 2.17 3.904 4.993v6.591zM5.337 7.433a1.818 1.818 0 110-3.636 1.818 1.818 0 010 3.636zm1.631 13.019H3.71V9h3.258v11.452zM22.225 0H1.771C.792 0 0 .771 0 1.726v20.451C0 23.23.792 24 1.771 24h20.451C23.2 24 24 23.23 24 22.177V1.726C24 .771 23.2 0 22.225 0z"/></svg>
         </a>
       </div>
       <div class="contact-info">
@@ -191,12 +266,13 @@
     <!-- Main -->
     <main class="main">
       <h1>Jehad Cheyi</h1>
-      <div style="color:#333; font-size:1.08rem; margin-bottom:26px;">
+      <div class="main-title-desc">
         M.Sc. in Computer Engineering • Deep Learning • CNN • Computer Vision • Biomedical Imaging
       </div>
 
       <div class="card">
-        <h2>📄 About Me</h2>
+        <div class="section-header">About Me</div>
+        <h2>📄</h2>
         <p>
           I am a Computer Engineer with an M.Sc., specializing in Deep Learning, Convolutional Neural Networks (CNN), and Computer Vision.<br>
           My research integrates AI into biomedical imaging, focusing on early and accurate cancer detection—especially breast cancer segmentation.<br>
@@ -205,7 +281,8 @@
       </div>
 
       <div class="card">
-        <h2>🎓 Education</h2>
+        <div class="section-header">Education</div>
+        <h2>🎓</h2>
         <ul>
           <li>
             <b>M.Sc. in Computer Engineering</b><br>
@@ -220,7 +297,8 @@
       </div>
 
       <div class="card">
-        <h2>🧪 Research & Projects</h2>
+        <div class="section-header">Research & Projects</div>
+        <h2>🧪</h2>
         <ul>
           <li>
             <b>Breast Cancer Segmentation</b>: Applied advanced CNN architectures (e.g., U-Net variants, attention mechanisms) to segment malignant regions in mammograms, validated against annotated datasets.
@@ -238,7 +316,8 @@
       </div>
 
       <div class="card">
-        <h2>📚 Publications & Outputs</h2>
+        <div class="section-header">Publications & Outputs</div>
+        <h2>📚</h2>
         <ul>
           <li><b>Manuscript under preparation:</b> Deep Learning Framework for Accurate Breast Tumor Segmentation in Mammographic Imaging</li>
           <li><b>Toolkit release:</b> Python library for medical image segmentation using U-Net + attention + custom loss functions.</li>
@@ -247,7 +326,8 @@
       </div>
 
       <div class="card">
-        <h2>🧰 Skills & Tools</h2>
+        <div class="section-header">Skills & Tools</div>
+        <h2>🧰</h2>
         <ul class="skills-list">
           <li><b>Frameworks:</b> TensorFlow, PyTorch, Keras</li>
           <li><b>Architectures:</b> U-Net, Mask R-CNN, ResNet, Transformer variants</li>
@@ -258,7 +338,8 @@
       </div>
 
       <div class="card">
-        <h2>🎯 Career Goals & Interests</h2>
+        <div class="section-header">Career Goals & Interests</div>
+        <h2>🎯</h2>
         <ul>
           <li>Integrate federated learning for privacy-preserving cross‑institutional AI</li>
           <li>Advance self-supervised & transformer-based medical imaging</li>
@@ -267,7 +348,8 @@
       </div>
 
       <div class="card">
-        <h2>🎙️ Academic Engagement</h2>
+        <div class="section-header">Academic Engagement</div>
+        <h2>🎙️</h2>
         <ul>
           <li>Presented at MICCAI, VISAPP, SIIM</li>
           <li>Attended workshops on AI in medical imaging</li>
@@ -276,7 +358,8 @@
       </div>
 
       <div class="card contact-block">
-        <h2>✉️ Contact & Links</h2>
+        <div class="section-header">Contact & Links</div>
+        <h2>✉️</h2>
         <ul>
           <li><b>Email:</b> <a href="mailto:your.email@example.com">your.email@example.com</a></li>
           <li><b>GitHub:</b> <a href="https://github.com/your-username">github.com/your-username</a></li>
