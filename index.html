@@ -5,26 +5,24 @@
   <title>Jehad Cheyi | Deep Learning & Biomedical Imaging</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="M.Sc. in Computer Engineering • Deep Learning • CNN • Computer Vision • Biomedical Imaging — Jehad Cheyi's Academic Portfolio">
-  <!-- Academic fonts: EB Garamond for elegance, Source Sans Pro for clarity, JetBrains Mono for code -->
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #273043;
-      --accent: #a62639;
-      --background: #f9f7f2;
+      --primary: #23272e;
+      --accent: #004080;
+      --background: #f7f6f2;
       --card-bg: #fff;
-      --muted: #7b7b7b;
-      --border-radius: 24px;
-      --shadow: 0 4px 32px 0 rgba(39,48,67,0.10), 0 2px 8px 0 rgba(166,38,57,0.08);
-      --mono: 'JetBrains Mono', monospace;
-      --serif: 'EB Garamond', Georgia, serif;
-      --sans: 'Source Sans 3', Arial, sans-serif;
-      --accent-grad: linear-gradient(90deg, #a62639 0%, #4b2e2b 100%);
+      --muted: #757575;
+      --border-radius: 26px;
+      --shadow: 0 4px 32px 0 rgba(0,36,80,0.12), 0 2px 8px 0 rgba(0,64,128,0.07);
+      --mono: Cambria, Georgia, serif;
+      --serif: Cambria, Georgia, serif;
+      --sans: Cambria, Georgia, serif;
+      --accent-grad: linear-gradient(90deg, #004080 0%, #90aed8 100%);
     }
     html, body {
       background: var(--background);
       color: var(--primary);
-      font-family: var(--serif);
+      font-family: Cambria, Georgia, serif;
       font-size: 18px;
       margin: 0;
       padding: 0;
@@ -36,7 +34,6 @@
     .layout {
       display: flex;
       flex-wrap: wrap;
-      gap: 0;
       max-width: 1100px;
       margin: 56px auto 56px auto;
       background: var(--card-bg);
@@ -47,12 +44,12 @@
     }
     .sidebar {
       flex: 0 0 320px;
-      background: #f3ece7;
+      background: #f2f7fa;
       padding: 60px 34px 38px 34px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      border-right: 1.5px solid #e6ddd4;
+      border-right: 1.5px solid #d2e0ee;
       min-height: 100%;
     }
     .profile-img {
@@ -61,19 +58,19 @@
       height: auto;
       display: block;
       margin-bottom: 32px;
-      border-radius: 18px;
-      box-shadow: 0 8px 32px #bfa29f22;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px #90aed822;
       border: 2.5px solid var(--accent);
       object-fit: contain;
       background: #fff;
       transition: box-shadow 0.18s;
     }
     .profile-img:hover {
-      box-shadow: 0 16px 44px #a6263922;
+      box-shadow: 0 16px 44px #00408022;
     }
     .sidebar h2 {
-      font-size: 2.2rem;
-      font-family: var(--serif);
+      font-size: 2.15rem;
+      font-family: Cambria, Georgia, serif;
       font-weight: 700;
       color: var(--accent);
       margin: 0 0 10px 0;
@@ -81,24 +78,24 @@
       line-height: 1.08;
     }
     .sidebar .subtitle {
-      color: #3a2c29;
-      font-size: 1.14rem;
+      color: #244c66;
+      font-size: 1.13rem;
       margin-bottom: 10px;
-      font-family: var(--sans);
+      font-family: Cambria, Georgia, serif;
       font-weight: 600;
       letter-spacing: 0.01em;
     }
     .sidebar .tags {
       color: var(--primary);
-      font-family: var(--mono);
+      font-family: Cambria, Georgia, serif;
       font-size: 1rem;
       margin-bottom: 32px;
       font-weight: 500;
-      background: #f4e3e7;
+      background: #e9f0fa;
       border-radius: 8px;
       padding: 7px 15px;
       letter-spacing: 0.03em;
-      box-shadow: 0 2px 8px #e6bdbd22;
+      box-shadow: 0 2px 8px #b7d7f422;
       display: inline-block;
     }
     .sidebar .icon-links {
@@ -112,30 +109,30 @@
       color: var(--accent);
       background: #fff;
       border-radius: 50%;
-      box-shadow: 0 2px 8px rgba(166,38,57,0.09);
+      box-shadow: 0 2px 8px rgba(0,64,128,0.09);
       padding: 9px;
       display: inline-flex;
       align-items: center;
-      border: 2px solid #f7edec;
+      border: 2px solid #e4eef7;
       transition: box-shadow 0.14s, background 0.14s, color 0.14s, border 0.14s;
     }
     .sidebar .icon-links a:hover {
       background: var(--accent);
       color: #fff;
-      box-shadow: 0 6px 24px rgba(166,38,57,0.12);
-      border: 2px solid #a62639;
+      box-shadow: 0 6px 24px rgba(0,64,128,0.15);
+      border: 2px solid #004080;
     }
     .sidebar .contact-info {
-      color: #a62639;
-      font-size: 1.09rem;
+      color: var(--accent);
+      font-size: 1.06rem;
       margin: 36px 0 0 0;
       word-break: break-all;
-      font-family: var(--mono);
+      font-family: Cambria, Georgia, serif;
       letter-spacing: 0.02em;
-      background: #f4e3e7;
+      background: #e9f0fa;
       border-radius: 10px;
       padding: 8px 16px;
-      box-shadow: 0 1px 4px #eac2c222;
+      box-shadow: 0 1px 4px #90aed822;
     }
     .main {
       flex: 1 1 0;
@@ -150,8 +147,8 @@
     }
     h1 {
       color: var(--accent);
-      font-size: 2.45rem;
-      font-family: var(--serif);
+      font-size: 2.35rem;
+      font-family: Cambria, Georgia, serif;
       font-weight: 700;
       margin: 0 0 15px 0;
       letter-spacing: 0.01em;
@@ -161,19 +158,19 @@
       -webkit-background-clip: text;
     }
     .main-title-desc {
-      color: #5a4d53;
-      font-size: 1.12rem;
+      color: #425e7a;
+      font-size: 1.08rem;
       margin-bottom: 38px;
-      font-family: var(--mono);
+      font-family: Cambria, Georgia, serif;
       font-weight: 500;
     }
     .card {
-      background: #f7f3f0;
+      background: #f7faff;
       border-radius: 18px;
-      box-shadow: 0 3px 18px #e3cfc6;
+      box-shadow: 0 3px 18px #d3e5f6;
       padding: 30px 34px 22px 34px;
       margin-bottom: 32px;
-      border-left: 6px solid var(--accent);
+      border-left: 7px solid var(--accent);
       transition: box-shadow 0.18s, border-left 0.18s;
       position: relative;
     }
@@ -186,35 +183,35 @@
       top: 22px;
       left: 22px;
       border-radius: 2px;
-      opacity: 0.12;
+      opacity: 0.13;
     }
     .card:hover {
-      box-shadow: 0 14px 46px #a6263922;
-      border-left: 11px solid #a62639;
+      box-shadow: 0 14px 46px #00408022;
+      border-left: 11px solid #004080;
     }
     h2 {
-      color: #a62639;
-      font-size: 1.19rem;
+      color: #004080;
+      font-size: 1.17rem;
       font-weight: 700;
       margin: 0 0 13px 0;
-      font-family: var(--serif);
+      font-family: Cambria, Georgia, serif;
       letter-spacing: 0.01em;
       text-shadow: 0 1px 0 #f7fafc;
     }
     .section-header {
-      font-family: var(--sans);
+      font-family: Cambria, Georgia, serif;
       letter-spacing: 0.13em;
       text-transform: uppercase;
-      font-size: 1.05rem;
+      font-size: 1.04rem;
       font-weight: 700;
-      color: #bda9b4 !important;
+      color: #7c97b2 !important;
       margin: 0 0 6px 0;
     }
     .card ul, .card ol {
       margin: 10px 0 12px 22px;
       padding: 0;
       font-size: 1.06rem;
-      font-family: var(--serif);
+      font-family: Cambria, Georgia, serif;
     }
     .card li {
       margin-bottom: 8px;
@@ -222,7 +219,7 @@
       line-height: 1.65;
     }
     .card em {
-      color: #7b7b7b;
+      color: #6a7b8c;
       font-style: italic;
     }
     .skills-list {
@@ -231,7 +228,7 @@
       margin: 0;
       padding: 0;
       list-style: none;
-      font-family: var(--mono);
+      font-family: Cambria, Georgia, serif;
       font-size: 1.05rem;
     }
     .skills-list li {
@@ -246,13 +243,14 @@
     .contact-block a {
       color: var(--accent);
       text-decoration: none;
-      border-bottom: 2px solid #ddb8c1;
+      border-bottom: 2px solid #b5d0ee;
       transition: border-bottom 0.13s;
       font-weight: 600;
+      font-family: Cambria, Georgia, serif;
     }
     .contact-block a:hover {
       border-bottom: 2px solid var(--accent);
-      color: #4b2e2b;
+      color: #003060;
     }
     @media (max-width: 1100px) {
       .layout {
@@ -261,7 +259,7 @@
       }
       .sidebar {
         border-right: none;
-        border-bottom: 1.5px solid #e6ddd4;
+        border-bottom: 1.5px solid #d2e0ee;
         min-width: 100%;
         border-radius: var(--border-radius) var(--border-radius) 0 0;
       }
@@ -294,7 +292,7 @@
       <div class="subtitle">M.Sc. in Computer Engineering</div>
       <div class="tags">Deep Learning · CNN · Computer Vision · Biomedical Imaging</div>
       <div class="icon-links">
-        <a href="mailto:jehad_cheyi@yahoo.com.com" title="Email">
+        <a href="mailto:jehad_cheyi@yahoo.com" title="Email">
           <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24"><path d="M3 6.75A2.75 2.75 0 0 1 5.75 4h12.5A2.75 2.75 0 0 1 21 6.75v10.5A2.75 2.75 0 0 1 18.25 20H5.75A2.75 2.75 0 0 1 3 17.25V6.75Zm2.49-.25l6.487 5.412a.75.75 0 0 0 .946.005L19.5 6.5H5.49Zm-.49 1.57v9.18l5.85-4.89L5 8.07Zm14 9.18v-9.18l-5.85 4.89 5.85 4.29ZM7.06 13.53l-5.06 4.23v-9.18l5.06 4.95Zm9.88 0 5.06-4.95v9.18l-5.06-4.23ZM12 13.33l6.487-5.412a.75.75 0 0 0-.946-.005L12 12.08l-5.541-4.17a.75.75 0 0 0-.946.005L12 13.33Z"/></svg>
         </a>
         <a href="https://github.com/jehadcheyi" title="GitHub">
@@ -406,8 +404,8 @@
         <div class="section-header">Contact & Links</div>
         <h2>✉️</h2>
         <ul>
-          <li><b>Email:</b> <a href="mailto:jehad_cheyi@yahoo.com.com">your.email@example.com</a></li>
-          <li><b>GitHub:</b> <a href="https://github.com/jehadcheyi">github.com/your-username</a></li>
+          <li><b>Email:</b> <a href="mailto:jehad_cheyi@yahoo.com">jehad_cheyi@yahoo.com</a></li>
+          <li><b>GitHub:</b> <a href="https://github.com/jehadcheyi">github.com/jehadcheyi</a></li>
           <li><b>LinkedIn:</b> <a href="https://linkedin.com/in/your-profile">linkedin.com/in/your-profile</a></li>
         </ul>
       </div>
