@@ -1,14 +1,13 @@
-<!-- Academic Portfolio Style README.md inspired by albarqouni.github.io -->
 
 <table>
 <tr>
   <td width="200" valign="top" align="center" style="padding-top:18px;">
     <img src="assets/img/headshot_circle.jpeg" width="130" style="border-radius: 50%; border: 3px solid #e0d7f3; box-shadow: 0 2px 10px #e0d7f3;" alt="Profile Picture"/>
     <br/><br/>
-    <b>Jehad Cheyi, Ph.D.</b><br/>
-    <span style="font-size:14px; color:#888;">Research Scientist & Data Scientist</span>
+    <b>Research Scientist</b><br/>
+    <span style="font-size:14px; color:#888;"></span>
     <br/><br/>
-    <a href="mailto:your.email@domain.com" style="color:#8B5C9E;">Email</a> &nbsp;·&nbsp;
+    <a href="mailto:jehad_cheyi@yahoo.com" style="color:#8B5C9E;">Email</a> &nbsp;·&nbsp;
     <a href="https://www.linkedin.com/in/YOUR-LINK" style="color:#8B5C9E;">LinkedIn</a> &nbsp;·&nbsp;
     <a href="https://twitter.com/YOUR-HANDLE" style="color:#8B5C9E;">Twitter</a>
     <br/><br/>
