@@ -5,37 +5,40 @@
   <title>Jehad Cheyi | Deep Learning & Biomedical Imaging</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="M.Sc. in Computer Engineering • Deep Learning • CNN • Computer Vision • Biomedical Imaging — Jehad Cheyi's Academic Portfolio">
-  <!-- Modern fonts: Inter for main, JetBrains Mono for mono, IBM Plex Sans/Serif for accent -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=IBM+Plex+Sans:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Academic fonts: EB Garamond for elegance, Source Sans Pro for clarity, JetBrains Mono for code -->
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #0a2540;
-      --secondary: #00c6ae;
-      --background: #f7f9fb;
+      --primary: #273043;
+      --accent: #a62639;
+      --background: #f9f7f2;
       --card-bg: #fff;
-      --shadow: 0 4px 40px 0 rgba(10,37,64,0.07), 0 1.5px 8px 0 rgba(0,198,174,0.09);
-      --border-radius: 32px;
+      --muted: #7b7b7b;
+      --border-radius: 24px;
+      --shadow: 0 4px 32px 0 rgba(39,48,67,0.10), 0 2px 8px 0 rgba(166,38,57,0.08);
       --mono: 'JetBrains Mono', monospace;
-      --accent-grad: linear-gradient(90deg, #00c6ae 0%, #0081eb 100%);
+      --serif: 'EB Garamond', Georgia, serif;
+      --sans: 'Source Sans 3', Arial, sans-serif;
+      --accent-grad: linear-gradient(90deg, #a62639 0%, #4b2e2b 100%);
     }
     html, body {
       background: var(--background);
       color: var(--primary);
-      font-family: 'Inter', 'IBM Plex Sans', Arial, sans-serif;
-      font-size: 17px;
+      font-family: var(--serif);
+      font-size: 18px;
       margin: 0;
       padding: 0;
       min-height: 100vh;
-      scroll-behavior: smooth;
-      letter-spacing: 0.01em;
       -webkit-font-smoothing: antialiased;
+      letter-spacing: 0.01em;
+      scroll-behavior: smooth;
     }
     .layout {
       display: flex;
       flex-wrap: wrap;
       gap: 0;
       max-width: 1100px;
-      margin: 50px auto 50px auto;
+      margin: 56px auto 56px auto;
       background: var(--card-bg);
       border-radius: var(--border-radius);
       box-shadow: var(--shadow);
@@ -43,101 +46,96 @@
       align-items: stretch;
     }
     .sidebar {
-      flex: 0 0 340px;
-      background: var(--background);
-      padding: 56px 30px 38px 30px;
+      flex: 0 0 320px;
+      background: #f3ece7;
+      padding: 60px 34px 38px 34px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      border-right: 1.5px solid #e4eaf0;
-      position: relative;
-      z-index: 1;
+      border-right: 1.5px solid #e6ddd4;
       min-height: 100%;
     }
     .profile-img {
       width: 100%;
-      max-width: 270px;
+      max-width: 250px;
       height: auto;
       display: block;
-      margin-bottom: 30px;
-      border-radius: 22px;
-      box-shadow: 0 8px 32px #b7e6db55;
-      border: 2.5px solid var(--secondary);
+      margin-bottom: 32px;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px #bfa29f22;
+      border: 2.5px solid var(--accent);
       object-fit: contain;
       background: #fff;
       transition: box-shadow 0.18s;
     }
     .profile-img:hover {
-      box-shadow: 0 16px 44px #81f3e3aa;
+      box-shadow: 0 16px 44px #a6263922;
     }
     .sidebar h2 {
-      font-size: 2.3rem;
-      font-family: 'IBM Plex Sans', sans-serif;
-      font-weight: 800;
-      background: var(--accent-grad);
-      color: transparent;
-      background-clip: text;
-      -webkit-background-clip: text;
-      margin: 0 0 9px 0;
+      font-size: 2.2rem;
+      font-family: var(--serif);
+      font-weight: 700;
+      color: var(--accent);
+      margin: 0 0 10px 0;
       letter-spacing: 0.03em;
-      line-height: 1.05;
+      line-height: 1.08;
     }
     .sidebar .subtitle {
-      color: #222;
-      font-size: 1.22rem;
-      margin-bottom: 9px;
-      font-family: 'IBM Plex Sans', sans-serif;
+      color: #3a2c29;
+      font-size: 1.14rem;
+      margin-bottom: 10px;
+      font-family: var(--sans);
       font-weight: 600;
       letter-spacing: 0.01em;
     }
     .sidebar .tags {
       color: var(--primary);
       font-family: var(--mono);
-      font-size: 1.02rem;
+      font-size: 1rem;
       margin-bottom: 32px;
       font-weight: 500;
-      background: #eafcfa;
-      border-radius: 10px;
-      padding: 6px 15px;
+      background: #f4e3e7;
+      border-radius: 8px;
+      padding: 7px 15px;
       letter-spacing: 0.03em;
-      box-shadow: 0 2px 8px #a7ede255;
+      box-shadow: 0 2px 8px #e6bdbd22;
       display: inline-block;
     }
     .sidebar .icon-links {
       margin: 0 0 25px 0;
-      font-size: 1.7rem;
+      font-size: 1.6rem;
       display: flex;
-      gap: 28px;
+      gap: 26px;
       justify-content: center;
     }
     .sidebar .icon-links a {
-      color: var(--primary);
+      color: var(--accent);
       background: #fff;
       border-radius: 50%;
-      box-shadow: 0 2px 8px rgba(0,198,174,0.09);
-      padding: 10px;
+      box-shadow: 0 2px 8px rgba(166,38,57,0.09);
+      padding: 9px;
       display: inline-flex;
       align-items: center;
-      transition: box-shadow 0.14s, background 0.14s, color 0.18s;
-      border: 2px solid #e2f7f4;
+      border: 2px solid #f7edec;
+      transition: box-shadow 0.14s, background 0.14s, color 0.14s, border 0.14s;
     }
     .sidebar .icon-links a:hover {
-      background: var(--accent-grad);
+      background: var(--accent);
       color: #fff;
-      box-shadow: 0 6px 24px rgba(0,198,174,0.12);
-      border: 2px solid #00c6ae;
+      box-shadow: 0 6px 24px rgba(166,38,57,0.12);
+      border: 2px solid #a62639;
     }
     .sidebar .contact-info {
-      color: #155b4a;
+      color: #a62639;
       font-size: 1.09rem;
       margin: 36px 0 0 0;
       word-break: break-all;
       font-family: var(--mono);
       letter-spacing: 0.02em;
-      background: #eafcfa;
+      background: #f4e3e7;
       border-radius: 10px;
       padding: 8px 16px;
-      box-shadow: 0 1px 4px #a7ede255;
+      box-shadow: 0 1px 4px #eac2c222;
     }
     .main {
       flex: 1 1 0;
@@ -151,11 +149,11 @@
       z-index: 2;
     }
     h1 {
-      color: var(--primary);
-      font-size: 2.55rem;
-      font-family: 'IBM Plex Sans', sans-serif;
-      font-weight: 800;
-      margin: 0 0 17px 0;
+      color: var(--accent);
+      font-size: 2.45rem;
+      font-family: var(--serif);
+      font-weight: 700;
+      margin: 0 0 15px 0;
       letter-spacing: 0.01em;
       background: var(--accent-grad);
       color: transparent;
@@ -163,58 +161,68 @@
       -webkit-background-clip: text;
     }
     .main-title-desc {
-      color: #19414b;
-      font-size: 1.15rem;
+      color: #5a4d53;
+      font-size: 1.12rem;
       margin-bottom: 38px;
       font-family: var(--mono);
       font-weight: 500;
     }
     .card {
-      background: #fafdff;
-      border-radius: 22px;
-      box-shadow: 0 3px 18px #e1eafc;
-      padding: 32px 36px 26px 36px;
+      background: #f7f3f0;
+      border-radius: 18px;
+      box-shadow: 0 3px 18px #e3cfc6;
+      padding: 30px 34px 22px 34px;
       margin-bottom: 32px;
-      border-left: 7px solid var(--secondary);
-      transition: box-shadow 0.16s, border-left 0.16s;
+      border-left: 6px solid var(--accent);
+      transition: box-shadow 0.18s, border-left 0.18s;
       position: relative;
     }
     .card::before {
       content: "";
-      width: 40px;
-      height: 4px;
+      width: 38px;
+      height: 3px;
       background: var(--accent-grad);
       position: absolute;
-      top: 24px;
-      left: 24px;
+      top: 22px;
+      left: 22px;
       border-radius: 2px;
-      opacity: 0.10;
+      opacity: 0.12;
     }
     .card:hover {
-      box-shadow: 0 14px 46px #00c6ae33;
-      border-left: 12px solid #0081eb;
+      box-shadow: 0 14px 46px #a6263922;
+      border-left: 11px solid #a62639;
     }
     h2 {
-      color: #0081eb;
-      font-size: 1.28rem;
+      color: #a62639;
+      font-size: 1.19rem;
       font-weight: 700;
-      margin: 0 0 14px 0;
-      font-family: 'IBM Plex Sans', sans-serif;
-      letter-spacing: 0.02em;
+      margin: 0 0 13px 0;
+      font-family: var(--serif);
+      letter-spacing: 0.01em;
       text-shadow: 0 1px 0 #f7fafc;
+    }
+    .section-header {
+      font-family: var(--sans);
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #bda9b4 !important;
+      margin: 0 0 6px 0;
     }
     .card ul, .card ol {
       margin: 10px 0 12px 22px;
       padding: 0;
-      font-size: 1.09rem;
+      font-size: 1.06rem;
+      font-family: var(--serif);
     }
     .card li {
       margin-bottom: 8px;
-      font-size: 1.09rem;
+      font-size: 1.06rem;
       line-height: 1.65;
     }
     .card em {
-      color: #444;
+      color: #7b7b7b;
       font-style: italic;
     }
     .skills-list {
@@ -224,7 +232,7 @@
       padding: 0;
       list-style: none;
       font-family: var(--mono);
-      font-size: 1.06rem;
+      font-size: 1.05rem;
     }
     .skills-list li {
       margin: 7px 0;
@@ -233,16 +241,18 @@
     }
     .contact-block {
       margin-top: 18px;
-      font-size: 1.08rem;
+      font-size: 1.06rem;
     }
-    .section-header {
-      font-family: 'IBM Plex Sans', sans-serif;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      font-size: 1.07rem;
+    .contact-block a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 2px solid #ddb8c1;
+      transition: border-bottom 0.13s;
       font-weight: 600;
-      color: #b7c8e6 !important;
-      margin: 0 0 6px 0;
+    }
+    .contact-block a:hover {
+      border-bottom: 2px solid var(--accent);
+      color: #4b2e2b;
     }
     @media (max-width: 1100px) {
       .layout {
@@ -251,7 +261,7 @@
       }
       .sidebar {
         border-right: none;
-        border-bottom: 1.5px solid #e4eaf0;
+        border-bottom: 1.5px solid #e6ddd4;
         min-width: 100%;
         border-radius: var(--border-radius) var(--border-radius) 0 0;
       }
@@ -272,18 +282,6 @@
       h1 { font-size: 1.22rem; }
       .sidebar h2 { font-size: 1.04rem; }
       .main-title-desc { font-size: 0.95rem; }
-    }
-    /* Modern interactive underline for contact links */
-    .contact-block a {
-      color: var(--secondary);
-      text-decoration: none;
-      border-bottom: 2px solid #b7e6db66;
-      transition: border-bottom 0.13s;
-      font-weight: 600;
-    }
-    .contact-block a:hover {
-      border-bottom: 2px solid var(--secondary);
-      color: #0081eb;
     }
   </style>
 </head>
