@@ -1,4 +1,4 @@
-# Data Scientist
+# Reseach Scientist
 
 #### Technical Skills: Python, SQL, AWS, Snowflake, MATLAB
 
