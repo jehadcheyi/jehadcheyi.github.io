@@ -1,47 +1,133 @@
-# Reseach Scientist
+<!-- Enhanced, Stylish, and Colorful README.md with a Sunset (Orange/Purple) Theme and Profile Picture -->
 
-#### Technical Skills: Python, SQL, AWS, Snowflake, MATLAB
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=FFB347,FF5E62&height=120&section=header"/>
+</p>
 
-## Education
-- Ph.D., Physics | The University of Texas at Dallas (_May 2022_)								       		
-- M.S., Physics	| The University of Texas at Dallas (_December 2019_)	 			        		
-- B.S., Physics | The University of Texas at Dallas (_May 2017_)
+<p align="center">
+  <img src="assets/img/headshot_circle.jpeg" width="160" style="border-radius: 50%; box-shadow: 0 2px 16px #FFB34788;" alt="Profile Picture"/>
+</p>
 
-## Work Experience
-**Data Scientist @ Toyota Financial Services (_June 2022 - Present_)**
-- Uncovered and corrected missing step in production data pipeline which impacted over 70% of active accounts
-- Redeveloped loan originations model which resulted in 50% improvement in model performance and saving 1 million dollars in potential losses
+<h1 align="center" style="color:#FF5E62;">🌅 Research & Data Scientist 🌅</h1>
 
-**Data Science Consultant @ Shawhin Talebi Ventures LLC (_December 2020 - Present_)**
-- Conducted data collection, processing, and analysis for novel study evaluating the impact of over 300 biometrics variables on human performance in hyper-realistic, live-fire training scenarios
-- Applied unsupervised deep learning approaches to longitudinal ICU data to discover novel sepsis sub-phenotypes
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-FFB347?style=for-the-badge&logo=python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/SQL-FF5E62?style=for-the-badge&logo=postgresql&logoColor=white"/>
+  <img src="https://img.shields.io/badge/AWS-FFA07A?style=for-the-badge&logo=amazonaws&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Snowflake-D291BC?style=for-the-badge&logo=snowflake&logoColor=white"/>
+  <img src="https://img.shields.io/badge/MATLAB-FF6F91?style=for-the-badge&logo=mathworks&logoColor=white"/>
+</p>
 
-## Projects
-### Data-Driven EEG Band Discovery with Decision Trees
-[Publication](https://www.mdpi.com/1424-8220/22/8/3048)
+---
 
-Developed objective strategy for discovering optimal EEG bands based on signal power spectra using **Python**. This data-driven approach led to better characterization of the underlying power spectrum by identifying bands that outperformed the more commonly used band boundaries by a factor of two. The proposed method provides a fully automated and flexible approach to capturing key signal components and possibly discovering new indices of brain activity.
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&duration=2500&pause=700&color=FF5E62&center=true&vCenter=true&repeat=true&width=435&lines=Data+Driven+Discovery;Machine+Learning+%7C+AI+%7C+Research;Real+World+Impact;Turning+Data+into+Value" />
+</p>
 
-![EEG Band Discovery](/assets/img/eeg_band_discovery.jpeg)
+---
 
-### Decoding Physical and Cognitive Impacts of Particulate Matter Concentrations at Ultra-Fine Scales
-[Publication](https://www.mdpi.com/1424-8220/22/11/4240)
+## 🧑‍🔬 About Me
 
-Used **Matlab** to train over 100 machine learning models which estimated particulate matter concentrations based on a suite of over 300 biometric variables. We found biometric variables can be used to accurately estimate particulate matter concentrations at ultra-fine spatial scales with high fidelity (r2 = 0.91) and that smaller particles are better estimated than larger ones. Inferring environmental conditions solely from biometric measurements allows us to disentangle key interactions between the environment and the body.
+> <span style="color:#FF5E62">Hi! I’m a passionate Research & Data Scientist with a Ph.D. in Physics, specializing in data-driven discovery and machine learning. I thrive at the intersection of science and impact, delivering results and insights that matter.</span>
 
-![Bike Study](/assets/img/bike_study.jpeg)
+---
 
-## Talks & Lectures
-- Causality: The new science of an old question - GSP Seminar, Fall 2021
-- Guest Lecture: Dimensionality Reduction - Big Data and Machine Learning for Scientific Discovery (PHYS 5336), Spring 2021
-- Guest Lecture: Fourier and Wavelet Transforms - Scientific Computing (PHYS 5315), Fall 2020
-- A Brief Introduction to Optimization - GSP Seminar, Fall 2019
-- Weeks of Welcome Poster Competition - UTD, Fall 2019
-- A Brief Introduction to Networks - GSP Seminar, Spring 2019
+## 🎓 Education
 
-- [Data Science YouTube](https://www.youtube.com/channel/UCa9gErQ9AE5jT2DZLjXBIdA)
+<table>
+  <tr>
+    <th>Degree</th>
+    <th>Field</th>
+    <th>Institution</th>
+    <th>Year</th>
+  </tr>
+  <tr>
+    <td>Ph.D.</td>
+    <td>Physics</td>
+    <td>The University of Texas at Dallas</td>
+    <td>May 2022</td>
+  </tr>
+  <tr>
+    <td>M.S.</td>
+    <td>Physics</td>
+    <td>The University of Texas at Dallas</td>
+    <td>Dec 2019</td>
+  </tr>
+  <tr>
+    <td>B.S.</td>
+    <td>Physics</td>
+    <td>The University of Texas at Dallas</td>
+    <td>May 2017</td>
+  </tr>
+</table>
 
-## Publications
-1. Talebi S., Lary D.J., Wijeratne L. OH., and Lary, T. Modeling Autonomic Pupillary Responses from External Stimuli Using Machine Learning (2019). DOI: 10.26717/BJSTR.2019.20.003446
+---
 
+## 💼 Work Experience
 
+<details>
+  <summary><b>Data Scientist @ Toyota Financial Services <em>(June 2022 - Present)</em></b></summary>
+  <ul>
+    <li>🛠️ Identified & resolved a critical missing step in the data pipeline, affecting 70%+ of active accounts.</li>
+    <li>🚀 Redeveloped loan originations model, boosting performance by 50% and saving $1M in potential losses.</li>
+  </ul>
+</details>
+
+<details>
+  <summary><b>Data Science Consultant @ Shawhin Talebi Ventures LLC <em>(Dec 2020 - Present)</em></b></summary>
+  <ul>
+    <li>🧬 Led analytics for a pioneering study of 300+ biometric variables in live-fire training scenarios.</li>
+    <li>🤖 Applied unsupervised deep learning to ICU data, discovering new sepsis sub-phenotypes.</li>
+  </ul>
+</details>
+
+---
+
+## 🚀 Featured Projects
+
+### <span style="color:#FF5E62">🧠 Data-Driven EEG Band Discovery with Decision Trees</span>
+[📄 Publication](https://www.mdpi.com/1424-8220/22/8/3048)  
+Developed a Python-based strategy for optimal EEG band discovery, improving neural data analysis.
+
+<p align="center">
+  <img src="/assets/img/eeg_band_discovery.jpeg" width="400" alt="EEG Band Discovery" style="border-radius:12px; box-shadow:0 4px 12px #FFB34799;"/>
+</p>
+
+---
+
+### <span style="color:#FF5E62">🚴 Decoding Physical and Cognitive Impacts of Particulate Matter</span>
+[📄 Publication](https://www.mdpi.com/1424-8220/22/11/4240)  
+Used MATLAB to train 100+ models predicting particulate matter using 300+ biometric variables.
+
+<p align="center">
+  <img src="/assets/img/bike_study.jpeg" width="400" alt="Bike Study" style="border-radius:12px; box-shadow:0 4px 12px #D291BC99;"/>
+</p>
+
+---
+
+## 🎤 Invited Talks & Guest Lectures
+
+- <b>Causality: The New Science of an Old Question</b> – GSP Seminar, Fall 2021
+- <b>Dimensionality Reduction</b> – PHYS 5336, Spring 2021
+- <b>Fourier & Wavelet Transforms</b> – PHYS 5315, Fall 2020
+- <b>Introduction to Optimization</b> – GSP Seminar, Fall 2019
+- <b>Weeks of Welcome Poster Competition</b> – UTD, Fall 2019
+- <b>Introduction to Networks</b> – GSP Seminar, Spring 2019
+
+<p align="center">
+  <a href="https://www.youtube.com/channel/UCa9gErQ9AE5jT2DZLjXBIdA"><img src="https://img.shields.io/badge/%F0%9F%93%BA%20YouTube-Data%20Science-FF5E62?logo=youtube&style=for-the-badge"/></a>
+</p>
+
+---
+
+## 📚 Publications
+
+1. **Talebi S., Lary D.J., Wijeratne L. OH., & Lary, T.**  
+   <i>Modeling Autonomic Pupillary Responses from External Stimuli Using Machine Learning</i> (2019).  
+   [DOI: 10.26717/BJSTR.2019.20.003446](https://doi.org/10.26717/BJSTR.2019.20.003446)
+
+---
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=FFB347,FF5E62&height=120&section=footer"/>
+</p>
