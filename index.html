@@ -582,7 +582,7 @@
   <!-- ═══ NAVIGATION ═══ -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
-      <div class="nav-logo" onclick="navScroll('hero')">JC</div>
+      <div class="nav-logo" onclick="navScroll('hero')"></div>
       <div class="nav-center" id="navCenter">
         <button onclick="navScroll('about')" data-section="about" data-i18n="nav_about">About</button>
         <button onclick="navScroll('education')" data-section="education" data-i18n="nav_education">Education</button>
@@ -595,7 +595,7 @@
         <div class="lang-switcher">
           <button class="lang-btn active" onclick="setLang('en')" data-lang="en">EN</button>
           <button class="lang-btn" onclick="setLang('ar')" data-lang="ar">عربي</button>
-          <button class="lang-btn" onclick="setLang('ku')" data-lang="ku">بهدینی</button>
+          <button class="lang-btn" onclick="setLang('ku')" data-lang="ku">کوردی</button>
         </div>
         <button class="nav-hamburger" id="hamburger" onclick="toggleMobileNav()">
           <svg id="hamburgerIcon" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -1078,14 +1078,14 @@
         footer_copy: "\u00A9 ٢٠٢٦ جهاد تشيي. جميع الحقوق محفوظة."
       },
       ku: {
-        nav_about: "دەربارە", nav_education: "باوەرناما", nav_research: "ڤەکۆلین",
-        nav_publications: "بڵاوکراوەکان", nav_skills: "شارەزایی", nav_goals: "ئارمانجێن کار",
+        nav_about: "دەربارە", nav_education: باوەرنامە", nav_research: "ڤەکۆلین",
+        nav_publications: "ڤەکۆلین", nav_skills: "شارەزایی", nav_goals: "ئارمانجێن کاری",
         hero_badge: "زیرەکیا دەستکرد د پزیشکی دا",
         hero_location: "ڤەکۆلەر و شارەزا د بوارێ زیرەکیا دەستکرد (AI) و وێنەیێن پزیشکی دا",
-        hero_name: "جەھاد چەیی",
+        hero_name: "جھاد جمال",
         hero_desc: 'خودانێ باوەرناما ماستەرێ د ئەندازیاریا کۆمپیوتەری دا، تایبەتمەند د <strong>فێربوونا کوویر</strong> و <strong>تۆڕێن دەمارێن مێشکی (CNNs)</strong> و <strong>دیتنا کۆمپیوتەری</strong> بۆ بوارێ وێنەیێن پزیشکی. کارێ من ل سەر پێشئێخستنا سیستەمێن زیرەکیا دەستکردە ژ بۆ دەستنیشانکرنا شێرپەنجێ و هاریکاریا د ئالیێ تەکنیکی یێ پزیشکی دا.',
         tag_dl: "فێربوونا کوویر", tag_cv: "دیتنا کۆمپیوتەر", tag_bi: "وێنەیێن پزیشکی",
-        btn_contact: "پەیوەندییم پێوە بکە", btn_github: "گیتھەب",
+        btn_contact: "پەیوەندیێ ب من بکە", btn_github: "Github",
         about_label: "دەربارە", about_title: "دەربارەی من",
         about_p1: "ئەز ئەندازیارێ کۆمپیوتەری، ڤەکۆلەر و داهێنەرەکم. حەزا من یا سەرەکی د ئێکگرتنا زیرەکیا دەستکردێ دگەل وێنەیێن پزیشکی دایە دا بگەهمە چارەسەریێن نوو بۆ ئاستەنگێن مەزن یێن ساخلەمیێ. د رێکا سالێن کار و ڤەکۆلینێن ئەکادیمی دا، من گرنگیەکا زۆر دایە دەستنیشانکرنا زوو و دروست یا شێرپەنجێ، ب تایبەت شێرپەنجا مەمکی، ب بکارئینانا پێشکەفتیترین تەکنیکێن زیرەکیا دەستکردێ.",
         about_p2: "کارێ من بریتییە ژ دیزاینکرن، باشترکرن و بجهئینانا سیستەمێن پێشکەفتی یێن AI ژ بۆ دیتن، جوداکرن و پۆلینکرنا گرێیێن شێرپەنجێ، ب ئارمانجا هاریکاریکرنا پزیشکان دا ببنە خودان دەستنیشانکرنێن ب لەزتر و باوەرپێکری‌تر. ئەز د شارەزامە د کارکرنێ دا ب چەندان جۆرێن وێنەیێن پزیشکی وەکی (Mammography، Ultrasound، X-ray، و Histopathology)، و من چەندین مۆدێلێن بهێز یێن ل سەر داتایێن مەزن هاتینە تاقیکرن دروستکرینە.",
@@ -1093,7 +1093,7 @@
         edu_label: "باوەرناما", edu_title: "باوەرنامێن ئەکادیمی",
         edu_msc: "ماستەر د ئەندازیاریا کۆمپیوتەری", edu_msc_loc: "تورکیا",
         edu_msc_thesis: "ناما ماستەرێ: بکارئینانا زیرەکیا دەستکردێ و CNN بۆ دەستنیشانکرن و جوداکرنا شێرپەنجا مەمکی.",
-        edu_bsc: "بەکالۆریۆس د زانستێن کۆمپیوتەری", edu_bsc_loc: "عێراق",
+        edu_bsc: "بەکالۆریۆس د زانستێن کۆمپیوتەری", edu_bsc_loc: "عیراق",
         res_label: "ڤەکۆلین", res_title: "ڤەکۆلین و پڕۆژە",
         proj1_name: "زیرەکیا دەستکردێ بۆ پشکنینا شانەیێن شێرپەنجێ (Histopathology)", proj1_sub: "شیکارکرنا وێنەیێن شانەیان",
         proj1_desc: "پێشئێخستنا مۆدێلەکا تایبەت بۆ شیکارکرنا وێنەیێن شانەیان، بۆ ب خۆکار پۆلینکرن و دیتنا شێرپەنجا مەمکی ب وردبینیەکا بلند.",
@@ -1126,9 +1126,9 @@
         engage2_desc: "ئامادەبوونا چەندین وۆرکشۆپێن تایبەت ب زیرەکیا دەستکردێ د بوارێ پزیشکی دا.",
         engage3_title: "ئامادەییا هاریکاریێ",
         engage3_desc: "ئەز گەلەک حەز دکەم دگەل ڤەکۆلەرێن دی یێن ل ڤی بواری کار دکەن هەڤکاریێ بکەم.",
-        footer_name: "جەھاد چەیی",
+        footer_name: "جهاد جمال",
         footer_sub: "ماستەر د ئەندازیاریا کۆمپیوتەری \u2022 AI و وێنەیێن پزیشکی",
-        footer_copy: "\u00A9 ٢٠٢٦ جەھاد چەیی. هەمی مافان پارێزراون."
+        footer_copy: "\u00A9 ٢٠٢٦ جهاد جمال. هەمی ماف د پاراستینە."
       }
     };
 
