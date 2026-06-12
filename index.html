@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -593,14 +593,14 @@
   <!-- ═══ NAVIGATION ═══ -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
-      <div class="nav-logo" onclick="scrollTo('hero')">JC</div>
+      <div class="nav-logo" onclick="navScroll('hero')">JC</div>
       <div class="nav-links" id="navLinks">
-        <button onclick="scrollTo('about')" data-section="about">About</button>
-        <button onclick="scrollTo('education')" data-section="education">Education</button>
-        <button onclick="scrollTo('research')" data-section="research">Research</button>
-        <button onclick="scrollTo('publications')" data-section="publications">Publications</button>
-        <button onclick="scrollTo('skills')" data-section="skills">Skills</button>
-        <button onclick="scrollTo('goals')" data-section="goals">Goals</button>
+        <button onclick="navScroll('about')" data-section="about">About</button>
+        <button onclick="navScroll('education')" data-section="education">Education</button>
+        <button onclick="navScroll('research')" data-section="research">Research</button>
+        <button onclick="navScroll('publications')" data-section="publications">Publications</button>
+        <button onclick="navScroll('skills')" data-section="skills">Skills</button>
+        <button onclick="navScroll('goals')" data-section="goals">Goals</button>
       </div>
       <button class="nav-hamburger" id="hamburger" onclick="toggleMobileNav()">
         <svg id="hamburgerIcon" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -608,12 +608,12 @@
       </button>
     </div>
     <div class="nav-mobile" id="mobileNav">
-      <button onclick="scrollTo('about')" data-section="about">About</button>
-      <button onclick="scrollTo('education')" data-section="education">Education</button>
-      <button onclick="scrollTo('research')" data-section="research">Research</button>
-      <button onclick="scrollTo('publications')" data-section="publications">Publications</button>
-      <button onclick="scrollTo('skills')" data-section="skills">Skills</button>
-      <button onclick="scrollTo('goals')" data-section="goals">Goals</button>
+      <button onclick="navScroll('about')" data-section="about">About</button>
+      <button onclick="navScroll('education')" data-section="education">Education</button>
+      <button onclick="navScroll('research')" data-section="research">Research</button>
+      <button onclick="navScroll('publications')" data-section="publications">Publications</button>
+      <button onclick="navScroll('skills')" data-section="skills">Skills</button>
+      <button onclick="navScroll('goals')" data-section="goals">Goals</button>
     </div>
   </nav>
 
@@ -1055,8 +1055,12 @@
   <!-- ═══ JAVASCRIPT ═══ -->
   <script>
     // ─── Smooth scroll ───
-    function scrollTo(id) {
-      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    function navScroll(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        var top = el.getBoundingClientRect().top + window.pageYOffset - 70;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
       closeMobileNav();
     }
 
