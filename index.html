@@ -1,967 +1,1117 @@
-"use client";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jehad Cheyi | Deep Learning & Biomedical Imaging</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="M.Sc. in Computer Engineering • Deep Learning • CNN • Computer Vision • Biomedical Imaging — Jehad Cheyi's Academic Portfolio">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════
+       RESET & BASE
+       ═══════════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: #faf9f6;
+      color: #1a1a2e;
+      line-height: 1.7;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: #2d6a9f; text-decoration: none; transition: color 0.2s; }
+    a:hover { color: #1b3a5c; }
+    ::selection { background: #2d6a9f33; }
 
-import { useState, useEffect, useRef } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
-import {
-  Mail,
-  Github,
-  Linkedin,
-  GraduationCap,
-  FlaskConical,
-  BookOpen,
-  Wrench,
-  Target,
-  Mic,
-  ExternalLink,
-  ChevronDown,
-  Brain,
-  Eye,
-  Microscope,
-  Heart,
-  Menu,
-  X,
-  ArrowUp,
-  MapPin,
-  Calendar,
-  Award,
-} from "lucide-react";
+    /* ═══════════════════════════════════════════
+       SCROLLBAR
+       ═══════════════════════════════════════════ */
+    ::-webkit-scrollbar { width: 7px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #c1cdd9; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-/* ─── fade-in on scroll ─── */
-function FadeIn({
-  children,
-  delay = 0,
-  direction = "up",
-  className = "",
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  direction?: "up" | "left" | "right" | "none";
-  className?: string;
-}) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-  const dirs = {
-    up: { y: 40, x: 0 },
-    left: { y: 0, x: -40 },
-    right: { y: 0, x: 40 },
-    none: { y: 0, x: 0 },
-  };
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, ...dirs[direction] }}
-      animate={inView ? { opacity: 1, y: 0, x: 0 } : {}}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+    /* ═══════════════════════════════════════════
+       NEURAL GRID BACKGROUND
+       ═══════════════════════════════════════════ */
+    .neural-grid {
+      background-image: radial-gradient(circle at 1px 1px, rgba(45,106,159,0.06) 1px, transparent 0);
+      background-size: 30px 30px;
+    }
 
-/* ─── section heading ─── */
-function SectionHeading({
-  icon: Icon,
-  label,
-  title,
-}: {
-  icon: React.ElementType;
-  label: string;
-  title: string;
-}) {
-  return (
-    <div className="flex items-center gap-3 mb-6">
-      <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-[#1b3a5c]/10 text-[#1b3a5c]">
-        <Icon className="w-5 h-5" />
+    /* ═══════════════════════════════════════════
+       ANIMATED GRADIENT BORDER
+       ═══════════════════════════════════════════ */
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    .gradient-border {
+      background: linear-gradient(135deg, #1b3a5c, #2d6a9f, #4a90c4, #7ab8e0, #4a90c4, #2d6a9f, #1b3a5c);
+      background-size: 400% 400%;
+      animation: gradient-shift 8s ease infinite;
+      padding: 3px;
+      border-radius: 20px;
+    }
+    .gradient-border-inner {
+      background: #fff;
+      border-radius: 18px;
+      padding: 6px;
+    }
+
+    /* ═══════════════════════════════════════════
+       SCROLL ANIMATIONS
+       ═══════════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-36px);
+      transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(36px);
+      transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ═══════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      transition: background 0.3s, box-shadow 0.3s, border-color 0.3s;
+      border-bottom: 1px solid transparent;
+    }
+    .nav.scrolled {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 4px 24px rgba(27,58,92,0.06);
+      border-bottom-color: #e2e8f0;
+    }
+    .nav-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; padding: 0 24px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700; font-size: 1.25rem; color: #1b3a5c;
+      cursor: pointer; letter-spacing: 0.02em;
+    }
+    .nav-links { display: flex; gap: 4px; }
+    .nav-links button {
+      background: none; border: none; cursor: pointer;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.875rem; font-weight: 600;
+      color: #475569; padding: 6px 14px; border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .nav-links button:hover { color: #1b3a5c; background: #1b3a5c0a; }
+    .nav-links button.active { color: #fff; background: #1b3a5c; box-shadow: 0 2px 12px #1b3a5c22; }
+    .nav-hamburger {
+      display: none; background: none; border: none; cursor: pointer;
+      color: #1b3a5c; padding: 8px; border-radius: 8px;
+    }
+    .nav-hamburger:hover { background: #1b3a5c0a; }
+    .nav-mobile {
+      display: none; background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(20px); border-bottom: 1px solid #e2e8f0;
+      padding: 12px 24px;
+    }
+    .nav-mobile.open { display: flex; flex-direction: column; gap: 4px; }
+    .nav-mobile button {
+      background: none; border: none; cursor: pointer;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.9375rem; font-weight: 600;
+      color: #475569; padding: 12px 16px; border-radius: 10px;
+      text-align: left; transition: all 0.2s;
+    }
+    .nav-mobile button:hover { background: #1b3a5c0a; color: #1b3a5c; }
+    .nav-mobile button.active { color: #fff; background: #1b3a5c; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: block; }
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO SECTION
+       ═══════════════════════════════════════════ */
+    .hero {
+      position: relative; padding: 120px 24px 80px;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, #2d6a9f0d, transparent 70%);
+      border-radius: 50%; transform: translate(20%, -30%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, #1b3a5c08, transparent 70%);
+      border-radius: 50%; transform: translate(-20%, 30%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: flex; align-items: center; gap: 64px;
+      position: relative; z-index: 2;
+    }
+    .hero-photo { flex-shrink: 0; position: relative; }
+    .hero-photo img {
+      width: 260px; height: 340px; object-fit: cover; border-radius: 16px;
+    }
+    .hero-badge {
+      position: absolute; bottom: -12px; right: -12px;
+      background: #fff; border: 1px solid #e2e8f0; border-radius: 12px;
+      padding: 8px 14px; box-shadow: 0 4px 16px #1b3a5c12;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.8125rem; font-weight: 600; color: #1b3a5c;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+    .hero-badge svg { color: #2d6a9f; }
+    .hero-text { flex: 1; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #1b3a5c0c; color: #1b3a5c;
+      padding: 8px 18px; border-radius: 100px;
+      font-size: 0.875rem; font-weight: 600;
+      font-family: 'Source Sans 3', sans-serif;
+      margin-bottom: 24px;
+    }
+    .hero-tag svg { width: 14px; height: 14px; }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem; font-weight: 700; color: #1b3a5c;
+      line-height: 1.1; margin-bottom: 16px; letter-spacing: -0.01em;
+    }
+    .hero-desc {
+      font-size: 1.125rem; color: #475569; line-height: 1.75;
+      margin-bottom: 24px; max-width: 600px;
+    }
+    .hero-desc strong { color: #1b3a5c; font-weight: 600; }
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px;
+    }
+    .hero-tag-item {
+      display: flex; align-items: center; gap: 8px;
+      background: #fff; border: 1px solid #e2e8f0;
+      padding: 10px 18px; border-radius: 12px;
+      box-shadow: 0 1px 4px #1b3a5c08;
+      font-size: 0.875rem; font-weight: 600; color: #1b3a5c;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+    .hero-tag-item svg { width: 16px; height: 16px; color: #2d6a9f; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #1b3a5c; color: #fff;
+      padding: 12px 24px; border-radius: 12px;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.875rem; font-weight: 600;
+      border: none; cursor: pointer; transition: background 0.2s;
+      box-shadow: 0 4px 16px #1b3a5c22;
+      text-decoration: none;
+    }
+    .btn-primary:hover { background: #2d6a9f; color: #fff; }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff; color: #1b3a5c;
+      padding: 12px 20px; border-radius: 12px;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.875rem; font-weight: 600;
+      border: 1px solid #e2e8f0; cursor: pointer;
+      transition: border-color 0.2s;
+      box-shadow: 0 1px 4px #1b3a5c08;
+      text-decoration: none;
+    }
+    .btn-secondary:hover { border-color: #1b3a5c; color: #1b3a5c; }
+    .btn-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 46px; height: 46px; border-radius: 12px;
+      background: #fff; color: #1b3a5c;
+      border: 1px solid #e2e8f0; cursor: pointer;
+      transition: border-color 0.2s;
+      box-shadow: 0 1px 4px #1b3a5c08;
+      text-decoration: none;
+    }
+    .btn-icon:hover { border-color: #1b3a5c; color: #1b3a5c; }
+    .scroll-hint {
+      display: flex; justify-content: center; margin-top: 64px;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    .scroll-hint svg { color: #94a3b8; }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner { flex-direction: column; text-align: center; gap: 40px; }
+      .hero-desc { margin-left: auto; margin-right: auto; }
+      .hero-tags { justify-content: center; }
+      .hero-actions { justify-content: center; }
+      .hero-name { font-size: 2.5rem; }
+    }
+    @media (max-width: 500px) {
+      .hero-photo img { width: 200px; height: 260px; }
+      .hero-name { font-size: 2rem; }
+      .hero-desc { font-size: 1rem; }
+    }
+
+    /* ═══════════════════════════════════════════
+       SECTION COMMON
+       ═══════════════════════════════════════════ */
+    .section {
+      max-width: 1120px; margin: 0 auto;
+      padding: 80px 24px;
+    }
+    .section-header {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 32px;
+    }
+    .section-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: #1b3a5c0d;
+      display: flex; align-items: center; justify-content: center;
+      color: #1b3a5c;
+    }
+    .section-icon svg { width: 20px; height: 20px; }
+    .section-label {
+      font-size: 0.6875rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.2em;
+      color: #64748b; font-family: 'Source Sans 3', sans-serif;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem; font-weight: 700; color: #1b3a5c;
+    }
+
+    /* ═══════════════════════════════════════════
+       ABOUT CARD
+       ═══════════════════════════════════════════ */
+    .card {
+      background: #fff; border-radius: 20px;
+      border: 1px solid #e2e8f0;
+      padding: 32px; box-shadow: 0 2px 12px #1b3a5c06;
+      transition: box-shadow 0.3s, border-color 0.3s;
+    }
+    .card:hover {
+      box-shadow: 0 8px 32px #1b3a5c0d;
+      border-color: #2d6a9f33;
+    }
+    .card p {
+      color: #475569; line-height: 1.85; margin-bottom: 16px;
+    }
+    .card p:last-child { margin-bottom: 0; }
+
+    /* ═══════════════════════════════════════════
+       TIMELINE (Education)
+       ═══════════════════════════════════════════ */
+    .timeline { position: relative; }
+    .timeline-item {
+      position: relative; padding-left: 36px; padding-bottom: 32px;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item:not(:last-child)::after {
+      content: ''; position: absolute; left: 11px; top: 28px; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #2d6a9f33, #2d6a9f08);
+    }
+    .timeline-dot {
+      position: absolute; left: 0; top: 6px;
+      width: 24px; height: 24px; border-radius: 50%;
+      background: #1b3a5c; display: flex; align-items: center; justify-content: center;
+    }
+    .timeline-dot::after {
+      content: ''; width: 10px; height: 10px; border-radius: 50%; background: #fff;
+    }
+    .timeline-card {
+      background: #fff; border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      padding: 20px 24px; box-shadow: 0 2px 8px #1b3a5c06;
+      transition: box-shadow 0.3s;
+    }
+    .timeline-card:hover { box-shadow: 0 6px 24px #1b3a5c0d; }
+    .timeline-top {
+      display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 8px;
+    }
+    .timeline-title {
+      font-weight: 700; color: #1b3a5c; font-family: 'Source Sans 3', sans-serif;
+    }
+    .timeline-title a {
+      color: #1b3a5c; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .timeline-title a:hover { color: #2d6a9f; }
+    .timeline-subtitle { color: #64748b; font-size: 0.875rem; margin-top: 2px; }
+    .timeline-date {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: #2d6a9f0d; color: #2d6a9f;
+      padding: 4px 12px; border-radius: 100px;
+      font-size: 0.75rem; font-weight: 600;
+      font-family: 'Source Sans 3', sans-serif;
+      white-space: nowrap;
+    }
+    .timeline-date svg { width: 12px; height: 12px; }
+    .timeline-desc {
+      color: #475569; font-size: 0.875rem; font-style: italic;
+      margin-top: 8px; line-height: 1.6;
+    }
+
+    /* ═══════════════════════════════════════════
+       PROJECT CARDS
+       ═══════════════════════════════════════════ */
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+    }
+    .project-card {
+      background: #fff; border-radius: 20px;
+      border: 1px solid #e2e8f0;
+      padding: 28px; box-shadow: 0 2px 12px #1b3a5c06;
+      transition: box-shadow 0.3s, border-color 0.3s;
+      display: flex; flex-direction: column;
+    }
+    .project-card:hover {
+      box-shadow: 0 8px 32px #1b3a5c0d;
+      border-color: #2d6a9f33;
+    }
+    .project-card.full { grid-column: 1 / -1; }
+    .project-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .project-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    }
+    .project-icon svg { width: 24px; height: 24px; color: #fff; }
+    .project-icon.navy { background: linear-gradient(135deg, #1b3a5c, #2d6a9f); }
+    .project-icon.blue { background: linear-gradient(135deg, #2d6a9f, #4a90c4); }
+    .project-icon.light { background: linear-gradient(135deg, #4a90c4, #7ab8e0); }
+    .project-name { font-weight: 700; color: #1b3a5c; font-size: 1rem; }
+    .project-sub { font-size: 0.75rem; color: #64748b; }
+    .project-desc {
+      color: #475569; font-size: 0.875rem; line-height: 1.7; margin-bottom: 16px; flex: 1;
+    }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.8125rem; font-weight: 600; color: #2d6a9f;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+    .project-link:hover { color: #1b3a5c; }
+    .project-link svg { width: 14px; height: 14px; }
+
+    @media (max-width: 768px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ═══════════════════════════════════════════
+       PUBLICATION
+       ═══════════════════════════════════════════ */
+    .pub-card {
+      background: #fff; border-radius: 20px;
+      border: 1px solid #e2e8f0;
+      padding: 28px 32px; box-shadow: 0 2px 12px #1b3a5c06;
+      display: flex; align-items: flex-start; gap: 18px;
+      transition: box-shadow 0.3s;
+    }
+    .pub-card:hover { box-shadow: 0 8px 32px #1b3a5c0d; }
+    .pub-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: #1b3a5c; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .pub-icon svg { width: 20px; height: 20px; color: #fff; }
+    .pub-title {
+      font-weight: 700; color: #1b3a5c; font-size: 1rem;
+      display: inline-flex; align-items: flex-start; gap: 6px;
+      line-height: 1.5;
+    }
+    .pub-title a { color: #1b3a5c; }
+    .pub-title a:hover { color: #2d6a9f; }
+    .pub-title svg { width: 14px; height: 14px; flex-shrink: 0; margin-top: 4px; }
+    .pub-authors {
+      color: #64748b; font-size: 0.875rem; margin-top: 6px;
+      font-style: italic;
+    }
+
+    /* ═══════════════════════════════════════════
+       SKILLS
+       ═══════════════════════════════════════════ */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+    }
+    .skill-group {
+      background: #fff; border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      padding: 22px 24px; box-shadow: 0 2px 8px #1b3a5c06;
+      transition: box-shadow 0.3s;
+    }
+    .skill-group:hover { box-shadow: 0 4px 20px #1b3a5c0d; }
+    .skill-group-label {
+      font-size: 0.6875rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      color: #64748b; margin-bottom: 12px;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+    .skill-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-badge {
+      display: inline-flex; align-items: center;
+      padding: 5px 12px; border-radius: 8px;
+      background: #1b3a5c0a; color: #1b3a5c;
+      font-size: 0.8125rem; font-weight: 500;
+      font-family: 'Source Sans 3', sans-serif;
+      transition: background 0.2s;
+    }
+    .skill-badge:hover { background: #1b3a5c14; }
+
+    @media (max-width: 768px) {
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ═══════════════════════════════════════════
+       GOALS & ENGAGEMENT CARDS
+       ═══════════════════════════════════════════ */
+    .cards-3 {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    }
+    .goal-card {
+      background: #fff; border-radius: 20px;
+      border: 1px solid #e2e8f0;
+      padding: 28px; box-shadow: 0 2px 12px #1b3a5c06;
+      transition: box-shadow 0.3s, border-color 0.3s;
+    }
+    .goal-card:hover {
+      box-shadow: 0 8px 32px #1b3a5c0d;
+      border-color: #2d6a9f33;
+    }
+    .goal-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .goal-icon svg { width: 20px; height: 20px; color: #fff; }
+    .goal-icon.navy { background: linear-gradient(135deg, #1b3a5c, #2d6a9f); }
+    .goal-icon.blue { background: linear-gradient(135deg, #2d6a9f, #4a90c4); }
+    .goal-icon.light { background: linear-gradient(135deg, #4a90c4, #7ab8e0); }
+    .goal-title {
+      font-weight: 700; color: #1b3a5c; margin-bottom: 8px;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+    .goal-desc {
+      color: #475569; font-size: 0.875rem; line-height: 1.7;
+    }
+    .engage-icon {
+      width: 32px; height: 32px; color: #2d6a9f; margin-bottom: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .cards-3 { grid-template-columns: 1fr; }
+    }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════ */
+    .footer {
+      background: #1b3a5c; color: #fff; margin-top: auto;
+      padding: 56px 24px;
+    }
+    .footer-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 24px;
+    }
+    .footer-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem; font-weight: 700;
+    }
+    .footer-subtitle { color: #7ab8e0; font-size: 0.8125rem; margin-top: 4px; }
+    .footer-links { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .footer-links a {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: rgba(255,255,255,0.75); font-size: 0.8125rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: #fff; }
+    .footer-links svg { width: 16px; height: 16px; }
+    .footer-bottom {
+      max-width: 1120px; margin: 32px auto 0;
+      padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center; font-size: 0.75rem; color: rgba(255,255,255,0.35);
+    }
+
+    /* ═══════════════════════════════════════════
+       BACK TO TOP
+       ═══════════════════════════════════════════ */
+    .back-to-top {
+      position: fixed; bottom: 24px; right: 24px; z-index: 90;
+      width: 48px; height: 48px; border-radius: 14px;
+      background: #1b3a5c; color: #fff; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px #1b3a5c28;
+      transition: background 0.2s, opacity 0.3s, transform 0.3s;
+      opacity: 0; transform: scale(0.8); pointer-events: none;
+    }
+    .back-to-top.visible { opacity: 1; transform: scale(1); pointer-events: auto; }
+    .back-to-top:hover { background: #2d6a9f; }
+    .back-to-top svg { width: 20px; height: 20px; }
+
+    /* ═══════════════════════════════════════════
+       DIVIDER
+       ═══════════════════════════════════════════ */
+    .divider {
+      max-width: 1120px; margin: 0 auto; padding: 0 24px;
+    }
+    .divider hr {
+      border: none; border-top: 1px solid #e2e8f0;
+    }
+  </style>
+</head>
+<body class="neural-grid">
+
+  <!-- ═══ NAVIGATION ═══ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <div class="nav-logo" onclick="scrollTo('hero')">JC</div>
+      <div class="nav-links" id="navLinks">
+        <button onclick="scrollTo('about')" data-section="about">About</button>
+        <button onclick="scrollTo('education')" data-section="education">Education</button>
+        <button onclick="scrollTo('research')" data-section="research">Research</button>
+        <button onclick="scrollTo('publications')" data-section="publications">Publications</button>
+        <button onclick="scrollTo('skills')" data-section="skills">Skills</button>
+        <button onclick="scrollTo('goals')" data-section="goals">Goals</button>
+      </div>
+      <button class="nav-hamburger" id="hamburger" onclick="toggleMobileNav()">
+        <svg id="hamburgerIcon" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg id="closeIcon" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="nav-mobile" id="mobileNav">
+      <button onclick="scrollTo('about')" data-section="about">About</button>
+      <button onclick="scrollTo('education')" data-section="education">Education</button>
+      <button onclick="scrollTo('research')" data-section="research">Research</button>
+      <button onclick="scrollTo('publications')" data-section="publications">Publications</button>
+      <button onclick="scrollTo('skills')" data-section="skills">Skills</button>
+      <button onclick="scrollTo('goals')" data-section="goals">Goals</button>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <div class="hero-photo reveal-right">
+        <div class="gradient-border">
+          <div class="gradient-border-inner">
+            <img src="headshot.jpeg" alt="Jehad Cheyi">
+          </div>
+        </div>
+        <div class="hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="16" height="16"><path d="M9 3h6l3 7-6 11-6-11 3-7z"/><path d="M9 3l3 7"/><path d="M15 3l-3 7"/></svg>
+          AI in Medicine
+        </div>
+      </div>
+      <div class="hero-text">
+        <div class="hero-tag reveal" style="transition-delay:0.1s">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Researcher in AI &amp; Biomedical Imaging
+        </div>
+        <h1 class="hero-name reveal" style="transition-delay:0.2s">Jehad Cheyi</h1>
+        <p class="hero-desc reveal" style="transition-delay:0.3s">
+          M.Sc. in Computer Engineering specializing in <strong>Deep Learning</strong>, <strong>CNNs</strong>, and <strong>Computer Vision</strong> applied to biomedical imaging — advancing AI-powered cancer detection and clinical diagnostics.
+        </p>
+        <div class="hero-tags reveal" style="transition-delay:0.4s">
+          <div class="hero-tag-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2a8 8 0 0 0-8 8c0 3.4 2.1 6.3 5 7.5V20h6v-2.5c2.9-1.2 5-4.1 5-7.5a8 8 0 0 0-8-8z"/><line x1="10" y1="22" x2="14" y2="22"/></svg>
+            Deep Learning
+          </div>
+          <div class="hero-tag-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            Computer Vision
+          </div>
+          <div class="hero-tag-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            Biomedical Imaging
+          </div>
+        </div>
+        <div class="hero-actions reveal" style="transition-delay:0.5s">
+          <a href="mailto:jehad_cheyi@yahoo.com" class="btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="16" height="16"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg>
+            Get in Touch
+          </a>
+          <a href="https://github.com/jehadcheyi" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 .5C5.648.5.104 6.043.104 12.393c0 5.246 3.438 9.694 8.207 11.27.599.11.819-.26.819-.577 0-.286-.01-1.043-.016-2.048-3.34.73-4.042-1.61-4.042-1.61-.545-1.382-1.332-1.75-1.332-1.75-1.09-.744.082-.729.082-.729 1.206.085 1.841 1.238 1.841 1.238 1.07 1.834 2.807 1.304 3.492.997.108-.776.419-1.305.762-1.606-2.665-.305-5.467-1.332-5.467-5.934 0-1.311.47-2.382 1.238-3.222-.124-.304-.537-1.524.116-3.176 0 0 1.009-.323 3.309 1.23.958-.267 1.987-.4 3.008-.405 1.02.005 2.05.138 3.01.405 2.299-1.553 3.307-1.23 3.307-1.23.654 1.652.241 2.872.118 3.176.77.84 1.237 1.911 1.237 3.222 0 4.612-2.805 5.625-5.476 5.924.431.372.814 1.103.814 2.224 0 1.606-.015 2.902-.015 3.293 0 .32.217.693.825.576C20.458 22.086 24 17.638 24 12.393 24 6.043 18.453.5 12 .5Z"/></svg>
+            GitHub
+          </a>
+          <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" class="btn-icon" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.447 20.452H17.2V14.745c0-1.366-.027-3.124-1.907-3.124-1.908 0-2.2 1.493-2.2 3.025v5.806H9.053V9h3.123v1.561h.044c.435-.824 1.497-1.693 3.081-1.693 3.297 0 3.904 2.17 3.904 4.993v6.591zM5.337 7.433a1.818 1.818 0 110-3.636 1.818 1.818 0 010 3.636zm1.631 13.019H3.71V9h3.258v11.452zM22.225 0H1.771C.792 0 0 .771 0 1.726v20.451C0 23.23.792 24 1.771 24h20.451C23.2 24 24 23.23 24 22.177V1.726C24 .771 23.2 0 22.225 0z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="24" height="24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+  </section>
+
+  <!-- ═══ ABOUT ═══ -->
+  <div class="divider"><hr></div>
+  <section class="section" id="about">
+    <div class="section-header reveal">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
       </div>
       <div>
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#64748b] font-[family-name:var(--font-source-sans)]">
-          {label}
-        </p>
-        <h2 className="text-2xl font-bold font-[family-name:var(--font-playfair)] text-[#1b3a5c]">
-          {title}
-        </h2>
+        <div class="section-label">About</div>
+        <div class="section-title">About Me</div>
       </div>
     </div>
-  );
-}
+    <div class="card reveal" style="transition-delay:0.15s">
+      <p>I am a Computer Engineer, researcher, and innovator with a Master's degree in Computer Engineering, specializing in Deep Learning, Convolutional Neural Networks (CNN), and Computer Vision. My passion lies in integrating artificial intelligence with biomedical imaging to develop cutting-edge solutions for critical healthcare challenges. Through years of academic study and hands-on research, I have focused extensively on the early and accurate detection of cancers—particularly breast cancer—by leveraging state-of-the-art techniques in AI and image analysis.</p>
+      <p>My work involves designing, optimizing, and implementing advanced AI pipelines for the automated detection, segmentation, and classification of cancerous lesions, aiming to support clinicians in making faster, more reliable diagnoses. I am adept at working with diverse medical imaging modalities including mammography, ultrasound, X-ray, and histopathology, and have developed robust models validated on large, annotated datasets.</p>
+      <p>In addition to research, I am deeply interested in the practical translation of AI models into clinical environments, emphasizing interpretability, reproducibility, and collaboration with multidisciplinary teams. My vision is to advance medical imaging and healthcare analytics by combining technical excellence with a dedication to real-world impact and innovation, contributing to improved patient outcomes and the next generation of intelligent healthcare systems.</p>
+    </div>
+  </section>
 
-/* ─── skill badge ─── */
-function SkillBadge({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="inline-flex items-center px-3 py-1.5 rounded-lg bg-[#1b3a5c]/[0.06] text-[#1b3a5c] text-sm font-medium font-[family-name:var(--font-source-sans)] hover:bg-[#1b3a5c]/[0.12] transition-colors cursor-default">
-      {children}
-    </span>
-  );
-}
-
-/* ─── timeline item ─── */
-function TimelineItem({
-  title,
-  subtitle,
-  date,
-  description,
-  link,
-  isLast = false,
-}: {
-  title: string;
-  subtitle?: string;
-  date: string;
-  description?: string;
-  link?: string;
-  isLast?: boolean;
-}) {
-  return (
-    <div className="relative pl-8 pb-8">
-      {/* timeline line */}
-      {!isLast && (
-        <div className="absolute left-[11px] top-6 bottom-0 w-[2px] bg-gradient-to-b from-[#2d6a9f]/30 to-[#2d6a9f]/5" />
-      )}
-      {/* dot */}
-      <div className="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-[#1b3a5c] flex items-center justify-center">
-        <div className="w-2.5 h-2.5 rounded-full bg-white" />
+  <!-- ═══ EDUCATION ═══ -->
+  <div class="divider"><hr></div>
+  <section class="section" id="education">
+    <div class="section-header reveal">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 6 3 6 3s3 0 6-3v-5"/></svg>
       </div>
-      {/* content */}
-      <div className="bg-white rounded-xl border border-[#e2e8f0] p-5 shadow-sm hover:shadow-md transition-shadow">
-        <div className="flex flex-wrap items-start justify-between gap-2">
-          <div>
-            {link ? (
-              <a
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-bold text-[#1b3a5c] hover:text-[#2d6a9f] transition-colors font-[family-name:var(--font-source-sans)] flex items-center gap-1.5"
-              >
-                {title}
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            ) : (
-              <h4 className="font-bold text-[#1b3a5c] font-[family-name:var(--font-source-sans)]">
-                {title}
-              </h4>
-            )}
-            {subtitle && (
-              <p className="text-[#64748b] text-sm font-[family-name:var(--font-source-sans)] mt-0.5">
-                {subtitle}
-              </p>
-            )}
+      <div>
+        <div class="section-label">Education</div>
+        <div class="section-title">Academic Background</div>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal" style="transition-delay:0.15s">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-top">
+            <div>
+              <div class="timeline-title">M.Sc. in Computer Engineering</div>
+              <div class="timeline-subtitle">Turkey</div>
+            </div>
+            <span class="timeline-date">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              2024
+            </span>
           </div>
-          <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#2d6a9f] bg-[#2d6a9f]/[0.08] px-2.5 py-1 rounded-full font-[family-name:var(--font-source-sans)]">
-            <Calendar className="w-3 h-3" />
-            {date}
-          </span>
+          <div class="timeline-desc">Thesis: AI-powered breast cancer detection &amp; segmentation using CNNs</div>
         </div>
-        {description && (
-          <p className="text-[#475569] text-sm mt-2 font-[family-name:var(--font-source-sans)] leading-relaxed italic">
-            {description}
-          </p>
-        )}
+      </div>
+      <div class="timeline-item reveal" style="transition-delay:0.3s">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-top">
+            <div>
+              <div class="timeline-title">B.Sc. in Computer Science</div>
+              <div class="timeline-subtitle">Iraq</div>
+            </div>
+            <span class="timeline-date">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              2015
+            </span>
+          </div>
+        </div>
       </div>
     </div>
-  );
-}
+  </section>
 
-/* ─── nav items ─── */
-const NAV_ITEMS = [
-  { id: "about", label: "About" },
-  { id: "education", label: "Education" },
-  { id: "research", label: "Research" },
-  { id: "publications", label: "Publications" },
-  { id: "skills", label: "Skills" },
-  { id: "goals", label: "Goals" },
-];
+  <!-- ═══ RESEARCH & PROJECTS ═══ -->
+  <div class="divider"><hr></div>
+  <section class="section" id="research">
+    <div class="section-header reveal">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 3h6l3 7-6 11-6-11 3-7z"/><path d="M9 3l3 7"/><path d="M15 3l-3 7"/></svg>
+      </div>
+      <div>
+        <div class="section-label">Research</div>
+        <div class="section-title">Research &amp; Projects</div>
+      </div>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card reveal" style="transition-delay:0.15s">
+        <div class="project-head">
+          <div class="project-icon navy">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 3h6l3 7-6 11-6-11 3-7z"/><path d="M9 3l3 7"/><path d="M15 3l-3 7"/></svg>
+          </div>
+          <div>
+            <div class="project-name">Breast Cancer Histopathology AI</div>
+            <div class="project-sub">Histopathology Image Analysis</div>
+          </div>
+        </div>
+        <div class="project-desc">Developed a custom AI model for histopathology image analysis, enabling automated classification and detection of breast cancer from tissue slide images with high accuracy and robust performance.</div>
+        <a href="https://huggingface.co/spaces/jehadcheyi/breast-cancer-histopathology" target="_blank" rel="noopener noreferrer" class="project-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Live Demo on Hugging Face
+        </a>
+      </div>
+      <div class="project-card reveal" style="transition-delay:0.25s">
+        <div class="project-head">
+          <div class="project-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div>
+            <div class="project-name">Breast Cancer Ultrasound AI</div>
+            <div class="project-sub">Ultrasound Image Analysis</div>
+          </div>
+        </div>
+        <div class="project-desc">Created a high-accuracy ultrasound analysis model for breast cancer detection, leveraging advanced CNN architectures with segmentation and classification capabilities validated on clinical datasets.</div>
+        <a href="https://huggingface.co/spaces/jehadcheyi/breast-cancer-ultrasound" target="_blank" rel="noopener noreferrer" class="project-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Live Demo on Hugging Face
+        </a>
+      </div>
+      <div class="project-card full reveal" style="transition-delay:0.35s">
+        <div class="project-head">
+          <div class="project-icon light">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.648.5.104 6.043.104 12.393c0 5.246 3.438 9.694 8.207 11.27.599.11.819-.26.819-.577 0-.286-.01-1.043-.016-2.048-3.34.73-4.042-1.61-4.042-1.61-.545-1.382-1.332-1.75-1.332-1.75-1.09-.744.082-.729.082-.729 1.206.085 1.841 1.238 1.841 1.238 1.07 1.834 2.807 1.304 3.492.997.108-.776.419-1.305.762-1.606-2.665-.305-5.467-1.332-5.467-5.934 0-1.311.47-2.382 1.238-3.222-.124-.304-.537-1.524.116-3.176 0 0 1.009-.323 3.309 1.23.958-.267 1.987-.4 3.008-.405 1.02.005 2.05.138 3.01.405 2.299-1.553 3.307-1.23 3.307-1.23.654 1.652.241 2.872.118 3.176.77.84 1.237 1.911 1.237 3.222 0 4.612-2.805 5.625-5.476 5.924.431.372.814 1.103.814 2.224 0 1.606-.015 2.902-.015 3.293 0 .32.217.693.825.576C20.458 22.086 24 17.638 24 12.393 24 6.043 18.453.5 12 .5Z"/></svg>
+          </div>
+          <div>
+            <div class="project-name">More Projects &amp; Open Source</div>
+            <div class="project-sub">Explore all research and code</div>
+          </div>
+        </div>
+        <div class="project-desc">Explore additional research projects, AI experiments, and open-source contributions on my GitHub profile. From medical imaging pipelines to deep learning utilities, my repositories showcase a commitment to reproducible, impactful research.</div>
+        <a href="https://github.com/jehadcheyi" target="_blank" rel="noopener noreferrer" class="project-link">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 .5C5.648.5.104 6.043.104 12.393c0 5.246 3.438 9.694 8.207 11.27.599.11.819-.26.819-.577 0-.286-.01-1.043-.016-2.048-3.34.73-4.042-1.61-4.042-1.61-.545-1.382-1.332-1.75-1.332-1.75-1.09-.744.082-.729.082-.729 1.206.085 1.841 1.238 1.841 1.238 1.07 1.834 2.807 1.304 3.492.997.108-.776.419-1.305.762-1.606-2.665-.305-5.467-1.332-5.467-5.934 0-1.311.47-2.382 1.238-3.222-.124-.304-.537-1.524.116-3.176 0 0 1.009-.323 3.309 1.23.958-.267 1.987-.4 3.008-.405 1.02.005 2.05.138 3.01.405 2.299-1.553 3.307-1.23 3.307-1.23.654 1.652.241 2.872.118 3.176.77.84 1.237 1.911 1.237 3.222 0 4.612-2.805 5.625-5.476 5.924.431.372.814 1.103.814 2.224 0 1.606-.015 2.902-.015 3.293 0 .32.217.693.825.576C20.458 22.086 24 17.638 24 12.393 24 6.043 18.453.5 12 .5Z"/></svg>
+          View GitHub Profile
+        </a>
+      </div>
+    </div>
+  </section>
 
-/* ─── main page ─── */
-export default function Home() {
-  const [activeSection, setActiveSection] = useState("about");
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [showBackToTop, setShowBackToTop] = useState(false);
+  <!-- ═══ PUBLICATIONS ═══ -->
+  <div class="divider"><hr></div>
+  <section class="section" id="publications">
+    <div class="section-header reveal">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      </div>
+      <div>
+        <div class="section-label">Publications</div>
+        <div class="section-title">Publications &amp; Outputs</div>
+      </div>
+    </div>
+    <div class="pub-card reveal" style="transition-delay:0.15s">
+      <div class="pub-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+      </div>
+      <div>
+        <div class="pub-title">
+          <a href="https://doi.org/10.54287/gujsa.1529857" target="_blank" rel="noopener noreferrer">
+            Advanced CNN-Based Classification and Segmentation for Enhanced Breast Cancer Ultrasound Imaging
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+        <div class="pub-authors">J Cheyi, YÇ Kaya — Gazi University Journal of Science Part A: Engineering, 2024</div>
+      </div>
+    </div>
+  </section>
 
-  useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 20);
-      setShowBackToTop(window.scrollY > 600);
+  <!-- ═══ SKILLS ═══ -->
+  <div class="divider"><hr></div>
+  <section class="section" id="skills">
+    <div class="section-header reveal">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <div>
+        <div class="section-label">Skills</div>
+        <div class="section-title">Skills &amp; Tools</div>
+      </div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group reveal" style="transition-delay:0.1s">
+        <div class="skill-group-label">Programming</div>
+        <div class="skill-badges">
+          <span class="skill-badge">Python</span>
+          <span class="skill-badge">MATLAB</span>
+          <span class="skill-badge">C++</span>
+          <span class="skill-badge">R</span>
+        </div>
+      </div>
+      <div class="skill-group reveal" style="transition-delay:0.15s">
+        <div class="skill-group-label">Frameworks</div>
+        <div class="skill-badges">
+          <span class="skill-badge">TensorFlow</span>
+          <span class="skill-badge">PyTorch</span>
+          <span class="skill-badge">Keras</span>
+          <span class="skill-badge">Scikit-learn</span>
+          <span class="skill-badge">OpenCV</span>
+        </div>
+      </div>
+      <div class="skill-group reveal" style="transition-delay:0.2s">
+        <div class="skill-group-label">Architectures</div>
+        <div class="skill-badges">
+          <span class="skill-badge">U-Net</span>
+          <span class="skill-badge">Mask R-CNN</span>
+          <span class="skill-badge">DeepLab</span>
+          <span class="skill-badge">ResNet</span>
+          <span class="skill-badge">DenseNet</span>
+          <span class="skill-badge">EfficientNet</span>
+          <span class="skill-badge">Transformers</span>
+        </div>
+      </div>
+      <div class="skill-group reveal" style="transition-delay:0.25s">
+        <div class="skill-group-label">Medical Imaging Modalities</div>
+        <div class="skill-badges">
+          <span class="skill-badge">Mammography</span>
+          <span class="skill-badge">Ultrasound</span>
+          <span class="skill-badge">X-ray</span>
+          <span class="skill-badge">Histopathology</span>
+          <span class="skill-badge">MRI</span>
+          <span class="skill-badge">CT</span>
+        </div>
+      </div>
+      <div class="skill-group reveal" style="transition-delay:0.3s">
+        <div class="skill-group-label">Metrics &amp; Evaluation</div>
+        <div class="skill-badges">
+          <span class="skill-badge">Dice</span>
+          <span class="skill-badge">IoU</span>
+          <span class="skill-badge">ROC-AUC</span>
+          <span class="skill-badge">Sensitivity/Specificity</span>
+          <span class="skill-badge">F1 Score</span>
+          <span class="skill-badge">Precision/Recall</span>
+        </div>
+      </div>
+      <div class="skill-group reveal" style="transition-delay:0.35s">
+        <div class="skill-group-label">Tools &amp; DevOps</div>
+        <div class="skill-badges">
+          <span class="skill-badge">Docker</span>
+          <span class="skill-badge">Git</span>
+          <span class="skill-badge">DICOM/NIfTI</span>
+          <span class="skill-badge">ITK-SNAP</span>
+          <span class="skill-badge">3D Slicer</span>
+          <span class="skill-badge">ImageJ/Fiji</span>
+          <span class="skill-badge">LabelImg</span>
+        </div>
+      </div>
+      <div class="skill-group reveal" style="transition-delay:0.4s">
+        <div class="skill-group-label">Data &amp; Visualization</div>
+        <div class="skill-badges">
+          <span class="skill-badge">NumPy</span>
+          <span class="skill-badge">Pandas</span>
+          <span class="skill-badge">Data Augmentation</span>
+          <span class="skill-badge">Matplotlib</span>
+          <span class="skill-badge">Seaborn</span>
+        </div>
+      </div>
+      <div class="skill-group reveal" style="transition-delay:0.45s">
+        <div class="skill-group-label">Cloud &amp; Deployment</div>
+        <div class="skill-badges">
+          <span class="skill-badge">Google Colab</span>
+          <span class="skill-badge">Kaggle</span>
+          <span class="skill-badge">AWS EC2/SageMaker</span>
+          <span class="skill-badge">Flask APIs</span>
+        </div>
+      </div>
+      <div class="skill-group reveal" style="transition-delay:0.5s">
+        <div class="skill-group-label">Methods &amp; Special Topics</div>
+        <div class="skill-badges">
+          <span class="skill-badge">Transfer Learning</span>
+          <span class="skill-badge">Fine-tuning</span>
+          <span class="skill-badge">Hyperparameter Optimization</span>
+          <span class="skill-badge">Cross-validation</span>
+          <span class="skill-badge">Grad-CAM</span>
+          <span class="skill-badge">SHAP</span>
+          <span class="skill-badge">Federated Learning</span>
+        </div>
+      </div>
+      <div class="skill-group reveal" style="transition-delay:0.55s">
+        <div class="skill-group-label">Collaboration</div>
+        <div class="skill-badges">
+          <span class="skill-badge">Jupyter</span>
+          <span class="skill-badge">Overleaf</span>
+          <span class="skill-badge">LaTeX</span>
+          <span class="skill-badge">GitHub</span>
+          <span class="skill-badge">Trello</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      const sections = NAV_ITEMS.map((n) => document.getElementById(n.id));
+  <!-- ═══ CAREER GOALS ═══ -->
+  <div class="divider"><hr></div>
+  <section class="section" id="goals">
+    <div class="section-header reveal">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+      </div>
+      <div>
+        <div class="section-label">Goals</div>
+        <div class="section-title">Career Goals &amp; Interests</div>
+      </div>
+    </div>
+    <div class="cards-3">
+      <div class="goal-card reveal" style="transition-delay:0.15s">
+        <div class="goal-icon navy">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+        </div>
+        <div class="goal-title">Federated Learning</div>
+        <div class="goal-desc">Integrate federated learning for privacy-preserving cross-institutional AI, enabling collaborative model training without sharing sensitive patient data across hospitals and research centers.</div>
+      </div>
+      <div class="goal-card reveal" style="transition-delay:0.25s">
+        <div class="goal-icon blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 2a8 8 0 0 0-8 8c0 3.4 2.1 6.3 5 7.5V20h6v-2.5c2.9-1.2 5-4.1 5-7.5a8 8 0 0 0-8-8z"/><line x1="10" y1="22" x2="14" y2="22"/></svg>
+        </div>
+        <div class="goal-title">Self-Supervised &amp; Transformers</div>
+        <div class="goal-desc">Advance self-supervised and transformer-based medical imaging approaches, reducing dependence on large annotated datasets while improving diagnostic accuracy and generalizability.</div>
+      </div>
+      <div class="goal-card reveal" style="transition-delay:0.35s">
+        <div class="goal-icon light">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="goal-title">Clinical Translation</div>
+        <div class="goal-desc">Translate models into clinics with explainability and clinician-centric design, ensuring AI tools are interpretable, trustworthy, and seamlessly integrated into real diagnostic workflows.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ACADEMIC ENGAGEMENT ═══ -->
+  <div class="divider"><hr></div>
+  <section class="section">
+    <div class="section-header reveal">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+      </div>
+      <div>
+        <div class="section-label">Engagement</div>
+        <div class="section-title">Academic Engagement</div>
+      </div>
+    </div>
+    <div class="cards-3">
+      <div class="goal-card reveal" style="transition-delay:0.15s">
+        <svg class="engage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        <div class="goal-title">Conference Presentations</div>
+        <div class="goal-desc">Presented research at MICCAI, VISAPP, and SIIM — sharing advances in AI-driven medical image analysis with the international research community.</div>
+      </div>
+      <div class="goal-card reveal" style="transition-delay:0.25s">
+        <svg class="engage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 6 3 6 3s3 0 6-3v-5"/></svg>
+        <div class="goal-title">Workshops &amp; Seminars</div>
+        <div class="goal-desc">Attended specialized workshops on AI in medical imaging, staying at the forefront of emerging techniques and networking with leading researchers.</div>
+      </div>
+      <div class="goal-card reveal" style="transition-delay:0.35s">
+        <svg class="engage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 3h6l3 7-6 11-6-11 3-7z"/><path d="M9 3l3 7"/><path d="M15 3l-3 7"/></svg>
+        <div class="goal-title">Open to Collaboration</div>
+        <div class="goal-desc">Actively interested in collaborative research and academic exchanges, welcoming partnerships that push the boundaries of AI in healthcare.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-name">Jehad Cheyi</div>
+        <div class="footer-subtitle">M.Sc. Computer Engineering &bull; AI &amp; Biomedical Imaging</div>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:jehad_cheyi@yahoo.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg>
+          jehad_cheyi@yahoo.com
+        </a>
+        <a href="https://github.com/jehadcheyi" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.648.5.104 6.043.104 12.393c0 5.246 3.438 9.694 8.207 11.27.599.11.819-.26.819-.577 0-.286-.01-1.043-.016-2.048-3.34.73-4.042-1.61-4.042-1.61-.545-1.382-1.332-1.75-1.332-1.75-1.09-.744.082-.729.082-.729 1.206.085 1.841 1.238 1.841 1.238 1.07 1.834 2.807 1.304 3.492.997.108-.776.419-1.305.762-1.606-2.665-.305-5.467-1.332-5.467-5.934 0-1.311.47-2.382 1.238-3.222-.124-.304-.537-1.524.116-3.176 0 0 1.009-.323 3.309 1.23.958-.267 1.987-.4 3.008-.405 1.02.005 2.05.138 3.01.405 2.299-1.553 3.307-1.23 3.307-1.23.654 1.652.241 2.872.118 3.176.77.84 1.237 1.911 1.237 3.222 0 4.612-2.805 5.625-5.476 5.924.431.372.814 1.103.814 2.224 0 1.606-.015 2.902-.015 3.293 0 .32.217.693.825.576C20.458 22.086 24 17.638 24 12.393 24 6.043 18.453.5 12 .5Z"/></svg>
+          GitHub
+        </a>
+        <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.447 20.452H17.2V14.745c0-1.366-.027-3.124-1.907-3.124-1.908 0-2.2 1.493-2.2 3.025v5.806H9.053V9h3.123v1.561h.044c.435-.824 1.497-1.693 3.081-1.693 3.297 0 3.904 2.17 3.904 4.993v6.591zM5.337 7.433a1.818 1.818 0 110-3.636 1.818 1.818 0 010 3.636zm1.631 13.019H3.71V9h3.258v11.452zM22.225 0H1.771C.792 0 0 .771 0 1.726v20.451C0 23.23.792 24 1.771 24h20.451C23.2 24 24 23.23 24 22.177V1.726C24 .771 23.2 0 22.225 0z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Jehad Cheyi. All rights reserved.</div>
+  </footer>
+
+  <!-- ═══ BACK TO TOP ═══ -->
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+  </button>
+
+  <!-- ═══ JAVASCRIPT ═══ -->
+  <script>
+    // ─── Smooth scroll ───
+    function scrollTo(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+      closeMobileNav();
+    }
+
+    // ─── Mobile nav ───
+    let mobileOpen = false;
+    function toggleMobileNav() {
+      mobileOpen = !mobileOpen;
+      document.getElementById('mobileNav').classList.toggle('open', mobileOpen);
+      document.getElementById('hamburgerIcon').style.display = mobileOpen ? 'none' : 'block';
+      document.getElementById('closeIcon').style.display = mobileOpen ? 'block' : 'none';
+    }
+    function closeMobileNav() {
+      mobileOpen = false;
+      document.getElementById('mobileNav').classList.remove('open');
+      document.getElementById('hamburgerIcon').style.display = 'block';
+      document.getElementById('closeIcon').style.display = 'none';
+    }
+
+    // ─── Scroll events ───
+    const sections = ['about','education','research','publications','skills','goals'];
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+
+      // Nav background
+      document.getElementById('nav').classList.toggle('scrolled', y > 20);
+
+      // Back to top
+      document.getElementById('backToTop').classList.toggle('visible', y > 600);
+
+      // Active section
+      let active = sections[0];
       for (let i = sections.length - 1; i >= 0; i--) {
-        const s = sections[i];
-        if (s && s.getBoundingClientRect().top <= 120) {
-          setActiveSection(NAV_ITEMS[i].id);
+        const el = document.getElementById(sections[i]);
+        if (el && el.getBoundingClientRect().top <= 120) {
+          active = sections[i];
           break;
         }
       }
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+      document.querySelectorAll('[data-section]').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.section === active);
+      });
+    }, { passive: true });
 
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    setMobileNavOpen(false);
-  };
+    // ─── Scroll reveal ───
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-  return (
-    <div className="min-h-screen flex flex-col bg-[#faf9f6] paper-texture">
-      {/* ─── Top Navigation ─── */}
-      <motion.nav
-        initial={{ y: -80 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-white/90 backdrop-blur-xl shadow-lg shadow-[#1b3a5c]/[0.04] border-b border-[#e2e8f0]/60"
-            : "bg-transparent"
-        }`}
-      >
-        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
-          <button
-            onClick={() => scrollTo("hero")}
-            className="font-[family-name:var(--font-playfair)] font-bold text-[#1b3a5c] text-lg tracking-tight"
-          >
-            JC
-          </button>
-
-          {/* desktop nav */}
-          <div className="hidden md:flex items-center gap-1">
-            {NAV_ITEMS.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollTo(item.id)}
-                className={`px-3.5 py-1.5 rounded-lg text-sm font-medium font-[family-name:var(--font-source-sans)] transition-all ${
-                  activeSection === item.id
-                    ? "bg-[#1b3a5c] text-white shadow-md shadow-[#1b3a5c]/20"
-                    : "text-[#475569] hover:text-[#1b3a5c] hover:bg-[#1b3a5c]/[0.06]"
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-
-          {/* mobile hamburger */}
-          <button
-            onClick={() => setMobileNavOpen(!mobileNavOpen)}
-            className="md:hidden p-2 rounded-lg text-[#1b3a5c] hover:bg-[#1b3a5c]/[0.06]"
-          >
-            {mobileNavOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
-        </div>
-
-        {/* mobile dropdown */}
-        <AnimatePresence>
-          {mobileNavOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white/95 backdrop-blur-xl border-b border-[#e2e8f0] overflow-hidden"
-            >
-              <div className="px-6 py-3 flex flex-col gap-1">
-                {NAV_ITEMS.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollTo(item.id)}
-                    className={`px-4 py-2.5 rounded-lg text-sm font-medium font-[family-name:var(--font-source-sans)] text-left transition-all ${
-                      activeSection === item.id
-                        ? "bg-[#1b3a5c] text-white"
-                        : "text-[#475569] hover:bg-[#1b3a5c]/[0.06]"
-                    }`}
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.nav>
-
-      {/* ─── Hero Section ─── */}
-      <section
-        id="hero"
-        className="relative pt-16 overflow-hidden"
-      >
-        {/* background decoration */}
-        <div className="absolute inset-0 neural-grid pointer-events-none" />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-[#2d6a9f]/[0.06] via-transparent to-transparent rounded-full -translate-y-1/3 translate-x-1/4 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-[#1b3a5c]/[0.04] via-transparent to-transparent rounded-full translate-y-1/3 -translate-x-1/4 pointer-events-none" />
-
-        <div className="relative max-w-6xl mx-auto px-6 py-20 md:py-32">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-            {/* photo */}
-            <FadeIn direction="right" delay={0.1}>
-              <div className="relative flex-shrink-0">
-                <div className="gradient-border p-[3px] rounded-2xl">
-                  <div className="bg-white rounded-2xl p-1.5">
-                    <img
-                      src="/headshot.jpeg"
-                      alt="Jehad Cheyi"
-                      className="w-56 h-72 md:w-64 md:h-80 object-cover rounded-xl"
-                    />
-                  </div>
-                </div>
-                {/* floating badge */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.8, duration: 0.5 }}
-                  className="absolute -bottom-3 -right-3 bg-white rounded-xl shadow-lg shadow-[#1b3a5c]/10 px-3 py-2 flex items-center gap-2 border border-[#e2e8f0]"
-                >
-                  <Microscope className="w-4 h-4 text-[#2d6a9f]" />
-                  <span className="text-xs font-semibold font-[family-name:var(--font-source-sans)] text-[#1b3a5c]">
-                    AI in Medicine
-                  </span>
-                </motion.div>
-              </div>
-            </FadeIn>
-
-            {/* text */}
-            <div className="flex-1 text-center lg:text-left">
-              <FadeIn delay={0.2}>
-                <div className="inline-flex items-center gap-2 bg-[#1b3a5c]/[0.07] text-[#1b3a5c] px-4 py-1.5 rounded-full text-sm font-medium font-[family-name:var(--font-source-sans)] mb-6">
-                  <MapPin className="w-3.5 h-3.5" />
-                  Researcher in AI &amp; Biomedical Imaging
-                </div>
-              </FadeIn>
-
-              <FadeIn delay={0.3}>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-[family-name:var(--font-playfair)] text-[#1b3a5c] leading-[1.1] mb-4">
-                  Jehad Cheyi
-                </h1>
-              </FadeIn>
-
-              <FadeIn delay={0.4}>
-                <p className="text-lg md:text-xl text-[#475569] font-[family-name:var(--font-source-sans)] leading-relaxed mb-6 max-w-2xl">
-                  M.Sc. in Computer Engineering specializing in{" "}
-                  <span className="text-[#1b3a5c] font-semibold">Deep Learning</span>,{" "}
-                  <span className="text-[#1b3a5c] font-semibold">CNNs</span>, and{" "}
-                  <span className="text-[#1b3a5c] font-semibold">Computer Vision</span> applied to
-                  biomedical imaging — advancing AI-powered cancer detection and clinical
-                  diagnostics.
-                </p>
-              </FadeIn>
-
-              <FadeIn delay={0.5}>
-                <div className="flex flex-wrap items-center gap-3 justify-center lg:justify-start mb-8">
-                  {[
-                    { icon: Brain, label: "Deep Learning" },
-                    { icon: Eye, label: "Computer Vision" },
-                    { icon: Heart, label: "Biomedical Imaging" },
-                  ].map((tag) => (
-                    <div
-                      key={tag.label}
-                      className="flex items-center gap-2 bg-white border border-[#e2e8f0] rounded-xl px-4 py-2.5 shadow-sm"
-                    >
-                      <tag.icon className="w-4 h-4 text-[#2d6a9f]" />
-                      <span className="text-sm font-semibold font-[family-name:var(--font-source-sans)] text-[#1b3a5c]">
-                        {tag.label}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </FadeIn>
-
-              <FadeIn delay={0.6}>
-                <div className="flex items-center gap-4 justify-center lg:justify-start">
-                  <a
-                    href="mailto:jehad_cheyi@yahoo.com"
-                    className="inline-flex items-center gap-2 bg-[#1b3a5c] text-white px-6 py-3 rounded-xl font-semibold font-[family-name:var(--font-source-sans)] text-sm hover:bg-[#2d6a9f] transition-colors shadow-lg shadow-[#1b3a5c]/20"
-                  >
-                    <Mail className="w-4 h-4" />
-                    Get in Touch
-                  </a>
-                  <a
-                    href="https://github.com/jehadcheyi"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-white border border-[#e2e8f0] text-[#1b3a5c] px-5 py-3 rounded-xl font-semibold font-[family-name:var(--font-source-sans)] text-sm hover:border-[#1b3a5c] transition-colors shadow-sm"
-                  >
-                    <Github className="w-4 h-4" />
-                    GitHub
-                  </a>
-                  <a
-                    href="https://linkedin.com/in/your-profile"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-12 h-12 bg-white border border-[#e2e8f0] text-[#1b3a5c] rounded-xl hover:border-[#1b3a5c] transition-colors shadow-sm"
-                  >
-                    <Linkedin className="w-4 h-4" />
-                  </a>
-                </div>
-              </FadeIn>
-            </div>
-          </div>
-
-          {/* scroll indicator */}
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-            className="hidden md:flex justify-center mt-16"
-          >
-            <ChevronDown className="w-6 h-6 text-[#94a3b8]" />
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ─── Main Content ─── */}
-      <main className="flex-1 max-w-6xl mx-auto px-6 w-full">
-        {/* ─── About ─── */}
-        <section id="about" className="py-16 md:py-24">
-          <FadeIn>
-            <SectionHeading icon={FlaskConical} label="About" title="About Me" />
-          </FadeIn>
-          <FadeIn delay={0.15}>
-            <div className="bg-white rounded-2xl border border-[#e2e8f0] p-6 md:p-8 shadow-sm">
-              <p className="text-[#475569] font-[family-name:var(--font-source-sans)] text-base leading-[1.85] mb-4">
-                I am a Computer Engineer, researcher, and innovator with a Master&apos;s degree in
-                Computer Engineering, specializing in Deep Learning, Convolutional Neural Networks
-                (CNN), and Computer Vision. My passion lies in integrating artificial intelligence
-                with biomedical imaging to develop cutting-edge solutions for critical healthcare
-                challenges. Through years of academic study and hands-on research, I have focused
-                extensively on the early and accurate detection of cancers—particularly breast
-                cancer—by leveraging state-of-the-art techniques in AI and image analysis.
-              </p>
-              <p className="text-[#475569] font-[family-name:var(--font-source-sans)] text-base leading-[1.85] mb-4">
-                My work involves designing, optimizing, and implementing advanced AI pipelines for
-                the automated detection, segmentation, and classification of cancerous lesions,
-                aiming to support clinicians in making faster, more reliable diagnoses. I am adept
-                at working with diverse medical imaging modalities including mammography, ultrasound,
-                X-ray, and histopathology, and have developed robust models validated on large,
-                annotated datasets.
-              </p>
-              <p className="text-[#475569] font-[family-name:var(--font-source-sans)] text-base leading-[1.85]">
-                In addition to research, I am deeply interested in the practical translation of AI
-                models into clinical environments, emphasizing interpretability, reproducibility, and
-                collaboration with multidisciplinary teams. My vision is to advance medical imaging
-                and healthcare analytics by combining technical excellence with a dedication to
-                real-world impact and innovation, contributing to improved patient outcomes and the
-                next generation of intelligent healthcare systems.
-              </p>
-            </div>
-          </FadeIn>
-        </section>
-
-        {/* ─── Education ─── */}
-        <section id="education" className="py-16 md:py-24">
-          <FadeIn>
-            <SectionHeading icon={GraduationCap} label="Education" title="Academic Background" />
-          </FadeIn>
-          <div className="mt-2">
-            <FadeIn delay={0.15}>
-              <TimelineItem
-                title="M.Sc. in Computer Engineering"
-                date="2024"
-                subtitle="Turkey"
-                description="Thesis: AI-powered breast cancer detection & segmentation using CNNs"
-                isLast={false}
-              />
-            </FadeIn>
-            <FadeIn delay={0.3}>
-              <TimelineItem
-                title="B.Sc. in Computer Science"
-                date="2015"
-                subtitle="Iraq"
-                isLast={true}
-              />
-            </FadeIn>
-          </div>
-        </section>
-
-        {/* ─── Research & Projects ─── */}
-        <section id="research" className="py-16 md:py-24">
-          <FadeIn>
-            <SectionHeading icon={FlaskConical} label="Research" title="Research & Projects" />
-          </FadeIn>
-          <div className="grid md:grid-cols-2 gap-6">
-            <FadeIn delay={0.15}>
-              <div className="group bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-sm hover:shadow-lg hover:border-[#2d6a9f]/30 transition-all h-full">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#1b3a5c] to-[#2d6a9f] flex items-center justify-center shadow-md shadow-[#1b3a5c]/20">
-                    <Microscope className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-[#1b3a5c] font-[family-name:var(--font-source-sans)]">
-                      Breast Cancer Histopathology AI
-                    </h3>
-                    <span className="text-xs text-[#64748b] font-[family-name:var(--font-source-sans)]">
-                      Histopathology Image Analysis
-                    </span>
-                  </div>
-                </div>
-                <p className="text-[#475569] text-sm font-[family-name:var(--font-source-sans)] leading-relaxed mb-4">
-                  Developed a custom AI model for histopathology image analysis, enabling automated
-                  classification and detection of breast cancer from tissue slide images with high
-                  accuracy and robust performance.
-                </p>
-                <a
-                  href="https://huggingface.co/spaces/jehadcheyi/breast-cancer-histopathology"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold font-[family-name:var(--font-source-sans)] text-[#2d6a9f] hover:text-[#1b3a5c] transition-colors"
-                >
-                  <ExternalLink className="w-3.5 h-3.5" />
-                  Live Demo on Hugging Face
-                </a>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.25}>
-              <div className="group bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-sm hover:shadow-lg hover:border-[#2d6a9f]/30 transition-all h-full">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#2d6a9f] to-[#4a90c4] flex items-center justify-center shadow-md shadow-[#2d6a9f]/20">
-                    <Heart className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-[#1b3a5c] font-[family-name:var(--font-source-sans)]">
-                      Breast Cancer Ultrasound AI
-                    </h3>
-                    <span className="text-xs text-[#64748b] font-[family-name:var(--font-source-sans)]">
-                      Ultrasound Image Analysis
-                    </span>
-                  </div>
-                </div>
-                <p className="text-[#475569] text-sm font-[family-name:var(--font-source-sans)] leading-relaxed mb-4">
-                  Created a high-accuracy ultrasound analysis model for breast cancer detection,
-                  leveraging advanced CNN architectures with segmentation and classification
-                  capabilities validated on clinical datasets.
-                </p>
-                <a
-                  href="https://huggingface.co/spaces/jehadcheyi/breast-cancer-ultrasound"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold font-[family-name:var(--font-source-sans)] text-[#2d6a9f] hover:text-[#1b3a5c] transition-colors"
-                >
-                  <ExternalLink className="w-3.5 h-3.5" />
-                  Live Demo on Hugging Face
-                </a>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.35}>
-              <div className="group bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-sm hover:shadow-lg hover:border-[#2d6a9f]/30 transition-all md:col-span-2">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#4a90c4] to-[#7ab8e0] flex items-center justify-center shadow-md shadow-[#4a90c4]/20">
-                    <Github className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-[#1b3a5c] font-[family-name:var(--font-source-sans)]">
-                      More Projects & Open Source
-                    </h3>
-                    <span className="text-xs text-[#64748b] font-[family-name:var(--font-source-sans)]">
-                      Explore all research and code
-                    </span>
-                  </div>
-                </div>
-                <p className="text-[#475569] text-sm font-[family-name:var(--font-source-sans)] leading-relaxed mb-4">
-                  Explore additional research projects, AI experiments, and open-source
-                  contributions on my GitHub profile. From medical imaging pipelines to deep
-                  learning utilities, my repositories showcase a commitment to reproducible,
-                  impactful research.
-                </p>
-                <a
-                  href="https://github.com/jehadcheyi"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold font-[family-name:var(--font-source-sans)] text-[#2d6a9f] hover:text-[#1b3a5c] transition-colors"
-                >
-                  <Github className="w-3.5 h-3.5" />
-                  View GitHub Profile
-                </a>
-              </div>
-            </FadeIn>
-          </div>
-        </section>
-
-        {/* ─── Publications ─── */}
-        <section id="publications" className="py-16 md:py-24">
-          <FadeIn>
-            <SectionHeading icon={BookOpen} label="Publications" title="Publications & Outputs" />
-          </FadeIn>
-          <FadeIn delay={0.15}>
-            <div className="bg-white rounded-2xl border border-[#e2e8f0] p-6 md:p-8 shadow-sm">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-[#1b3a5c] flex items-center justify-center mt-0.5">
-                  <Award className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <a
-                    href="https://doi.org/10.54287/gujsa.1529857"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-bold text-[#1b3a5c] hover:text-[#2d6a9f] transition-colors font-[family-name:var(--font-source-sans)] text-base leading-snug inline-flex items-start gap-1.5"
-                  >
-                    Advanced CNN-Based Classification and Segmentation for Enhanced Breast Cancer
-                    Ultrasound Imaging
-                    <ExternalLink className="w-3.5 h-3.5 flex-shrink-0 mt-1" />
-                  </a>
-                  <p className="text-[#64748b] text-sm font-[family-name:var(--font-source-sans)] mt-1.5">
-                    J Cheyi, YÇ Kaya —{" "}
-                    <em>
-                      Gazi University Journal of Science Part A: Engineering
-                    </em>
-                    , 2024
-                  </p>
-                </div>
-              </div>
-            </div>
-          </FadeIn>
-        </section>
-
-        {/* ─── Skills ─── */}
-        <section id="skills" className="py-16 md:py-24">
-          <FadeIn>
-            <SectionHeading icon={Wrench} label="Skills" title="Skills & Tools" />
-          </FadeIn>
-          <div className="space-y-6">
-            <FadeIn delay={0.1}>
-              <div className="bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-sm">
-                <h3 className="text-xs font-bold uppercase tracking-[0.15em] text-[#64748b] font-[family-name:var(--font-source-sans)] mb-3">
-                  Programming
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {["Python", "MATLAB", "C++", "R"].map((s) => (
-                    <SkillBadge key={s}>{s}</SkillBadge>
-                  ))}
-                </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.15}>
-              <div className="bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-sm">
-                <h3 className="text-xs font-bold uppercase tracking-[0.15em] text-[#64748b] font-[family-name:var(--font-source-sans)] mb-3">
-                  Frameworks
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    "TensorFlow",
-                    "PyTorch",
-                    "Keras",
-                    "Scikit-learn",
-                    "OpenCV",
-                  ].map((s) => (
-                    <SkillBadge key={s}>{s}</SkillBadge>
-                  ))}
-                </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.2}>
-              <div className="bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-sm">
-                <h3 className="text-xs font-bold uppercase tracking-[0.15em] text-[#64748b] font-[family-name:var(--font-source-sans)] mb-3">
-                  Architectures
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    "U-Net",
-                    "Mask R-CNN",
-                    "DeepLab",
-                    "ResNet",
-                    "DenseNet",
-                    "EfficientNet",
-                    "Transformer variants",
-                  ].map((s) => (
-                    <SkillBadge key={s}>{s}</SkillBadge>
-                  ))}
-                </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.25}>
-              <div className="bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-sm">
-                <h3 className="text-xs font-bold uppercase tracking-[0.15em] text-[#64748b] font-[family-name:var(--font-source-sans)] mb-3">
-                  Medical Imaging Modalities
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    "Mammography",
-                    "Ultrasound",
-                    "X-ray",
-                    "Histopathology",
-                    "MRI",
-                    "CT",
-                  ].map((s) => (
-                    <SkillBadge key={s}>{s}</SkillBadge>
-                  ))}
-                </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.3}>
-              <div className="bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-sm">
-                <h3 className="text-xs font-bold uppercase tracking-[0.15em] text-[#64748b] font-[family-name:var(--font-source-sans)] mb-3">
-                  Metrics & Evaluation
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    "Dice",
-                    "IoU",
-                    "ROC-AUC",
-                    "Sensitivity/Specificity",
-                    "F1 Score",
-                    "Precision/Recall",
-                  ].map((s) => (
-                    <SkillBadge key={s}>{s}</SkillBadge>
-                  ))}
-                </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.35}>
-              <div className="bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-sm">
-                <h3 className="text-xs font-bold uppercase tracking-[0.15em] text-[#64748b] font-[family-name:var(--font-source-sans)] mb-3">
-                  Tools & DevOps
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    "Docker",
-                    "Git",
-                    "DICOM/NIfTI",
-                    "ITK-SNAP",
-                    "3D Slicer",
-                    "ImageJ/Fiji",
-                    "LabelImg",
-                  ].map((s) => (
-                    <SkillBadge key={s}>{s}</SkillBadge>
-                  ))}
-                </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.4}>
-              <div className="bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-sm">
-                <h3 className="text-xs font-bold uppercase tracking-[0.15em] text-[#64748b] font-[family-name:var(--font-source-sans)] mb-3">
-                  Data & Visualization
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    "NumPy",
-                    "Pandas",
-                    "Data Augmentation",
-                    "Preprocessing",
-                    "Matplotlib",
-                    "Seaborn",
-                  ].map((s) => (
-                    <SkillBadge key={s}>{s}</SkillBadge>
-                  ))}
-                </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.45}>
-              <div className="bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-sm">
-                <h3 className="text-xs font-bold uppercase tracking-[0.15em] text-[#64748b] font-[family-name:var(--font-source-sans)] mb-3">
-                  Cloud & Deployment
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    "Google Colab",
-                    "Kaggle",
-                    "AWS EC2/SageMaker",
-                    "Flask APIs",
-                  ].map((s) => (
-                    <SkillBadge key={s}>{s}</SkillBadge>
-                  ))}
-                </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.5}>
-              <div className="bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-sm">
-                <h3 className="text-xs font-bold uppercase tracking-[0.15em] text-[#64748b] font-[family-name:var(--font-source-sans)] mb-3">
-                  Methods & Special Topics
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    "Transfer Learning",
-                    "Fine-tuning",
-                    "Hyperparameter Optimization",
-                    "Cross-validation",
-                    "Grad-CAM",
-                    "SHAP",
-                    "Medical Data Annotation",
-                    "Federated Learning",
-                  ].map((s) => (
-                    <SkillBadge key={s}>{s}</SkillBadge>
-                  ))}
-                </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.55}>
-              <div className="bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-sm">
-                <h3 className="text-xs font-bold uppercase tracking-[0.15em] text-[#64748b] font-[family-name:var(--font-source-sans)] mb-3">
-                  Collaboration
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    "Jupyter",
-                    "Overleaf",
-                    "LaTeX",
-                    "GitHub",
-                    "Trello",
-                  ].map((s) => (
-                    <SkillBadge key={s}>{s}</SkillBadge>
-                  ))}
-                </div>
-              </div>
-            </FadeIn>
-          </div>
-        </section>
-
-        {/* ─── Career Goals ─── */}
-        <section id="goals" className="py-16 md:py-24">
-          <FadeIn>
-            <SectionHeading
-              icon={Target}
-              label="Goals"
-              title="Career Goals & Interests"
-            />
-          </FadeIn>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Federated Learning",
-                desc: "Integrate federated learning for privacy-preserving cross-institutional AI, enabling collaborative model training without sharing sensitive patient data across hospitals and research centers.",
-                gradient: "from-[#1b3a5c] to-[#2d6a9f]",
-              },
-              {
-                title: "Self-Supervised & Transformers",
-                desc: "Advance self-supervised and transformer-based medical imaging approaches, reducing dependence on large annotated datasets while improving diagnostic accuracy and generalizability.",
-                gradient: "from-[#2d6a9f] to-[#4a90c4]",
-              },
-              {
-                title: "Clinical Translation",
-                desc: "Translate models into clinics with explainability and clinician-centric design, ensuring AI tools are interpretable, trustworthy, and seamlessly integrated into real diagnostic workflows.",
-                gradient: "from-[#4a90c4] to-[#7ab8e0]",
-              },
-            ].map((goal, i) => (
-              <FadeIn key={goal.title} delay={0.15 + i * 0.1}>
-                <div className="group bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-sm hover:shadow-lg hover:border-[#2d6a9f]/30 transition-all h-full">
-                  <div
-                    className={`w-10 h-10 rounded-xl bg-gradient-to-br ${goal.gradient} flex items-center justify-center mb-4 shadow-md`}
-                  >
-                    <Target className="w-5 h-5 text-white" />
-                  </div>
-                  <h3 className="font-bold text-[#1b3a5c] font-[family-name:var(--font-source-sans)] mb-2">
-                    {goal.title}
-                  </h3>
-                  <p className="text-[#475569] text-sm font-[family-name:var(--font-source-sans)] leading-relaxed">
-                    {goal.desc}
-                  </p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </section>
-
-        {/* ─── Academic Engagement ─── */}
-        <section className="py-16 md:py-24">
-          <FadeIn>
-            <SectionHeading
-              icon={Mic}
-              label="Engagement"
-              title="Academic Engagement"
-            />
-          </FadeIn>
-          <FadeIn delay={0.15}>
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                {
-                  title: "Conference Presentations",
-                  desc: "Presented research at MICCAI, VISAPP, and SIIM — sharing advances in AI-driven medical image analysis with the international research community.",
-                  icon: Mic,
-                },
-                {
-                  title: "Workshops & Seminars",
-                  desc: "Attended specialized workshops on AI in medical imaging, staying at the forefront of emerging techniques and networking with leading researchers.",
-                  icon: GraduationCap,
-                },
-                {
-                  title: "Open to Collaboration",
-                  desc: "Actively interested in collaborative research and academic exchanges, welcoming partnerships that push the boundaries of AI in healthcare.",
-                  icon: FlaskConical,
-                },
-              ].map((item, i) => (
-                <FadeIn key={item.title} delay={0.2 + i * 0.1}>
-                  <div className="bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-sm hover:shadow-md transition-shadow h-full">
-                    <item.icon className="w-8 h-8 text-[#2d6a9f] mb-3" />
-                    <h3 className="font-bold text-[#1b3a5c] font-[family-name:var(--font-source-sans)] mb-2">
-                      {item.title}
-                    </h3>
-                    <p className="text-[#475569] text-sm font-[family-name:var(--font-source-sans)] leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-          </FadeIn>
-        </section>
-      </main>
-
-      {/* ─── Footer ─── */}
-      <footer className="bg-[#1b3a5c] text-white mt-auto">
-        <div className="max-w-6xl mx-auto px-6 py-12">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="text-center md:text-left">
-              <h3 className="font-[family-name:var(--font-playfair)] text-xl font-bold mb-1">
-                Jehad Cheyi
-              </h3>
-              <p className="text-[#7ab8e0] text-sm font-[family-name:var(--font-source-sans)]">
-                M.Sc. Computer Engineering • AI &amp; Biomedical Imaging
-              </p>
-            </div>
-            <div className="flex items-center gap-4">
-              <a
-                href="mailto:jehad_cheyi@yahoo.com"
-                className="flex items-center gap-2 text-sm text-white/80 hover:text-white transition-colors font-[family-name:var(--font-source-sans)]"
-              >
-                <Mail className="w-4 h-4" />
-                jehad_cheyi@yahoo.com
-              </a>
-              <a
-                href="https://github.com/jehadcheyi"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm text-white/80 hover:text-white transition-colors font-[family-name:var(--font-source-sans)]"
-              >
-                <Github className="w-4 h-4" />
-                GitHub
-              </a>
-              <a
-                href="https://linkedin.com/in/your-profile"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm text-white/80 hover:text-white transition-colors font-[family-name:var(--font-source-sans)]"
-              >
-                <Linkedin className="w-4 h-4" />
-                LinkedIn
-              </a>
-            </div>
-          </div>
-          <div className="border-t border-white/10 mt-8 pt-6 text-center">
-            <p className="text-xs text-white/40 font-[family-name:var(--font-source-sans)]">
-              &copy; {new Date().getFullYear()} Jehad Cheyi. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
-
-      {/* ─── Back to Top ─── */}
-      <AnimatePresence>
-        {showBackToTop && (
-          <motion.button
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-xl bg-[#1b3a5c] text-white shadow-lg shadow-[#1b3a5c]/30 flex items-center justify-center hover:bg-[#2d6a9f] transition-colors"
-          >
-            <ArrowUp className="w-5 h-5" />
-          </motion.button>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
