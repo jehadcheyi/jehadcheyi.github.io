@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title>Jehad Cheyi | Deep Learning & Biomedical Imaging</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="M.Sc. in Computer Engineering • Deep Learning • CNN • Computer Vision • Biomedical Imaging — Jehad Cheyi's Academic Portfolio">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Source+Code+Pro:wght@400;500&family=Noto+Sans+Arabic:wght@300;400;500;600;700&family=Noto+Serif+Arabic:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════
+       RESET & BASE
+       ═══════════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: #faf9f6;
+      color: #1a1a2e;
+      line-height: 1.7;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: #2d6a9f; text-decoration: none; transition: color 0.2s; }
+    a:hover { color: #1b3a5c; }
+    ::selection { background: #2d6a9f33; }
+
+    /* RTL body */
+    body.rtl {
+      font-family: 'Noto Sans Arabic', 'Source Sans 3', sans-serif;
+      direction: rtl;
+      text-align: right;
+    }
+    body.rtl .section-title,
+    body.rtl .hero-name {
+      font-family: 'Noto Serif Arabic', 'Playfair Display', serif;
+    }
+    body.rtl .nav-logo {
+      font-family: 'Noto Serif Arabic', 'Playfair Display', serif;
+    }
+    body.rtl .skill-badge,
+    body.rtl .hero-tag,
+    body.rtl .hero-tag-item,
+    body.rtl .timeline-title,
+    body.rtl .timeline-subtitle,
+    body.rtl .timeline-desc,
+    body.rtl .timeline-date,
+    body.rtl .section-label,
+    body.rtl .section-title,
+    body.rtl .goal-title,
+    body.rtl .goal-desc,
+    body.rtl .project-name,
+    body.rtl .project-sub,
+    body.rtl .project-desc,
+    body.rtl .project-link,
+    body.rtl .pub-title,
+    body.rtl .pub-authors,
+    body.rtl .skill-group-label,
+    body.rtl .hero-badge,
+    body.rtl .hero-desc,
+    body.rtl .btn-primary,
+    body.rtl .btn-secondary,
+    body.rtl .footer-name,
+    body.rtl .footer-subtitle,
+    body.rtl .footer-links a,
+    body.rtl .footer-bottom,
+    body.rtl .nav-links button,
+    body.rtl .nav-mobile button {
+      font-family: 'Noto Sans Arabic', 'Source Sans 3', sans-serif;
+    }
+
+    /* ═══════════════════════════════════════════
+       SCROLLBAR
+       ═══════════════════════════════════════════ */
+    ::-webkit-scrollbar { width: 7px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #c1cdd9; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+    /* ═══════════════════════════════════════════
+       NEURAL GRID BACKGROUND
+       ═══════════════════════════════════════════ */
+    .neural-grid {
+      background-image: radial-gradient(circle at 1px 1px, rgba(45,106,159,0.06) 1px, transparent 0);
+      background-size: 30px 30px;
+    }
+
+    /* ═══════════════════════════════════════════
+       ANIMATED GRADIENT BORDER
+       ═══════════════════════════════════════════ */
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    .gradient-border {
+      background: linear-gradient(135deg, #1b3a5c, #2d6a9f, #4a90c4, #7ab8e0, #4a90c4, #2d6a9f, #1b3a5c);
+      background-size: 400% 400%;
+      animation: gradient-shift 8s ease infinite;
+      padding: 3px;
+      border-radius: 20px;
+    }
+    .gradient-border-inner {
+      background: #fff;
+      border-radius: 18px;
+      padding: 6px;
+    }
+
+    /* ═══════════════════════════════════════════
+       SCROLL ANIMATIONS
+       ═══════════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-36px);
+      transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(36px);
+      transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ═══════════════════════════════════════════
+       LANGUAGE SWITCHER
+       ═══════════════════════════════════════════ */
+    .lang-switcher {
+      display: flex; align-items: center; gap: 2px;
+      background: #f0f4f8; border-radius: 10px; padding: 3px;
+    }
+    .lang-btn {
+      background: none; border: none; cursor: pointer;
+      font-size: 0.75rem; font-weight: 600;
+      padding: 5px 10px; border-radius: 8px;
+      color: #64748b; transition: all 0.2s;
+      font-family: 'Source Sans 3', 'Noto Sans Arabic', sans-serif;
+      white-space: nowrap;
+    }
+    .lang-btn:hover { color: #1b3a5c; background: #fff; }
+    .lang-btn.active {
+      background: #1b3a5c; color: #fff;
+      box-shadow: 0 2px 8px #1b3a5c22;
+    }
+
+    /* ═══════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      transition: background 0.3s, box-shadow 0.3s, border-color 0.3s;
+      border-bottom: 1px solid transparent;
+    }
+    .nav.scrolled {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 4px 24px rgba(27,58,92,0.06);
+      border-bottom-color: #e2e8f0;
+    }
+    .nav-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; padding: 0 24px; gap: 12px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700; font-size: 1.25rem; color: #1b3a5c;
+      cursor: pointer; letter-spacing: 0.02em; flex-shrink: 0;
+    }
+    .nav-center { display: flex; gap: 4px; }
+    .nav-center button {
+      background: none; border: none; cursor: pointer;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.875rem; font-weight: 600;
+      color: #475569; padding: 6px 14px; border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .nav-center button:hover { color: #1b3a5c; background: #1b3a5c0a; }
+    .nav-center button.active { color: #fff; background: #1b3a5c; box-shadow: 0 2px 12px #1b3a5c22; }
+    .nav-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .nav-hamburger {
+      display: none; background: none; border: none; cursor: pointer;
+      color: #1b3a5c; padding: 8px; border-radius: 8px;
+    }
+    .nav-hamburger:hover { background: #1b3a5c0a; }
+    .nav-mobile {
+      display: none; background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(20px); border-bottom: 1px solid #e2e8f0;
+      padding: 12px 24px;
+    }
+    .nav-mobile.open { display: flex; flex-direction: column; gap: 4px; }
+    .nav-mobile button {
+      background: none; border: none; cursor: pointer;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.9375rem; font-weight: 600;
+      color: #475569; padding: 12px 16px; border-radius: 10px;
+      text-align: left; transition: all 0.2s;
+    }
+    .nav-mobile button:hover { background: #1b3a5c0a; color: #1b3a5c; }
+    .nav-mobile button.active { color: #fff; background: #1b3a5c; }
+    body.rtl .nav-mobile button { text-align: right; }
+
+    @media (max-width: 900px) {
+      .nav-center { display: none; }
+      .nav-hamburger { display: block; }
+    }
+    @media (max-width: 600px) {
+      .lang-switcher { gap: 1px; padding: 2px; }
+      .lang-btn { font-size: 0.6875rem; padding: 4px 7px; }
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO SECTION
+       ═══════════════════════════════════════════ */
+    .hero { position: relative; padding: 120px 24px 80px; overflow: hidden; }
+    .hero::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, #2d6a9f0d, transparent 70%);
+      border-radius: 50%; transform: translate(20%, -30%); pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, #1b3a5c08, transparent 70%);
+      border-radius: 50%; transform: translate(-20%, 30%); pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: flex; align-items: center; gap: 64px;
+      position: relative; z-index: 2;
+    }
+    body.rtl .hero-inner { direction: rtl; }
+    .hero-photo { flex-shrink: 0; position: relative; }
+    .hero-photo img { width: 260px; height: 340px; object-fit: cover; border-radius: 16px; }
+    .hero-badge {
+      position: absolute; bottom: -12px; right: -12px;
+      background: #fff; border: 1px solid #e2e8f0; border-radius: 12px;
+      padding: 8px 14px; box-shadow: 0 4px 16px #1b3a5c12;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.8125rem; font-weight: 600; color: #1b3a5c;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+    body.rtl .hero-badge { right: auto; left: -12px; }
+    .hero-badge svg { color: #2d6a9f; }
+    .hero-text { flex: 1; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #1b3a5c0c; color: #1b3a5c;
+      padding: 8px 18px; border-radius: 100px;
+      font-size: 0.875rem; font-weight: 600;
+      font-family: 'Source Sans 3', sans-serif; margin-bottom: 24px;
+    }
+    .hero-tag svg { width: 14px; height: 14px; }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem; font-weight: 700; color: #1b3a5c;
+      line-height: 1.1; margin-bottom: 16px; letter-spacing: -0.01em;
+    }
+    .hero-desc {
+      font-size: 1.125rem; color: #475569; line-height: 1.75;
+      margin-bottom: 24px; max-width: 600px;
+    }
+    .hero-desc strong { color: #1b3a5c; font-weight: 600; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+    .hero-tag-item {
+      display: flex; align-items: center; gap: 8px;
+      background: #fff; border: 1px solid #e2e8f0;
+      padding: 10px 18px; border-radius: 12px;
+      box-shadow: 0 1px 4px #1b3a5c08;
+      font-size: 0.875rem; font-weight: 600; color: #1b3a5c;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+    .hero-tag-item svg { width: 16px; height: 16px; color: #2d6a9f; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #1b3a5c; color: #fff;
+      padding: 12px 24px; border-radius: 12px;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.875rem; font-weight: 600;
+      border: none; cursor: pointer; transition: background 0.2s;
+      box-shadow: 0 4px 16px #1b3a5c22; text-decoration: none;
+    }
+    .btn-primary:hover { background: #2d6a9f; color: #fff; }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff; color: #1b3a5c;
+      padding: 12px 20px; border-radius: 12px;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 0.875rem; font-weight: 600;
+      border: 1px solid #e2e8f0; cursor: pointer;
+      transition: border-color 0.2s;
+      box-shadow: 0 1px 4px #1b3a5c08; text-decoration: none;
+    }
+    .btn-secondary:hover { border-color: #1b3a5c; color: #1b3a5c; }
+    .btn-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 46px; height: 46px; border-radius: 12px;
+      background: #fff; color: #1b3a5c;
+      border: 1px solid #e2e8f0; cursor: pointer;
+      transition: border-color 0.2s;
+      box-shadow: 0 1px 4px #1b3a5c08; text-decoration: none;
+    }
+    .btn-icon:hover { border-color: #1b3a5c; color: #1b3a5c; }
+    .scroll-hint {
+      display: flex; justify-content: center; margin-top: 64px;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    .scroll-hint svg { color: #94a3b8; }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
+
+    @media (max-width: 900px) {
+      .hero-inner { flex-direction: column; text-align: center; gap: 40px; }
+      .hero-desc { margin-left: auto; margin-right: auto; }
+      .hero-tags { justify-content: center; }
+      .hero-actions { justify-content: center; }
+      .hero-name { font-size: 2.5rem; }
+    }
+    @media (max-width: 500px) {
+      .hero-photo img { width: 200px; height: 260px; }
+      .hero-name { font-size: 2rem; }
+      .hero-desc { font-size: 1rem; }
+    }
+
+    /* ═══════════════════════════════════════════
+       SECTION COMMON
+       ═══════════════════════════════════════════ */
+    .section { max-width: 1120px; margin: 0 auto; padding: 80px 24px; }
+    .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 32px; }
+    body.rtl .section-header { flex-direction: row-reverse; }
+    .section-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: #1b3a5c0d; display: flex; align-items: center; justify-content: center;
+      color: #1b3a5c; flex-shrink: 0;
+    }
+    .section-icon svg { width: 20px; height: 20px; }
+    .section-label {
+      font-size: 0.6875rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.2em;
+      color: #64748b; font-family: 'Source Sans 3', sans-serif;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem; font-weight: 700; color: #1b3a5c;
+    }
+
+    /* ═══════════════════════════════════════════
+       ABOUT CARD
+       ═══════════════════════════════════════════ */
+    .card {
+      background: #fff; border-radius: 20px; border: 1px solid #e2e8f0;
+      padding: 32px; box-shadow: 0 2px 12px #1b3a5c06;
+      transition: box-shadow 0.3s, border-color 0.3s;
+    }
+    .card:hover { box-shadow: 0 8px 32px #1b3a5c0d; border-color: #2d6a9f33; }
+    .card p { color: #475569; line-height: 1.85; margin-bottom: 16px; }
+    .card p:last-child { margin-bottom: 0; }
+
+    /* ═══════════════════════════════════════════
+       TIMELINE (Education)
+       ═══════════════════════════════════════════ */
+    .timeline { position: relative; }
+    .timeline-item { position: relative; padding-left: 36px; padding-bottom: 32px; }
+    body.rtl .timeline-item { padding-left: 0; padding-right: 36px; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item:not(:last-child)::after {
+      content: ''; position: absolute; left: 11px; top: 28px; bottom: 0;
+      width: 2px; background: linear-gradient(to bottom, #2d6a9f33, #2d6a9f08);
+    }
+    body.rtl .timeline-item:not(:last-child)::after { left: auto; right: 11px; }
+    .timeline-dot {
+      position: absolute; left: 0; top: 6px;
+      width: 24px; height: 24px; border-radius: 50%;
+      background: #1b3a5c; display: flex; align-items: center; justify-content: center;
+    }
+    body.rtl .timeline-dot { left: auto; right: 0; }
+    .timeline-dot::after { content:''; width:10px; height:10px; border-radius:50%; background:#fff; }
+    .timeline-card {
+      background: #fff; border-radius: 16px; border: 1px solid #e2e8f0;
+      padding: 20px 24px; box-shadow: 0 2px 8px #1b3a5c06;
+      transition: box-shadow 0.3s;
+    }
+    .timeline-card:hover { box-shadow: 0 6px 24px #1b3a5c0d; }
+    .timeline-top {
+      display: flex; flex-wrap: wrap; align-items: flex-start;
+      justify-content: space-between; gap: 8px;
+    }
+    .timeline-title { font-weight: 700; color: #1b3a5c; font-family: 'Source Sans 3', sans-serif; }
+    .timeline-title a {
+      color: #1b3a5c; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .timeline-title a:hover { color: #2d6a9f; }
+    .timeline-subtitle { color: #64748b; font-size: 0.875rem; margin-top: 2px; }
+    .timeline-date {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: #2d6a9f0d; color: #2d6a9f;
+      padding: 4px 12px; border-radius: 100px;
+      font-size: 0.75rem; font-weight: 600;
+      font-family: 'Source Sans 3', sans-serif; white-space: nowrap;
+    }
+    .timeline-date svg { width: 12px; height: 12px; }
+    .timeline-desc {
+      color: #475569; font-size: 0.875rem; font-style: italic;
+      margin-top: 8px; line-height: 1.6;
+    }
+
+    /* ═══════════════════════════════════════════
+       PROJECT CARDS
+       ═══════════════════════════════════════════ */
+    .projects-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+    .project-card {
+      background: #fff; border-radius: 20px; border: 1px solid #e2e8f0;
+      padding: 28px; box-shadow: 0 2px 12px #1b3a5c06;
+      transition: box-shadow 0.3s, border-color 0.3s;
+      display: flex; flex-direction: column;
+    }
+    .project-card:hover { box-shadow: 0 8px 32px #1b3a5c0d; border-color: #2d6a9f33; }
+    .project-card.full { grid-column: 1 / -1; }
+    .project-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+    body.rtl .project-head { flex-direction: row-reverse; }
+    .project-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    }
+    .project-icon svg { width: 24px; height: 24px; color: #fff; }
+    .project-icon.navy { background: linear-gradient(135deg, #1b3a5c, #2d6a9f); }
+    .project-icon.blue { background: linear-gradient(135deg, #2d6a9f, #4a90c4); }
+    .project-icon.light { background: linear-gradient(135deg, #4a90c4, #7ab8e0); }
+    .project-name { font-weight: 700; color: #1b3a5c; font-size: 1rem; }
+    .project-sub { font-size: 0.75rem; color: #64748b; }
+    .project-desc {
+      color: #475569; font-size: 0.875rem; line-height: 1.7; margin-bottom: 16px; flex: 1;
+    }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.8125rem; font-weight: 600; color: #2d6a9f;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+    .project-link:hover { color: #1b3a5c; }
+    .project-link svg { width: 14px; height: 14px; }
+    @media (max-width: 768px) { .projects-grid { grid-template-columns: 1fr; } }
+
+    /* ═══════════════════════════════════════════
+       PUBLICATION
+       ═══════════════════════════════════════════ */
+    .pub-card {
+      background: #fff; border-radius: 20px; border: 1px solid #e2e8f0;
+      padding: 28px 32px; box-shadow: 0 2px 12px #1b3a5c06;
+      display: flex; align-items: flex-start; gap: 18px;
+      transition: box-shadow 0.3s;
+    }
+    body.rtl .pub-card { flex-direction: row-reverse; }
+    .pub-card:hover { box-shadow: 0 8px 32px #1b3a5c0d; }
+    .pub-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: #1b3a5c; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .pub-icon svg { width: 20px; height: 20px; color: #fff; }
+    .pub-title {
+      font-weight: 700; color: #1b3a5c; font-size: 1rem;
+      display: inline-flex; align-items: flex-start; gap: 6px; line-height: 1.5;
+    }
+    body.rtl .pub-title { flex-direction: row-reverse; }
+    .pub-title a { color: #1b3a5c; }
+    .pub-title a:hover { color: #2d6a9f; }
+    .pub-title svg { width: 14px; height: 14px; flex-shrink: 0; margin-top: 4px; }
+    .pub-authors { color: #64748b; font-size: 0.875rem; margin-top: 6px; font-style: italic; }
+
+    /* ═══════════════════════════════════════════
+       SKILLS
+       ═══════════════════════════════════════════ */
+    .skills-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+    .skill-group {
+      background: #fff; border-radius: 16px; border: 1px solid #e2e8f0;
+      padding: 22px 24px; box-shadow: 0 2px 8px #1b3a5c06;
+      transition: box-shadow 0.3s;
+    }
+    .skill-group:hover { box-shadow: 0 4px 20px #1b3a5c0d; }
+    .skill-group-label {
+      font-size: 0.6875rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      color: #64748b; margin-bottom: 12px;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+    .skill-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-badge {
+      display: inline-flex; align-items: center;
+      padding: 5px 12px; border-radius: 8px;
+      background: #1b3a5c0a; color: #1b3a5c;
+      font-size: 0.8125rem; font-weight: 500;
+      font-family: 'Source Sans 3', sans-serif;
+      transition: background 0.2s;
+    }
+    .skill-badge:hover { background: #1b3a5c14; }
+    @media (max-width: 768px) { .skills-grid { grid-template-columns: 1fr; } }
+
+    /* ═══════════════════════════════════════════
+       GOALS & ENGAGEMENT CARDS
+       ═══════════════════════════════════════════ */
+    .cards-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .goal-card {
+      background: #fff; border-radius: 20px; border: 1px solid #e2e8f0;
+      padding: 28px; box-shadow: 0 2px 12px #1b3a5c06;
+      transition: box-shadow 0.3s, border-color 0.3s;
+    }
+    .goal-card:hover { box-shadow: 0 8px 32px #1b3a5c0d; border-color: #2d6a9f33; }
+    .goal-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .goal-icon svg { width: 20px; height: 20px; color: #fff; }
+    .goal-icon.navy { background: linear-gradient(135deg, #1b3a5c, #2d6a9f); }
+    .goal-icon.blue { background: linear-gradient(135deg, #2d6a9f, #4a90c4); }
+    .goal-icon.light { background: linear-gradient(135deg, #4a90c4, #7ab8e0); }
+    .goal-title { font-weight: 700; color: #1b3a5c; margin-bottom: 8px; font-family: 'Source Sans 3', sans-serif; }
+    .goal-desc { color: #475569; font-size: 0.875rem; line-height: 1.7; }
+    .engage-icon { width: 32px; height: 32px; color: #2d6a9f; margin-bottom: 12px; }
+    @media (max-width: 768px) { .cards-3 { grid-template-columns: 1fr; } }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════ */
+    .footer {
+      background: #1b3a5c; color: #fff; margin-top: auto; padding: 56px 24px;
+    }
+    .footer-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: flex; flex-wrap: wrap; align-items: center;
+      justify-content: space-between; gap: 24px;
+    }
+    body.rtl .footer-inner { direction: rtl; }
+    .footer-name { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; }
+    .footer-subtitle { color: #7ab8e0; font-size: 0.8125rem; margin-top: 4px; }
+    .footer-links { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .footer-links a {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: rgba(255,255,255,0.75); font-size: 0.8125rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: #fff; }
+    .footer-links svg { width: 16px; height: 16px; }
+    .footer-bottom {
+      max-width: 1120px; margin: 32px auto 0;
+      padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center; font-size: 0.75rem; color: rgba(255,255,255,0.35);
+    }
+
+    /* ═══════════════════════════════════════════
+       BACK TO TOP
+       ═══════════════════════════════════════════ */
+    .back-to-top {
+      position: fixed; bottom: 24px; right: 24px; z-index: 90;
+      width: 48px; height: 48px; border-radius: 14px;
+      background: #1b3a5c; color: #fff; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px #1b3a5c28;
+      transition: background 0.2s, opacity 0.3s, transform 0.3s;
+      opacity: 0; transform: scale(0.8); pointer-events: none;
+    }
+    .back-to-top.visible { opacity: 1; transform: scale(1); pointer-events: auto; }
+    .back-to-top:hover { background: #2d6a9f; }
+    .back-to-top svg { width: 20px; height: 20px; }
+    body.rtl .back-to-top { right: auto; left: 24px; }
+
+    .divider { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .divider hr { border: none; border-top: 1px solid #e2e8f0; }
+  </style>
+</head>
+<body class="neural-grid">
+
+  <!-- ═══ NAVIGATION ═══ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <div class="nav-logo" onclick="navScroll('hero')">JC</div>
+      <div class="nav-center" id="navCenter">
+        <button onclick="navScroll('about')" data-section="about" data-i18n="nav_about">About</button>
+        <button onclick="navScroll('education')" data-section="education" data-i18n="nav_education">Education</button>
+        <button onclick="navScroll('research')" data-section="research" data-i18n="nav_research">Research</button>
+        <button onclick="navScroll('publications')" data-section="publications" data-i18n="nav_publications">Publications</button>
+        <button onclick="navScroll('skills')" data-section="skills" data-i18n="nav_skills">Skills</button>
+        <button onclick="navScroll('goals')" data-section="goals" data-i18n="nav_goals">Goals</button>
+      </div>
+      <div class="nav-right">
+        <div class="lang-switcher">
+          <button class="lang-btn active" onclick="setLang('en')" data-lang="en">EN</button>
+          <button class="lang-btn" onclick="setLang('ar')" data-lang="ar">عربي</button>
+          <button class="lang-btn" onclick="setLang('ku')" data-lang="ku">بهدینی</button>
+        </div>
+        <button class="nav-hamburger" id="hamburger" onclick="toggleMobileNav()">
+          <svg id="hamburgerIcon" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg id="closeIcon" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="nav-mobile" id="mobileNav">
+      <button onclick="navScroll('about')" data-section="about" data-i18n="nav_about">About</button>
+      <button onclick="navScroll('education')" data-section="education" data-i18n="nav_education">Education</button>
+      <button onclick="navScroll('research')" data-section="research" data-i18n="nav_research">Research</button>
+      <button onclick="navScroll('publications')" data-section="publications" data-i18n="nav_publications">Publications</button>
+      <button onclick="navScroll('skills')" data-section="skills" data-i18n="nav_skills">Skills</button>
+      <button onclick="navScroll('goals')" data-section="goals" data-i18n="nav_goals">Goals</button>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <div class="hero-photo reveal-right">
+        <div class="gradient-border">
+          <div class="gradient-border-inner">
+            <img src="headshot.jpeg" alt="Jehad Cheyi">
+          </div>
+        </div>
+        <div class="hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="16" height="16"><path d="M9 3h6l3 7-6 11-6-11 3-7z"/><path d="M9 3l3 7"/><path d="M15 3l-3 7"/></svg>
+          <span data-i18n="hero_badge">AI in Medicine</span>
+        </div>
+      </div>
+      <div class="hero-text">
+        <div class="hero-tag reveal" style="transition-delay:0.1s">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span data-i18n="hero_location">Researcher in AI &amp; Biomedical Imaging</span>
+        </div>
+        <h1 class="hero-name reveal" style="transition-delay:0.2s" data-i18n="hero_name">Jehad Cheyi</h1>
+        <p class="hero-desc reveal" style="transition-delay:0.3s" data-i18n="hero_desc">M.Sc. in Computer Engineering specializing in <strong>Deep Learning</strong>, <strong>CNNs</strong>, and <strong>Computer Vision</strong> applied to biomedical imaging — advancing AI-powered cancer detection and clinical diagnostics.</p>
+        <div class="hero-tags reveal" style="transition-delay:0.4s">
+          <div class="hero-tag-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2a8 8 0 0 0-8 8c0 3.4 2.1 6.3 5 7.5V20h6v-2.5c2.9-1.2 5-4.1 5-7.5a8 8 0 0 0-8-8z"/><line x1="10" y1="22" x2="14" y2="22"/></svg>
+            <span data-i18n="tag_dl">Deep Learning</span>
+          </div>
+          <div class="hero-tag-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span data-i18n="tag_cv">Computer Vision</span>
+          </div>
+          <div class="hero-tag-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <span data-i18n="tag_bi">Biomedical Imaging</span>
+          </div>
+        </div>
+        <div class="hero-actions reveal" style="transition-delay:0.5s">
+          <a href="mailto:jehad_cheyi@yahoo.com" class="btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="16" height="16"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg>
+            <span data-i18n="btn_contact">Get in Touch</span>
+          </a>
+          <a href="https://github.com/jehadcheyi" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 .5C5.648.5.104 6.043.104 12.393c0 5.246 3.438 9.694 8.207 11.27.599.11.819-.26.819-.577 0-.286-.01-1.043-.016-2.048-3.34.73-4.042-1.61-4.042-1.61-.545-1.382-1.332-1.75-1.332-1.75-1.09-.744.082-.729.082-.729 1.206.085 1.841 1.238 1.841 1.238 1.07 1.834 2.807 1.304 3.492.997.108-.776.419-1.305.762-1.606-2.665-.305-5.467-1.332-5.467-5.934 0-1.311.47-2.382 1.238-3.222-.124-.304-.537-1.524.116-3.176 0 0 1.009-.323 3.309 1.23.958-.267 1.987-.4 3.008-.405 1.02.005 2.05.138 3.01.405 2.299-1.553 3.307-1.23 3.307-1.23.654 1.652.241 2.872.118 3.176.77.84 1.237 1.911 1.237 3.222 0 4.612-2.805 5.625-5.476 5.924.431.372.814 1.103.814 2.224 0 1.606-.015 2.902-.015 3.293 0 .32.217.693.825.576C20.458 22.086 24 17.638 24 12.393 24 6.043 18.453.5 12 .5Z"/></svg>
+            <span data-i18n="btn_github">GitHub</span>
+          </a>
+          <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" class="btn-icon" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.447 20.452H17.2V14.745c0-1.366-.027-3.124-1.907-3.124-1.908 0-2.2 1.493-2.2 3.025v5.806H9.053V9h3.123v1.561h.044c.435-.824 1.497-1.693 3.081-1.693 3.297 0 3.904 2.17 3.904 4.993v6.591zM5.337 7.433a1.818 1.818 0 110-3.636 1.818 1.818 0 010 3.636zm1.631 13.019H3.71V9h3.258v11.452zM22.225 0H1.771C.792 0 0 .771 0 1.726v20.451C0 23.23.792 24 1.771 24h20.451C23.2 24 24 23.23 24 22.177V1.726C24 .771 23.2 0 22.225 0z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="24" height="24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+  </section>
+
+  <!-- ═══ ABOUT ═══ -->
+  <div class="divider"><hr></div>
+  <section class="section" id="about">
+    <div class="section-header reveal">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+      </div>
+      <div>
+        <div class="section-label" data-i18n="about_label">About</div>
+        <div class="section-title" data-i18n="about_title">About Me</div>
+      </div>
+    </div>
+    <div class="card reveal" style="transition-delay:0.15s">
+      <p data-i18n="about_p1">I am a Computer Engineer, researcher, and innovator with a Master's degree in Computer Engineering, specializing in Deep Learning, Convolutional Neural Networks (CNN), and Computer Vision. My passion lies in integrating artificial intelligence with biomedical imaging to develop cutting-edge solutions for critical healthcare challenges. Through years of academic study and hands-on research, I have focused extensively on the early and accurate detection of cancers—particularly breast cancer—by leveraging state-of-the-art techniques in AI and image analysis.</p>
+      <p data-i18n="about_p2">My work involves designing, optimizing, and implementing advanced AI pipelines for the automated detection, segmentation, and classification of cancerous lesions, aiming to support clinicians in making faster, more reliable diagnoses. I am adept at working with diverse medical imaging modalities including mammography, ultrasound, X-ray, and histopathology, and have developed robust models validated on large, annotated datasets.</p>
+      <p data-i18n="about_p3">In addition to research, I am deeply interested in the practical translation of AI models into clinical environments, emphasizing interpretability, reproducibility, and collaboration with multidisciplinary teams. My vision is to advance medical imaging and healthcare analytics by combining technical excellence with a dedication to real-world impact and innovation, contributing to improved patient outcomes and the next generation of intelligent healthcare systems.</p>
+    </div>
+  </section>
+
+  <!-- ═══ EDUCATION ═══ -->
+  <div class="divider"><hr></div>
+  <section class="section" id="education">
+    <div class="section-header reveal">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 6 3 6 3s3 0 6-3v-5"/></svg>
+      </div>
+      <div>
+        <div class="section-label" data-i18n="edu_label">Education</div>
+        <div class="section-title" data-i18n="edu_title">Academic Background</div>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal" style="transition-delay:0.15s">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-top">
+            <div>
+              <div class="timeline-title" data-i18n="edu_msc">M.Sc. in Computer Engineering</div>
+              <div class="timeline-subtitle" data-i18n="edu_msc_loc">Turkey</div>
+            </div>
+            <span class="timeline-date">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              2024
+            </span>
+          </div>
+          <div class="timeline-desc" data-i18n="edu_msc_thesis">Thesis: AI-powered breast cancer detection &amp; segmentation using CNNs</div>
+        </div>
+      </div>
+      <div class="timeline-item reveal" style="transition-delay:0.3s">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-top">
+            <div>
+              <div class="timeline-title" data-i18n="edu_bsc">B.Sc. in Computer Science</div>
+              <div class="timeline-subtitle" data-i18n="edu_bsc_loc">Iraq</div>
+            </div>
+            <span class="timeline-date">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              2015
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ RESEARCH & PROJECTS ═══ -->
+  <div class="divider"><hr></div>
+  <section class="section" id="research">
+    <div class="section-header reveal">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 3h6l3 7-6 11-6-11 3-7z"/><path d="M9 3l3 7"/><path d="M15 3l-3 7"/></svg>
+      </div>
+      <div>
+        <div class="section-label" data-i18n="res_label">Research</div>
+        <div class="section-title" data-i18n="res_title">Research &amp; Projects</div>
+      </div>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card reveal" style="transition-delay:0.15s">
+        <div class="project-head">
+          <div class="project-icon navy">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 3h6l3 7-6 11-6-11 3-7z"/><path d="M9 3l3 7"/><path d="M15 3l-3 7"/></svg>
+          </div>
+          <div>
+            <div class="project-name" data-i18n="proj1_name">Breast Cancer Histopathology AI</div>
+            <div class="project-sub" data-i18n="proj1_sub">Histopathology Image Analysis</div>
+          </div>
+        </div>
+        <div class="project-desc" data-i18n="proj1_desc">Developed a custom AI model for histopathology image analysis, enabling automated classification and detection of breast cancer from tissue slide images with high accuracy and robust performance.</div>
+        <a href="https://huggingface.co/spaces/jehadcheyi/breast-cancer-histopathology" target="_blank" rel="noopener noreferrer" class="project-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <span data-i18n="proj_demo">Live Demo on Hugging Face</span>
+        </a>
+      </div>
+      <div class="project-card reveal" style="transition-delay:0.25s">
+        <div class="project-head">
+          <div class="project-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div>
+            <div class="project-name" data-i18n="proj2_name">Breast Cancer Ultrasound AI</div>
+            <div class="project-sub" data-i18n="proj2_sub">Ultrasound Image Analysis</div>
+          </div>
+        </div>
+        <div class="project-desc" data-i18n="proj2_desc">Created a high-accuracy ultrasound analysis model for breast cancer detection, leveraging advanced CNN architectures with segmentation and classification capabilities validated on clinical datasets.</div>
+        <a href="https://huggingface.co/spaces/jehadcheyi/breast-cancer-ultrasound" target="_blank" rel="noopener noreferrer" class="project-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <span data-i18n="proj_demo2">Live Demo on Hugging Face</span>
+        </a>
+      </div>
+      <div class="project-card full reveal" style="transition-delay:0.35s">
+        <div class="project-head">
+          <div class="project-icon light">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.648.5.104 6.043.104 12.393c0 5.246 3.438 9.694 8.207 11.27.599.11.819-.26.819-.577 0-.286-.01-1.043-.016-2.048-3.34.73-4.042-1.61-4.042-1.61-.545-1.382-1.332-1.75-1.332-1.75-1.09-.744.082-.729.082-.729 1.206.085 1.841 1.238 1.841 1.238 1.07 1.834 2.807 1.304 3.492.997.108-.776.419-1.305.762-1.606-2.665-.305-5.467-1.332-5.467-5.934 0-1.311.47-2.382 1.238-3.222-.124-.304-.537-1.524.116-3.176 0 0 1.009-.323 3.309 1.23.958-.267 1.987-.4 3.008-.405 1.02.005 2.05.138 3.01.405 2.299-1.553 3.307-1.23 3.307-1.23.654 1.652.241 2.872.118 3.176.77.84 1.237 1.911 1.237 3.222 0 4.612-2.805 5.625-5.476 5.924.431.372.814 1.103.814 2.224 0 1.606-.015 2.902-.015 3.293 0 .32.217.693.825.576C20.458 22.086 24 17.638 24 12.393 24 6.043 18.453.5 12 .5Z"/></svg>
+          </div>
+          <div>
+            <div class="project-name" data-i18n="proj3_name">More Projects &amp; Open Source</div>
+            <div class="project-sub" data-i18n="proj3_sub">Explore all research and code</div>
+          </div>
+        </div>
+        <div class="project-desc" data-i18n="proj3_desc">Explore additional research projects, AI experiments, and open-source contributions on my GitHub profile. From medical imaging pipelines to deep learning utilities, my repositories showcase a commitment to reproducible, impactful research.</div>
+        <a href="https://github.com/jehadcheyi" target="_blank" rel="noopener noreferrer" class="project-link">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 .5C5.648.5.104 6.043.104 12.393c0 5.246 3.438 9.694 8.207 11.27.599.11.819-.26.819-.577 0-.286-.01-1.043-.016-2.048-3.34.73-4.042-1.61-4.042-1.61-.545-1.382-1.332-1.75-1.332-1.75-1.09-.744.082-.729.082-.729 1.206.085 1.841 1.238 1.841 1.238 1.07 1.834 2.807 1.304 3.492.997.108-.776.419-1.305.762-1.606-2.665-.305-5.467-1.332-5.467-5.934 0-1.311.47-2.382 1.238-3.222-.124-.304-.537-1.524.116-3.176 0 0 1.009-.323 3.309 1.23.958-.267 1.987-.4 3.008-.405 1.02.005 2.05.138 3.01.405 2.299-1.553 3.307-1.23 3.307-1.23.654 1.652.241 2.872.118 3.176.77.84 1.237 1.911 1.237 3.222 0 4.612-2.805 5.625-5.476 5.924.431.372.814 1.103.814 2.224 0 1.606-.015 2.902-.015 3.293 0 .32.217.693.825.576C20.458 22.086 24 17.638 24 12.393 24 6.043 18.453.5 12 .5Z"/></svg>
+          <span data-i18n="proj_github">View GitHub Profile</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PUBLICATIONS ═══ -->
+  <div class="divider"><hr></div>
+  <section class="section" id="publications">
+    <div class="section-header reveal">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      </div>
+      <div>
+        <div class="section-label" data-i18n="pub_label">Publications</div>
+        <div class="section-title" data-i18n="pub_title">Publications &amp; Outputs</div>
+      </div>
+    </div>
+    <div class="pub-card reveal" style="transition-delay:0.15s">
+      <div class="pub-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+      </div>
+      <div>
+        <div class="pub-title">
+          <a href="https://doi.org/10.54287/gujsa.1529857" target="_blank" rel="noopener noreferrer">
+            <span data-i18n="pub1_title">Advanced CNN-Based Classification and Segmentation for Enhanced Breast Cancer Ultrasound Imaging</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+        <div class="pub-authors" data-i18n="pub1_authors">J Cheyi, YÇ Kaya — Gazi University Journal of Science Part A: Engineering, 2024</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SKILLS ═══ -->
+  <div class="divider"><hr></div>
+  <section class="section" id="skills">
+    <div class="section-header reveal">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <div>
+        <div class="section-label" data-i18n="sk_label">Skills</div>
+        <div class="section-title" data-i18n="sk_title">Skills &amp; Tools</div>
+      </div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group reveal" style="transition-delay:0.1s">
+        <div class="skill-group-label" data-i18n="sk_programming">Programming</div>
+        <div class="skill-badges"><span class="skill-badge">Python</span><span class="skill-badge">MATLAB</span><span class="skill-badge">C++</span><span class="skill-badge">R</span></div>
+      </div>
+      <div class="skill-group reveal" style="transition-delay:0.15s">
+        <div class="skill-group-label" data-i18n="sk_frameworks">Frameworks</div>
+        <div class="skill-badges"><span class="skill-badge">TensorFlow</span><span class="skill-badge">PyTorch</span><span class="skill-badge">Keras</span><span class="skill-badge">Scikit-learn</span><span class="skill-badge">OpenCV</span></div>
+      </div>
+      <div class="skill-group reveal" style="transition-delay:0.2s">
+        <div class="skill-group-label" data-i18n="sk_arch">Architectures</div>
+        <div class="skill-badges"><span class="skill-badge">U-Net</span><span class="skill-badge">Mask R-CNN</span><span class="skill-badge">DeepLab</span><span class="skill-badge">ResNet</span><span class="skill-badge">DenseNet</span><span class="skill-badge">EfficientNet</span><span class="skill-badge">Transformers</span></div>
+      </div>
+      <div class="skill-group reveal" style="transition-delay:0.25s">
+        <div class="skill-group-label" data-i18n="sk_modalities">Medical Imaging Modalities</div>
+        <div class="skill-badges"><span class="skill-badge">Mammography</span><span class="skill-badge">Ultrasound</span><span class="skill-badge">X-ray</span><span class="skill-badge">Histopathology</span><span class="skill-badge">MRI</span><span class="skill-badge">CT</span></div>
+      </div>
+      <div class="skill-group reveal" style="transition-delay:0.3s">
+        <div class="skill-group-label" data-i18n="sk_metrics">Metrics &amp; Evaluation</div>
+        <div class="skill-badges"><span class="skill-badge">Dice</span><span class="skill-badge">IoU</span><span class="skill-badge">ROC-AUC</span><span class="skill-badge">Sensitivity/Specificity</span><span class="skill-badge">F1 Score</span><span class="skill-badge">Precision/Recall</span></div>
+      </div>
+      <div class="skill-group reveal" style="transition-delay:0.35s">
+        <div class="skill-group-label" data-i18n="sk_tools">Tools &amp; DevOps</div>
+        <div class="skill-badges"><span class="skill-badge">Docker</span><span class="skill-badge">Git</span><span class="skill-badge">DICOM/NIfTI</span><span class="skill-badge">ITK-SNAP</span><span class="skill-badge">3D Slicer</span><span class="skill-badge">ImageJ/Fiji</span><span class="skill-badge">LabelImg</span></div>
+      </div>
+      <div class="skill-group reveal" style="transition-delay:0.4s">
+        <div class="skill-group-label" data-i18n="sk_data">Data &amp; Visualization</div>
+        <div class="skill-badges"><span class="skill-badge">NumPy</span><span class="skill-badge">Pandas</span><span class="skill-badge">Data Augmentation</span><span class="skill-badge">Matplotlib</span><span class="skill-badge">Seaborn</span></div>
+      </div>
+      <div class="skill-group reveal" style="transition-delay:0.45s">
+        <div class="skill-group-label" data-i18n="sk_cloud">Cloud &amp; Deployment</div>
+        <div class="skill-badges"><span class="skill-badge">Google Colab</span><span class="skill-badge">Kaggle</span><span class="skill-badge">AWS EC2/SageMaker</span><span class="skill-badge">Flask APIs</span></div>
+      </div>
+      <div class="skill-group reveal" style="transition-delay:0.5s">
+        <div class="skill-group-label" data-i18n="sk_methods">Methods &amp; Special Topics</div>
+        <div class="skill-badges"><span class="skill-badge">Transfer Learning</span><span class="skill-badge">Fine-tuning</span><span class="skill-badge">Hyperparameter Optimization</span><span class="skill-badge">Cross-validation</span><span class="skill-badge">Grad-CAM</span><span class="skill-badge">SHAP</span><span class="skill-badge">Federated Learning</span></div>
+      </div>
+      <div class="skill-group reveal" style="transition-delay:0.55s">
+        <div class="skill-group-label" data-i18n="sk_collab">Collaboration</div>
+        <div class="skill-badges"><span class="skill-badge">Jupyter</span><span class="skill-badge">Overleaf</span><span class="skill-badge">LaTeX</span><span class="skill-badge">GitHub</span><span class="skill-badge">Trello</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CAREER GOALS ═══ -->
+  <div class="divider"><hr></div>
+  <section class="section" id="goals">
+    <div class="section-header reveal">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+      </div>
+      <div>
+        <div class="section-label" data-i18n="goals_label">Goals</div>
+        <div class="section-title" data-i18n="goals_title">Career Goals &amp; Interests</div>
+      </div>
+    </div>
+    <div class="cards-3">
+      <div class="goal-card reveal" style="transition-delay:0.15s">
+        <div class="goal-icon navy"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div>
+        <div class="goal-title" data-i18n="goal1_title">Federated Learning</div>
+        <div class="goal-desc" data-i18n="goal1_desc">Integrate federated learning for privacy-preserving cross-institutional AI, enabling collaborative model training without sharing sensitive patient data across hospitals and research centers.</div>
+      </div>
+      <div class="goal-card reveal" style="transition-delay:0.25s">
+        <div class="goal-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 2a8 8 0 0 0-8 8c0 3.4 2.1 6.3 5 7.5V20h6v-2.5c2.9-1.2 5-4.1 5-7.5a8 8 0 0 0-8-8z"/><line x1="10" y1="22" x2="14" y2="22"/></svg></div>
+        <div class="goal-title" data-i18n="goal2_title">Self-Supervised &amp; Transformers</div>
+        <div class="goal-desc" data-i18n="goal2_desc">Advance self-supervised and transformer-based medical imaging approaches, reducing dependence on large annotated datasets while improving diagnostic accuracy and generalizability.</div>
+      </div>
+      <div class="goal-card reveal" style="transition-delay:0.35s">
+        <div class="goal-icon light"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div class="goal-title" data-i18n="goal3_title">Clinical Translation</div>
+        <div class="goal-desc" data-i18n="goal3_desc">Translate models into clinics with explainability and clinician-centric design, ensuring AI tools are interpretable, trustworthy, and seamlessly integrated into real diagnostic workflows.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ACADEMIC ENGAGEMENT ═══ -->
+  <div class="divider"><hr></div>
+  <section class="section">
+    <div class="section-header reveal">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+      </div>
+      <div>
+        <div class="section-label" data-i18n="engage_label">Engagement</div>
+        <div class="section-title" data-i18n="engage_title">Academic Engagement</div>
+      </div>
+    </div>
+    <div class="cards-3">
+      <div class="goal-card reveal" style="transition-delay:0.15s">
+        <svg class="engage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        <div class="goal-title" data-i18n="engage1_title">Conference Presentations</div>
+        <div class="goal-desc" data-i18n="engage1_desc">Presented research at MICCAI, VISAPP, and SIIM — sharing advances in AI-driven medical image analysis with the international research community.</div>
+      </div>
+      <div class="goal-card reveal" style="transition-delay:0.25s">
+        <svg class="engage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 6 3 6 3s3 0 6-3v-5"/></svg>
+        <div class="goal-title" data-i18n="engage2_title">Workshops &amp; Seminars</div>
+        <div class="goal-desc" data-i18n="engage2_desc">Attended specialized workshops on AI in medical imaging, staying at the forefront of emerging techniques and networking with leading researchers.</div>
+      </div>
+      <div class="goal-card reveal" style="transition-delay:0.35s">
+        <svg class="engage-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 3h6l3 7-6 11-6-11 3-7z"/><path d="M9 3l3 7"/><path d="M15 3l-3 7"/></svg>
+        <div class="goal-title" data-i18n="engage3_title">Open to Collaboration</div>
+        <div class="goal-desc" data-i18n="engage3_desc">Actively interested in collaborative research and academic exchanges, welcoming partnerships that push the boundaries of AI in healthcare.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-name" data-i18n="footer_name">Jehad Cheyi</div>
+        <div class="footer-subtitle" data-i18n="footer_sub">M.Sc. Computer Engineering &bull; AI &amp; Biomedical Imaging</div>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:jehad_cheyi@yahoo.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg>jehad_cheyi@yahoo.com</a>
+        <a href="https://github.com/jehadcheyi" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.648.5.104 6.043.104 12.393c0 5.246 3.438 9.694 8.207 11.27.599.11.819-.26.819-.577 0-.286-.01-1.043-.016-2.048-3.34.73-4.042-1.61-4.042-1.61-.545-1.382-1.332-1.75-1.332-1.75-1.09-.744.082-.729.082-.729 1.206.085 1.841 1.238 1.841 1.238 1.07 1.834 2.807 1.304 3.492.997.108-.776.419-1.305.762-1.606-2.665-.305-5.467-1.332-5.467-5.934 0-1.311.47-2.382 1.238-3.222-.124-.304-.537-1.524.116-3.176 0 0 1.009-.323 3.309 1.23.958-.267 1.987-.4 3.008-.405 1.02.005 2.05.138 3.01.405 2.299-1.553 3.307-1.23 3.307-1.23.654 1.652.241 2.872.118 3.176.77.84 1.237 1.911 1.237 3.222 0 4.612-2.805 5.625-5.476 5.924.431.372.814 1.103.814 2.224 0 1.606-.015 2.902-.015 3.293 0 .32.217.693.825.576C20.458 22.086 24 17.638 24 12.393 24 6.043 18.453.5 12 .5Z"/></svg>GitHub</a>
+        <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.447 20.452H17.2V14.745c0-1.366-.027-3.124-1.907-3.124-1.908 0-2.2 1.493-2.2 3.025v5.806H9.053V9h3.123v1.561h.044c.435-.824 1.497-1.693 3.081-1.693 3.297 0 3.904 2.17 3.904 4.993v6.591zM5.337 7.433a1.818 1.818 0 110-3.636 1.818 1.818 0 010 3.636zm1.631 13.019H3.71V9h3.258v11.452zM22.225 0H1.771C.792 0 0 .771 0 1.726v20.451C0 23.23.792 24 1.771 24h20.451C23.2 24 24 23.23 24 22.177V1.726C24 .771 23.2 0 22.225 0z"/></svg>LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom" data-i18n="footer_copy">&copy; 2026 Jehad Cheyi. All rights reserved.</div>
+  </footer>
+
+  <!-- ═══ BACK TO TOP ═══ -->
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+  </button>
+
+  <!-- ═══ JAVASCRIPT ═══ -->
+  <script>
+    // ═══════════════════════════════════════════
+    // i18n TRANSLATIONS
+    // ═══════════════════════════════════════════
+    const T = {
+      en: {
+        nav_about: "About", nav_education: "Education", nav_research: "Research",
+        nav_publications: "Publications", nav_skills: "Skills", nav_goals: "Goals",
+        hero_badge: "AI in Medicine",
+        hero_location: "Researcher in AI & Biomedical Imaging",
+        hero_name: "Jehad Cheyi",
+        hero_desc: 'M.Sc. in Computer Engineering specializing in <strong>Deep Learning</strong>, <strong>CNNs</strong>, and <strong>Computer Vision</strong> applied to biomedical imaging — advancing AI-powered cancer detection and clinical diagnostics.',
+        tag_dl: "Deep Learning", tag_cv: "Computer Vision", tag_bi: "Biomedical Imaging",
+        btn_contact: "Get in Touch", btn_github: "GitHub",
+        about_label: "About", about_title: "About Me",
+        about_p1: "I am a Computer Engineer, researcher, and innovator with a Master's degree in Computer Engineering, specializing in Deep Learning, Convolutional Neural Networks (CNN), and Computer Vision. My passion lies in integrating artificial intelligence with biomedical imaging to develop cutting-edge solutions for critical healthcare challenges. Through years of academic study and hands-on research, I have focused extensively on the early and accurate detection of cancers—particularly breast cancer—by leveraging state-of-the-art techniques in AI and image analysis.",
+        about_p2: "My work involves designing, optimizing, and implementing advanced AI pipelines for the automated detection, segmentation, and classification of cancerous lesions, aiming to support clinicians in making faster, more reliable diagnoses. I am adept at working with diverse medical imaging modalities including mammography, ultrasound, X-ray, and histopathology, and have developed robust models validated on large, annotated datasets.",
+        about_p3: "In addition to research, I am deeply interested in the practical translation of AI models into clinical environments, emphasizing interpretability, reproducibility, and collaboration with multidisciplinary teams. My vision is to advance medical imaging and healthcare analytics by combining technical excellence with a dedication to real-world impact and innovation, contributing to improved patient outcomes and the next generation of intelligent healthcare systems.",
+        edu_label: "Education", edu_title: "Academic Background",
+        edu_msc: "M.Sc. in Computer Engineering", edu_msc_loc: "Turkey",
+        edu_msc_thesis: "Thesis: AI-powered breast cancer detection & segmentation using CNNs",
+        edu_bsc: "B.Sc. in Computer Science", edu_bsc_loc: "Iraq",
+        res_label: "Research", res_title: "Research & Projects",
+        proj1_name: "Breast Cancer Histopathology AI", proj1_sub: "Histopathology Image Analysis",
+        proj1_desc: "Developed a custom AI model for histopathology image analysis, enabling automated classification and detection of breast cancer from tissue slide images with high accuracy and robust performance.",
+        proj_demo: "Live Demo on Hugging Face",
+        proj2_name: "Breast Cancer Ultrasound AI", proj2_sub: "Ultrasound Image Analysis",
+        proj2_desc: "Created a high-accuracy ultrasound analysis model for breast cancer detection, leveraging advanced CNN architectures with segmentation and classification capabilities validated on clinical datasets.",
+        proj_demo2: "Live Demo on Hugging Face",
+        proj3_name: "More Projects & Open Source", proj3_sub: "Explore all research and code",
+        proj3_desc: "Explore additional research projects, AI experiments, and open-source contributions on my GitHub profile. From medical imaging pipelines to deep learning utilities, my repositories showcase a commitment to reproducible, impactful research.",
+        proj_github: "View GitHub Profile",
+        pub_label: "Publications", pub_title: "Publications & Outputs",
+        pub1_title: "Advanced CNN-Based Classification and Segmentation for Enhanced Breast Cancer Ultrasound Imaging",
+        pub1_authors: "J Cheyi, YÇ Kaya — Gazi University Journal of Science Part A: Engineering, 2024",
+        sk_label: "Skills", sk_title: "Skills & Tools",
+        sk_programming: "Programming", sk_frameworks: "Frameworks", sk_arch: "Architectures",
+        sk_modalities: "Medical Imaging Modalities", sk_metrics: "Metrics & Evaluation",
+        sk_tools: "Tools & DevOps", sk_data: "Data & Visualization", sk_cloud: "Cloud & Deployment",
+        sk_methods: "Methods & Special Topics", sk_collab: "Collaboration",
+        goals_label: "Goals", goals_title: "Career Goals & Interests",
+        goal1_title: "Federated Learning",
+        goal1_desc: "Integrate federated learning for privacy-preserving cross-institutional AI, enabling collaborative model training without sharing sensitive patient data across hospitals and research centers.",
+        goal2_title: "Self-Supervised & Transformers",
+        goal2_desc: "Advance self-supervised and transformer-based medical imaging approaches, reducing dependence on large annotated datasets while improving diagnostic accuracy and generalizability.",
+        goal3_title: "Clinical Translation",
+        goal3_desc: "Translate models into clinics with explainability and clinician-centric design, ensuring AI tools are interpretable, trustworthy, and seamlessly integrated into real diagnostic workflows.",
+        engage_label: "Engagement", engage_title: "Academic Engagement",
+        engage1_title: "Conference Presentations",
+        engage1_desc: "Presented research at MICCAI, VISAPP, and SIIM — sharing advances in AI-driven medical image analysis with the international research community.",
+        engage2_title: "Workshops & Seminars",
+        engage2_desc: "Attended specialized workshops on AI in medical imaging, staying at the forefront of emerging techniques and networking with leading researchers.",
+        engage3_title: "Open to Collaboration",
+        engage3_desc: "Actively interested in collaborative research and academic exchanges, welcoming partnerships that push the boundaries of AI in healthcare.",
+        footer_name: "Jehad Cheyi",
+        footer_sub: "M.Sc. Computer Engineering \u2022 AI & Biomedical Imaging",
+        footer_copy: "\u00A9 2026 Jehad Cheyi. All rights reserved."
+      },
+      ar: {
+        nav_about: "نبذة", nav_education: "التعليم", nav_research: "البحث",
+        nav_publications: "المنشورات", nav_skills: "المهارات", nav_goals: "الأهداف",
+        hero_badge: "الذكاء الاصطناعي في الطب",
+        hero_location: "باحث في الذكاء الاصطناعي والتصوير الطبي الحيوي",
+        hero_name: "جهاد تشيي",
+        hero_desc: 'ماجستير في هندسة الحاسوب متخصص في <strong>التعلم العميق</strong> و<strong>الشبكات العصبية التلافيفية</strong> و<strong>الرؤية الحاسوبية</strong> المطبقة على التصوير الطبي الحيوي — تطوير الكشف عن السرطان بالذكاء الاصطناعي والتشخيص السريري.',
+        tag_dl: "التعلم العميق", tag_cv: "الرؤية الحاسوبية", tag_bi: "التصوير الطبي الحيوي",
+        btn_contact: "تواصل معي", btn_github: "غيت هب",
+        about_label: "نبذة", about_title: "نبذة عني",
+        about_p1: "أنا مهندس حاسوب وباحث ومبتكر، حاصل على درجة الماجستير في هندسة الحاسوب، متخصص في التعلم العميق والشبكات العصبية التلافيفية والرؤية الحاسوبية. شغفي يكمن في دمج الذكاء الاصطناعي مع التصوير الطبي الحيوي لتطوير حلول متطورة للتحديات الصحية الحرجة. من خلال سنوات من الدراسة الأكاديمية والبحث التطبيقي، ركّزت بشكل مكثف على الكشف المبكر والدقيق عن السرطانات — وخاصة سرطان الثدي — باستخدام أحدث تقنيات الذكاء الاصطناعي وتحليل الصور.",
+        about_p2: "يتضمن عملي تصميم وتحسين وتنفيذ خطوط أنابيب ذكاء اصطناعي متقدمة للكشف التلقائي والتجزئة وتصنيف الآفات السرطانية، بهدف دعم الأطباء في وضع تشخيصات أسرع وأكثر موثوقية. أتقن العمل مع أنماط التصوير الطبي المتنوعة بما في ذلك التصوير الشعاعي للثدي والموجات فوق الصوتية والأشعة السينية وعلم الأمراض النسيجي، وطوّرت نماذج قوية تم التحقق منها على مجموعات بيانات كبيرة وموسومة.",
+        about_p3: "بالإضافة إلى البحث، أهتم اهتمامًا عميقًا بالترجمة العملية لنماذج الذكاء الاصطناعي إلى البيئات السريرية، مع التأكيد على قابلية التفسير وقابلية التكرار والتعاون مع الفرق متعددة التخصصات. رؤيتي هي تطوير التصوير الطبي وتحليلات الرعاية الصحية من خلال الجمع بين التميز التقني والتفاني في التأثير الواقعي والابتكار، والمساهمة في تحسين نتائج المرضى والجيل القادم من أنظمة الرعاية الصحية الذكية.",
+        edu_label: "التعليم", edu_title: "الخلفية الأكاديمية",
+        edu_msc: "ماجستير في هندسة الحاسوب", edu_msc_loc: "تركيا",
+        edu_msc_thesis: "رسالة: الكشف عن سرطان الثدي وتجزئته بالذكاء الاصطناعي باستخدام الشبكات العصبية التلافيفية",
+        edu_bsc: "بكالوريوس في علوم الحاسوب", edu_bsc_loc: "العراق",
+        res_label: "البحث", res_title: "البحث والمشاريع",
+        proj1_name: "ذكاء اصطناعي لسرطان الثدي النسيجي", proj1_sub: "تحليل صور علم الأمراض النسيجي",
+        proj1_desc: "تطوير نموذج ذكاء اصطناعي مخصص لتحليل صور علم الأمراض النسيجي، يمكّن من التصنيف والكشف التلقائي عن سرطان الثدي من صور شرائح الأنسجة بدقة عالية وأداء قوي.",
+        proj_demo: "عرض تفاعلي على Hugging Face",
+        proj2_name: "ذكاء اصطناعي لسرطان الثدي بالموجات فوق الصوتية", proj2_sub: "تحليل صور الموجات فوق الصوتية",
+        proj2_desc: "إنشاء نموذج تحليل بالموجات فوق الصوتية عالي الدقة للكشف عن سرطان الثدي، باستخدام architectures شبكات عصبية تلافيفية متقدمة مع قدرات التجزئة والتصنيف المُتحقق منها على مجموعات بيانات سريرية.",
+        proj_demo2: "عرض تفاعلي على Hugging Face",
+        proj3_name: "المزيد من المشاريع والمصدر المفتوح", proj3_sub: "استكشف جميع الأبحاث والكود",
+        proj3_desc: "استكشف مشاريع بحثية إضافية وتجارب ذكاء اصطناعي ومساهمات مفتوحة المصدر على ملفي الشخصي في غيت هب. من خطوط أنابيب التصوير الطبي إلى أدوات التعلم العميق، تعرض مستودعاتي التزامًا بالبحث القابل للتكرار والمؤثر.",
+        proj_github: "عرض الملف الشخصي على غيت هب",
+        pub_label: "المنشورات", pub_title: "المنشورات والمخرجات",
+        pub1_title: "التصنيف والتجزئة المتقدمان المعتمدان على الشبكات العصبية التلافيفية لتحسين تصوير سرطان الثدي بالموجات فوق الصوتية",
+        pub1_authors: "ج. تشيي، ي. تش. كايا — مجلة جامعة غازي للعلوم الجزء أ: الهندسة، 2024",
+        sk_label: "المهارات", sk_title: "المهارات والأدوات",
+        sk_programming: "البرمجة", sk_frameworks: "الأطر", sk_arch: "البنيات",
+        sk_modalities: "أنماط التصوير الطبي", sk_metrics: "المقاييس والتقييم",
+        sk_tools: "الأدوات وDevOps", sk_data: "البيانات والتصور", sk_cloud: "السحابة والنشر",
+        sk_methods: "المناهج والمواضيع الخاصة", sk_collab: "التعاون",
+        goals_label: "الأهداف", goals_title: "الأهداف المهنية والاهتمامات",
+        goal1_title: "التعلم الموحّد",
+        goal1_desc: "دمج التعلم الموحّد للحفاظ على الخصوصية في الذكاء الاصطناعي بين المؤسسات، مما يتيح التدريب التعاوني للنماذج دون مشاركة بيانات المرضى الحساسة عبر المستشفيات ومراكز البحث.",
+        goal2_title: "التعلم الذاتي والمحولات",
+        goal2_desc: "تطوير مناهج التعلم الذاتي والمحولات في التصوير الطبي، مما يقلل الاعتماد على مجموعات البيانات الموسومة الكبيرة مع تحسين دقة التشخيص وقابلية التعميم.",
+        goal3_title: "التطبيق السريري",
+        goal3_desc: "ترجمة النماذج إلى العيادات مع قابلية التفسير والتصميم المركز على الطبيب، لضمان أن أدوات الذكاء الاصطناعي قابلة للتفسير وموثوقة ومتكاملة بسلاسة في سير العمل التشخيصي.",
+        engage_label: "المشاركة", engage_title: "المشاركة الأكاديمية",
+        engage1_title: "عروض المؤتمرات",
+        engage1_desc: "قدمت أبحاثًا في MICCAI وVISAPP وSIIM — مشاركة التقدم في تحليل الصور الطبية بالذكاء الاصطناعي مع مجتمع البحث الدولي.",
+        engage2_title: "ورش العمل والندوات",
+        engage2_desc: "حضور ورش عمل متخصصة في الذكاء الاصطناعي في التصوير الطبي، والبقاء في طليعة التقنيات الناشئة والتواصل مع الباحثين الرائدين.",
+        engage3_title: "منفتح على التعاون",
+        engage3_desc: "مهتم بنشاط بالبحث التعاوني والتبادلات الأكاديمية، ومرحب بالشراكات التي تدفع حدود الذكاء الاصطناعي في الرعاية الصحية.",
+        footer_name: "جهاد تشيي",
+        footer_sub: "ماجستير هندسة حاسوب \u2022 الذكاء الاصطناعي والتصوير الطبي الحيوي",
+        footer_copy: "\u00A9 ٢٠٢٦ جهاد تشيي. جميع الحقوق محفوظة."
+      },
+      ku: {
+        nav_about: "دەربارە", nav_education: "خوێندن", nav_research: "توێژینەوە",
+        nav_publications: "بڵاوکراوەکان", nav_skills: "شارەزایی", nav_goals: "ئامانجەکان",
+        hero_badge: "زیرەکی دەستکرد لە پزیشکیدا",
+        hero_location: "توێژەر لە زیرەکی دەستکرد و وێنەکێشانی بایۆمێدیکی",
+        hero_name: "جەھاد چەیی",
+        hero_desc: 'ماستەرێکم لە ئەندازیاری کۆمپیوتەر هەیە، تایبەتمەند لە <strong>فێربوونا قووڵ</strong> و <strong>شبکێت عەصبی کۆنڤۆلوشن</strong> و <strong>بینینا کۆمپیوتەر</strong> کی لە وێنەکێشانا بایۆمێدیکی ئەپلیکە — پێشخستنا دیاریکردنا شێرپەنجەێی ب زیرەکی دەستکرد و تاقیکردنەوێ کلینیکی.',
+        tag_dl: "فێربوونا قووڵ", tag_cv: "بینینا کۆمپیوتەر", tag_bi: "وێنەکێشانا بایۆمێدیکی",
+        btn_contact: "پەیوەندیم پێوە بکە", btn_github: "گیتھەب",
+        about_label: "دەربارە", about_title: "دەربارەی من",
+        about_p1: "من ئەندازیاری کۆمپیوتەر و توێژەر و داھێنەرێکمە. ماستەرێکم لە ئەندازیاری کۆمپیوتەر هەیە، تایبەتمەند لە فێربوونا قووڵ و شبکێت عەصبی کۆنڤۆلوشن و بینینا کۆمپیوتەر. ئارەزووم تێکەڵکردنا زیرەکی دەستکردە لەگەڵ وێنەکێشانا بایۆمێدیکی بۆ دروستکردنا چارەسەری پێشکەوتوو بۆ کێشێت تەندروستییێ گرنگ. لە ڕێیا ساڵانێک لە خوێندن و توێژینەوێدا، تیشکم خستووە سەر دیاریکردنا زوو و وردی شێرپەنجەکان — بەتایبەتی شێرپەنجەی مەمک — بە نوێترین تەکنیکێت زیرەکی دەستکرد و شیکاری وێنە.",
+        about_p2: "کارەکەم دیزاین و باشکردن و جێبەجێکردنا پایپلاینێت زیرەکی دەستکردی پێشکەوتووە بۆ دیاریکردن و پارچەپارچەکردن و پۆلێنکردنا لێشۆرێت شێرپەنجەیی، بۆ ئەوی پشتیوانی پزیشکان بکەم لە دانانا تاقیکردنەوێ خێراتر و متمانەپێوەکراو. شارەزام لە کارکردن لەگەڵ جۆرێت جیاوازی وێنەکێشانا پزیشکییدا وەکوو مامۆگرافی و ئەلتراساوند و ئێکسڕەی و هیستۆپاتۆلۆژی، و مۆدێلی بەهێزم دروستکردووە کی لەسەر داتاسێتی گەورە و نیشانەکراو پشتڕاستکراوەتەوە.",
+        about_p3: "جگە لە توێژینەوە، حەزم لە وەرگێڕانا پراکتیکی مۆدێلێت زیرەکی دەستکردە بۆ ژینگێت کلینیکی، بە جەختکردنەوە لە لێکدانەوە و دووبارە بەرهەمهێنان و هاوکاری لەگەڵ تیمێت فرە بوار. دیدوازم پێشخستنا وێنەکێشانا پزیشکی و شیکاری تەندروستییە بە تێکەڵکردنا بەرزی تەکنیکی لەگەڵ ئامادەبوون بۆ کاریگەری ڕاستەقینە و داھێنان، و بەشداریکردن لە باشکردنا ئەنجامێت نەخۆش و نەوێ داهاتووی سیستەمێت تەندروستی زیرەک.",
+        edu_label: "خوێندن", edu_title: "پاشخانی ئەکادیمی",
+        edu_msc: "ماستەر لە ئەندازیاری کۆمپیوتەر", edu_msc_loc: "تورکیا",
+        edu_msc_thesis: "تیز: دیاریکردن و پارچەپارچەکردنا شێرپەنجەی مەمک ب زیرەکی دەستکرد بەکارهێنانا CNN",
+        edu_bsc: "بەکالۆریۆس لە زانستی کۆمپیوتەر", edu_bsc_loc: "عێراق",
+        res_label: "توێژینەوە", res_title: "توێژینەوە و پرۆژەکان",
+        proj1_name: "AI بۆ شێرپەنجەی مەمکی هیستۆپاتۆلۆژی", proj1_sub: "شیکاری وێنەی هیستۆپاتۆلۆژی",
+        proj1_desc: "مۆدێلی AI ی تایبەتم دروستکرد بۆ شیکاری وێنەی هیستۆپاتۆلۆژی، کی دیاریکردن و پۆلێنکردنا ئۆتۆماتیکی شێرپەنجەی مەمک لە وێنەی سلایدی شانەکان ڕێگەپێدەدات بە وردی بەرزەوە.",
+        proj_demo: "پیشاندانی زیندوو لەسەر Hugging Face",
+        proj2_name: "AI بۆ شێرپەنجەی مەمکی ئەلتراساوند", proj2_sub: "شیکاری وێنەی ئەلتراساوند",
+        proj2_desc: "مۆدێلی شیکاری ئەلتراساوندی وردبەرزم دروستکرد بۆ دیاریکردنا شێرپەنجەی مەمک، بە بەکارهێنانا شبکێت CNN ی پێشکەوتوو لەگەڵ توانا پارچەپارچەکردن و پۆلێنکردنێ کی لەسەر داتاسێتی کلینیکی پشتڕاستکراوە.",
+        proj_demo2: "پیشاندانی زیندوو لەسەر Hugging Face",
+        proj3_name: "پرۆژەی زیاتر و سەرچاوە کرائاوە", proj3_sub: "هەموو توێژینەوە و کۆدان بگەڕێ",
+        proj3_desc: "پرۆژەی توێژینەوەی زیاتر و تاقیکردنەوێ AI و بەشدارییێت سەرچاوە کرائاوە لەسەر پرۆفایلی گیتھەبم بگەڕێ. لە پایپلاینێت وێنەکێشانا پزیشکییەوە تا ئامرازێت فێربوونا قووڵ، ریپۆزیتۆرییەکانم ئامادەبون بۆ توێژینەوێ دووبارە بەرهەمهێنراو و کاریگەر نیشان دەدەن.",
+        proj_github: "پرۆفایلی گیتھەب ببینە",
+        pub_label: "بڵاوکراوەکان", pub_title: "بڵاوکراوەکان و دەرەنجامەکان",
+        pub1_title: "پۆلێنکردن و پارچەپارچەکردنا پێشکەوتوو ب CNN بۆ باشکردنا وێنەکێشانا شێرپەنجەی مەمکی ئەلتراساوند",
+        pub1_authors: "ج. چەیی، ی. چ. کایا — گۆڤاری زانکۆی غازی بۆ زانست بەشی أ: ئەندازیاری، ٢٠٢٤",
+        sk_label: "شارەزایی", sk_title: "شارەزایی و ئامرازەکان",
+        sk_programming: "پڕۆگرامکردن", sk_frameworks: "چوارچێوەکان", sk_arch: "ئارکیتێکتشرەکان",
+        sk_modalities: "جۆرێت وێنەکێشانا پزیشکی", sk_metrics: "پێوانەکان و هەڵسەنگاندن",
+        sk_tools: "ئامرازەکان و DevOps", sk_data: "داتا و ڤیژوەلایزەیشن", sk_cloud: "هەور و بڵاوکردنەوە",
+        sk_methods: "میتۆد و بابەتێت تایبەت", sk_collab: "هاوکاری",
+        goals_label: "ئامانجەکان", goals_title: "ئامانجێت پیشەیی و حەزەکان",
+        goal1_title: "فێربوونا فیدراڵ",
+        goal1_desc: "تێکەڵکردنا فێربوونا فیدراڵ بۆ پاراستنا تایبەتمەندی لە AI ی نێوان دامەزراوەکان، کی ڕێگەپێدەدات ب ڕاھێنانا هاوبەشی مۆدێلەکان بەبێ بەکارهێنانا داتای هەستیاری نەخۆشان لە نەخۆشخانەکان و ناوەندێت توێژینەوە.",
+        goal2_title: "فێربوونا خۆکار و ترانسفۆرمەر",
+        goal2_desc: "پێشخستنا فێربوونا خۆکار و ترانسفۆرمەر لە وێنەکێشانا پزیشکیدا، کەمکردنەوێ پشتبەستن ب داتاسێتی گەورەی نیشانەکراو لەگەڵ باشکردنا وردی تاقیکردنەوە.",
+        goal3_title: "وەرگێڕانی کلینیکی",
+        goal3_desc: "وەرگێڕانا مۆدێلەکان بۆ کلینیکەکان ب توانا لێکدانەوە و دیزاینی سەرنجخستن ب پزیشک، دڵنیابوون لەوی ئامرازێت زیرەکی دەستکرد لێکدراوەتەوە و متمانەپێکراون و ب شێوەیەکی ئاسان تێکەڵ کراون ب کارێت تاقیکردنەوێدا.",
+        engage_label: "بەشداریکردن", engage_title: "بەشداریکردنا ئەکادیمی",
+        engage1_title: "پێشکەشکردنا کۆنفرانس",
+        engage1_desc: "توێژینەوەم پێشکەش کرد لە MICCAI و VISAPP و SIIM — هاوبەشیکردنا پێشکەوتن لە شیکاری وێنە پزیشکییەکان ب AI لەگەڵ کۆمەڵگەی توێژینەوێ نێودەوڵەتی.",
+        engage2_title: "وۆرکشۆپ و سیمینارەکان",
+        engage2_desc: "بەشدار بووم لە وۆرکشۆپی تایبەت ب AI لە وێنەکێشانا پزیشکیدا، لە پێشەوێ تەکنیکێت نوێ مایەوە و پەیوەندیم لەگەڵ توێژەرانێت پێشەوە کرد.",
+        engage3_title: "ئامادەی هاوکاری",
+        engage3_desc: "ب چالاکی حەزم لە توێژینەوێ هاوبەش و ئاڵوگۆڕا ئەکادیمییە، بەخێرایی دەستپێڕاگەیشتن بۆ هاوبەشییەکان کی سنوورێت AI لە تەندروستیدا تێدەپەڕێنن.",
+        footer_name: "جەھاد چەیی",
+        footer_sub: "ماستەر ئەندازیاری کۆمپیوتەر \u2022 AI و وێنەکێشانا بایۆمێدیکی",
+        footer_copy: "\u00A9 ٢٠٢٦ جەھاد چەیی. هەموو مافەکان پارێزراون."
+      }
+    };
+
+    let currentLang = 'en';
+
+    function setLang(lang) {
+      currentLang = lang;
+      const isRTL = (lang === 'ar' || lang === 'ku');
+
+      // direction
+      document.documentElement.lang = lang;
+      document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+      document.body.classList.toggle('rtl', isRTL);
+
+      // lang buttons
+      document.querySelectorAll('.lang-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.lang === lang);
+      });
+
+      // translate all data-i18n
+      const dict = T[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (dict[key] !== undefined) {
+          el.innerHTML = dict[key];
+        }
+      });
+
+      // re-observe reveal elements
+      document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+        if (!el.classList.contains('visible')) {
+          observer.observe(el);
+        }
+      });
+    }
+
+    // ─── Smooth scroll ───
+    function navScroll(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        var top = el.getBoundingClientRect().top + window.pageYOffset - 70;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+      closeMobileNav();
+    }
+
+    // ─── Mobile nav ───
+    let mobileOpen = false;
+    function toggleMobileNav() {
+      mobileOpen = !mobileOpen;
+      document.getElementById('mobileNav').classList.toggle('open', mobileOpen);
+      document.getElementById('hamburgerIcon').style.display = mobileOpen ? 'none' : 'block';
+      document.getElementById('closeIcon').style.display = mobileOpen ? 'block' : 'none';
+    }
+    function closeMobileNav() {
+      mobileOpen = false;
+      document.getElementById('mobileNav').classList.remove('open');
+      document.getElementById('hamburgerIcon').style.display = 'block';
+      document.getElementById('closeIcon').style.display = 'none';
+    }
+
+    // ─── Scroll events ───
+    const sections = ['about','education','research','publications','skills','goals'];
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      document.getElementById('nav').classList.toggle('scrolled', y > 20);
+      document.getElementById('backToTop').classList.toggle('visible', y > 600);
+
+      let active = sections[0];
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i]);
+        if (el && el.getBoundingClientRect().top <= 120) { active = sections[i]; break; }
+      }
+      document.querySelectorAll('[data-section]').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.section === active);
+      });
+    }, { passive: true });
+
+    // ─── Scroll reveal ───
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
